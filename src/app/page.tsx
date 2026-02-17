@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, KeyRound, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, KeyRound, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -14,6 +14,13 @@ const tools = [
     href: '/ai-rewriter',
     icon: Sparkles,
     color: 'fuchsia',
+  },
+  {
+    name: 'AI Code Explainer',
+    description: 'Paste any code and get instant AI explanations. Line-by-line breakdown, key concepts, and potential issues.',
+    href: '/ai-code-explainer',
+    icon: Code2,
+    color: 'orange',
   },
   {
     name: 'AI Email Writer',
@@ -106,7 +113,7 @@ const comingSoonTools: { name: string; icon: typeof Code; bgClass: string; iconC
 ];
 
 const stats = [
-  { label: 'Free Tools', value: 13, suffix: '+', icon: Wrench },
+  { label: 'Free Tools', value: 14, suffix: '+', icon: Wrench },
   { label: 'Invoices Generated', value: 500, suffix: '+', icon: FileText },
   { label: 'Happy Users', value: 200, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, KeyRound, ImageIcon, GitCompareArrows, Shield } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, KeyRound, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -71,12 +71,21 @@ const tools = [
     icon: Code,
     color: 'indigo',
   },
+  {
+    name: 'JSON Formatter',
+    description: 'Format, validate, and explore JSON data. Syntax highlighting, tree view, and minification. All in your browser.',
+    href: '/json-formatter',
+    icon: Braces,
+    color: 'yellow',
+  },
 ];
 
-const comingSoonTools: { name: string; icon: typeof Code; bgClass: string; iconClass: string }[] = [];
+const comingSoonTools: { name: string; icon: typeof Code; bgClass: string; iconClass: string }[] = [
+  { name: 'CSS Gradient Generator', icon: Paintbrush, bgClass: 'bg-pink-500/10', iconClass: 'text-pink-400' },
+];
 
 const stats = [
-  { label: 'Free Tools', value: 9, suffix: '+', icon: Wrench },
+  { label: 'Free Tools', value: 10, suffix: '+', icon: Wrench },
   { label: 'Invoices Generated', value: 500, suffix: '+', icon: FileText },
   { label: 'Happy Users', value: 200, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },

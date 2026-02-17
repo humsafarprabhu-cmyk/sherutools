@@ -25,5 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/regex-tester`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/pomodoro`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/emoji-picker`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/word-counter`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/screenshot-beautifier`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
   ];
 }

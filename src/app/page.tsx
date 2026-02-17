@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, Wand2, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, Wand2, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile, BarChart3, Camera } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -141,6 +141,13 @@ const designTools = [
     color: 'pink',
   },
   {
+    name: 'Screenshot Beautifier',
+    description: 'Create beautiful code screenshots. Custom backgrounds, themes, and export as PNG. Perfect for social media.',
+    href: '/screenshot-beautifier',
+    icon: Camera,
+    color: 'purple',
+  },
+  {
     name: 'Emoji Picker',
     description: 'Search and copy any emoji instantly. Browse by category, skin tones, recently used. Copy as emoji, HTML, or Unicode.',
     href: '/emoji-picker',
@@ -171,6 +178,13 @@ const utilityTools = [
     href: '/pomodoro',
     icon: Timer,
     color: 'red',
+  },
+  {
+    name: 'Word Counter',
+    description: 'Count words, characters, sentences. Reading time, readability scores, keyword density. Real-time analysis.',
+    href: '/word-counter',
+    icon: BarChart3,
+    color: 'blue',
   },
 ];
 

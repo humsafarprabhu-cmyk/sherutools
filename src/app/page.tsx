@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, KeyRound } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -36,14 +36,22 @@ const tools = [
     icon: FileUp,
     color: 'amber',
   },
+  {
+    name: 'Color Palette Generator',
+    description: 'Generate beautiful color palettes instantly. Random, analogous, complementary, triadic schemes. Export as CSS, Tailwind, PNG.',
+    href: '/color-palette-generator',
+    icon: Palette,
+    color: 'pink',
+  },
 ];
 
 const comingSoonTools = [
-  { name: 'Color Palette Generator', icon: Palette, bgClass: 'bg-pink-100 dark:bg-pink-500/10', iconClass: 'text-pink-500 dark:text-pink-400' },
+  { name: 'Markdown Editor', icon: Code, bgClass: 'bg-cyan-100 dark:bg-cyan-500/10', iconClass: 'text-cyan-500 dark:text-cyan-400' },
+  { name: 'Password Generator', icon: KeyRound, bgClass: 'bg-red-100 dark:bg-red-500/10', iconClass: 'text-red-500 dark:text-red-400' },
 ];
 
 const stats = [
-  { label: 'Free Tools', value: 4, suffix: '+', icon: Wrench },
+  { label: 'Free Tools', value: 5, suffix: '+', icon: Wrench },
   { label: 'Invoices Generated', value: 500, suffix: '+', icon: FileText },
   { label: 'Happy Users', value: 200, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },

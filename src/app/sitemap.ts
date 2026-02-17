@@ -9,5 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/resume-builder`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/pdf-tools`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/color-palette-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/image-tools`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
   ];
 }

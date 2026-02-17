@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, KeyRound } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, KeyRound, ImageIcon } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -43,6 +43,13 @@ const tools = [
     icon: Palette,
     color: 'pink',
   },
+  {
+    name: 'Image Tools',
+    description: 'Compress, resize, and convert images. Reduce file size up to 90% without losing quality. All processing in your browser.',
+    href: '/image-tools',
+    icon: ImageIcon,
+    color: 'rose',
+  },
 ];
 
 const comingSoonTools = [
@@ -51,7 +58,7 @@ const comingSoonTools = [
 ];
 
 const stats = [
-  { label: 'Free Tools', value: 5, suffix: '+', icon: Wrench },
+  { label: 'Free Tools', value: 6, suffix: '+', icon: Wrench },
   { label: 'Invoices Generated', value: 500, suffix: '+', icon: FileText },
   { label: 'Happy Users', value: 200, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },

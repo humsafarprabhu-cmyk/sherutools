@@ -1,0 +1,59 @@
+import type { Metadata } from 'next';
+import { Geist } from 'next/font/google';
+import './globals.css';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
+
+const geist = Geist({ subsets: ['latin'], variable: '--font-geist' });
+
+export const metadata: Metadata = {
+  title: {
+    default: 'SheruTools — Free Online Tools That Actually Work',
+    template: '%s | SheruTools',
+  },
+  description: 'Free, beautiful online tools. Invoice generator, PDF tools, and more. No sign-up required.',
+  metadataBase: new URL('https://sherutools.com'),
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://sherutools.com',
+    siteName: 'SheruTools',
+    title: 'SheruTools — Free Online Tools That Actually Work',
+    description: 'Free, beautiful online tools. Invoice generator, PDF tools, and more.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SheruTools — Free Online Tools That Actually Work',
+    description: 'Free, beautiful online tools. Invoice generator, PDF tools, and more.',
+  },
+  robots: { index: true, follow: true },
+  alternates: { canonical: 'https://sherutools.com' },
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className="dark">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'SheruTools',
+              url: 'https://sherutools.com',
+              description: 'Free online tools that actually work',
+            }),
+          }}
+        />
+      </head>
+      <body className={`${geist.variable} font-sans antialiased bg-slate-950 text-white`}>
+        <GoogleAnalytics />
+        <Navigation />
+        <main className="min-h-screen">{children}</main>
+        <Footer />
+      </body>
+    </html>
+  );
+}

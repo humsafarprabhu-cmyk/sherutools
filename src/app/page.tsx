@@ -112,6 +112,13 @@ const designTools = [
     icon: QrCode,
     color: 'emerald',
   },
+  {
+    name: 'CSS Gradient Generator',
+    description: 'Create beautiful CSS gradients visually. Linear, radial, conic. Copy CSS or Tailwind. Export as PNG.',
+    href: '/css-gradient-generator',
+    icon: Paintbrush,
+    color: 'pink',
+  },
 ];
 
 /* ───── Security & Utility ───── */
@@ -126,12 +133,11 @@ const utilityTools = [
 ];
 
 const comingSoonTools = [
-  { name: 'CSS Gradient Generator', icon: Paintbrush, bgClass: 'bg-pink-500/10', iconClass: 'text-pink-400' },
   { name: 'AI Translator', icon: Wand2, bgClass: 'bg-purple-500/10', iconClass: 'text-purple-400' },
 ];
 
 const stats = [
-  { label: 'Free Tools', value: 14, suffix: '+', icon: Wrench },
+  { label: 'Free Tools', value: 15, suffix: '+', icon: Wrench },
   { label: 'AI-Powered', value: 3, suffix: '', icon: Bot },
   { label: 'Happy Users', value: 500, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },

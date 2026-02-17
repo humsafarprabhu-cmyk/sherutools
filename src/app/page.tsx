@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, Wand2, ArrowLeftRight, Binary, Terminal, Layout } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, Wand2, ArrowLeftRight, Binary, Terminal, Layout, Timer } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -157,6 +157,13 @@ const utilityTools = [
     href: '/unit-converter',
     icon: ArrowLeftRight,
     color: 'teal',
+  },
+  {
+    name: 'Pomodoro Timer',
+    description: 'Stay focused with the Pomodoro technique. Customizable timers, browser notifications, daily stats.',
+    href: '/pomodoro',
+    icon: Timer,
+    color: 'red',
   },
 ];
 

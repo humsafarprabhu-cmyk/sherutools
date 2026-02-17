@@ -23,5 +23,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/unit-converter`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/base64`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/regex-tester`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/pomodoro`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
   ];
 }

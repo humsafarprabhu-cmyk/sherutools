@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Code, Menu, X, Braces, Type, Mail, Sparkles, ChevronDown, Wrench, Code2, Paintbrush, ArrowLeftRight, Binary, Terminal, Layout } from 'lucide-react';
+import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Code, Menu, X, Braces, Type, Mail, Sparkles, ChevronDown, Wrench, Code2, Paintbrush, ArrowLeftRight, Binary, Terminal, Layout, Timer } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import ThemeToggle from './ThemeToggle';
 
@@ -29,6 +29,7 @@ const utilityTools = [
   { name: 'Unit Converter', href: '/unit-converter', icon: ArrowLeftRight },
   { name: 'Base64 Encoder', href: '/base64', icon: Binary },
   { name: 'Regex Tester', href: '/regex-tester', icon: Terminal },
+  { name: 'Pomodoro Timer', href: '/pomodoro', icon: Timer },
 ];
 
 const allTools = [...aiTools, ...utilityTools];

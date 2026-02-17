@@ -18,10 +18,10 @@ const tools = [
 ];
 
 const comingSoonTools = [
-  { name: 'Resume Builder', icon: FileCheck, color: 'purple' },
-  { name: 'PDF Converter', icon: FileUp, color: 'amber' },
-  { name: 'QR Code Generator', icon: QrCode, color: 'emerald' },
-  { name: 'Color Palette Generator', icon: Palette, color: 'pink' },
+  { name: 'Resume Builder', icon: FileCheck, bgClass: 'bg-purple-100 dark:bg-purple-500/10', iconClass: 'text-purple-500 dark:text-purple-400' },
+  { name: 'PDF Converter', icon: FileUp, bgClass: 'bg-amber-100 dark:bg-amber-500/10', iconClass: 'text-amber-500 dark:text-amber-400' },
+  { name: 'QR Code Generator', icon: QrCode, bgClass: 'bg-emerald-100 dark:bg-emerald-500/10', iconClass: 'text-emerald-500 dark:text-emerald-400' },
+  { name: 'Color Palette Generator', icon: Palette, bgClass: 'bg-pink-100 dark:bg-pink-500/10', iconClass: 'text-pink-500 dark:text-pink-400' },
 ];
 
 const stats = [
@@ -187,8 +187,8 @@ export default function Home() {
                 <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-slate-200 dark:bg-white/10 text-[10px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                   Coming Soon
                 </div>
-                <div className={`w-12 h-12 rounded-xl bg-${tool.color}-100 dark:bg-${tool.color}-500/10 flex items-center justify-center mb-4`}>
-                  <tool.icon className={`w-6 h-6 text-${tool.color}-500 dark:text-${tool.color}-400`} />
+                <div className={`w-12 h-12 rounded-xl ${tool.bgClass} flex items-center justify-center mb-4`}>
+                  <tool.icon className={`w-6 h-6 ${tool.iconClass}`} />
                 </div>
                 <h3 className="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-1">{tool.name}</h3>
                 <p className="text-sm text-slate-400 dark:text-slate-500">Coming soon. Stay tuned!</p>

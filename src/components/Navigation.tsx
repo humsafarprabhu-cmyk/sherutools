@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, Menu, X } from 'lucide-react';
+import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
 
@@ -13,6 +13,7 @@ const tools = [
   { name: 'PDF Tools', href: '/pdf-tools', icon: FileUp },
   { name: 'Color Palette', href: '/color-palette-generator', icon: Palette },
   { name: 'Image Tools', href: '/image-tools', icon: ImageIcon },
+  { name: 'Text Compare', href: '/text-compare', icon: GitCompareArrows },
 ];
 
 export default function Navigation() {

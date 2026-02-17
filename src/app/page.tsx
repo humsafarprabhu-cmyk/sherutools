@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, KeyRound, ImageIcon } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, KeyRound, ImageIcon, GitCompareArrows } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -50,6 +50,13 @@ const tools = [
     icon: ImageIcon,
     color: 'rose',
   },
+  {
+    name: 'Text Compare',
+    description: 'Compare two texts side-by-side with real-time diff highlighting. Find additions, deletions, and changes instantly.',
+    href: '/text-compare',
+    icon: GitCompareArrows,
+    color: 'cyan',
+  },
 ];
 
 const comingSoonTools = [
@@ -58,7 +65,7 @@ const comingSoonTools = [
 ];
 
 const stats = [
-  { label: 'Free Tools', value: 6, suffix: '+', icon: Wrench },
+  { label: 'Free Tools', value: 7, suffix: '+', icon: Wrench },
   { label: 'Invoices Generated', value: 500, suffix: '+', icon: FileText },
   { label: 'Happy Users', value: 200, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },

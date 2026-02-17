@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, Wand2, ArrowLeftRight, Binary, Terminal, Layout, Timer } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, Wand2, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -139,6 +139,13 @@ const designTools = [
     href: '/css-gradient-generator',
     icon: Paintbrush,
     color: 'pink',
+  },
+  {
+    name: 'Emoji Picker',
+    description: 'Search and copy any emoji instantly. Browse by category, skin tones, recently used. Copy as emoji, HTML, or Unicode.',
+    href: '/emoji-picker',
+    icon: Smile,
+    color: 'amber',
   },
 ];
 

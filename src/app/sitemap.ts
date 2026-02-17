@@ -12,5 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/image-tools`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/text-compare`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/password-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/markdown-editor`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
   ];
 }

@@ -64,14 +64,19 @@ const tools = [
     icon: Shield,
     color: 'green',
   },
+  {
+    name: 'Markdown Editor',
+    description: 'Write and preview Markdown in real-time. Toolbar, syntax highlighting, export to HTML & MD. Full-featured and free.',
+    href: '/markdown-editor',
+    icon: Code,
+    color: 'indigo',
+  },
 ];
 
-const comingSoonTools = [
-  { name: 'Markdown Editor', icon: Code, bgClass: 'bg-cyan-100 dark:bg-cyan-500/10', iconClass: 'text-cyan-500 dark:text-cyan-400' },
-];
+const comingSoonTools: { name: string; icon: typeof Code; bgClass: string; iconClass: string }[] = [];
 
 const stats = [
-  { label: 'Free Tools', value: 8, suffix: '+', icon: Wrench },
+  { label: 'Free Tools', value: 9, suffix: '+', icon: Wrench },
   { label: 'Invoices Generated', value: 500, suffix: '+', icon: FileText },
   { label: 'Happy Users', value: 200, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },

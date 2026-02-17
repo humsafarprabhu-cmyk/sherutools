@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Menu, X } from 'lucide-react';
+import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Code, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
 
@@ -15,6 +15,7 @@ const tools = [
   { name: 'Image Tools', href: '/image-tools', icon: ImageIcon },
   { name: 'Text Compare', href: '/text-compare', icon: GitCompareArrows },
   { name: 'Passwords', href: '/password-generator', icon: Shield },
+  { name: 'Markdown', href: '/markdown-editor', icon: Code },
 ];
 
 export default function Navigation() {

@@ -9,8 +9,12 @@ export default function ThemeToggle() {
 
   useEffect(() => {
     const stored = localStorage.getItem('sherutools-theme');
-    if (stored === 'light') { setDark(false); document.documentElement.classList.remove('dark'); }
-    else { document.documentElement.classList.add('dark'); }
+    if (stored === 'light') {
+      setDark(false);
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+    }
   }, []);
 
   const toggle = () => {
@@ -25,10 +29,10 @@ export default function ThemeToggle() {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       onClick={toggle}
-      className="p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+      className="p-2 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/10 transition-colors"
       aria-label="Toggle theme"
     >
-      {dark ? <Sun className="w-4 h-4 text-yellow-400" /> : <Moon className="w-4 h-4 text-slate-300" />}
+      {dark ? <Sun className="w-4 h-4 text-yellow-500" /> : <Moon className="w-4 h-4 text-slate-600" />}
     </motion.button>
   );
 }

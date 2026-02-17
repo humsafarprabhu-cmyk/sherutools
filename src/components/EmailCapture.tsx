@@ -52,7 +52,7 @@ export default function EmailCapture({ variant = 'hero' }: Props) {
                   onChange={e => setEmail(e.target.value)}
                   placeholder="Get notified about new tools"
                   required
-                  className="flex-1 px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                  className="flex-1 px-4 py-2.5 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm text-slate-900 dark:text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                 />
                 <motion.button
                   whileHover={{ scale: 1.02 }}
@@ -85,7 +85,7 @@ export default function EmailCapture({ variant = 'hero' }: Props) {
             <Sparkles className="w-4 h-4" /> Stay in the loop
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
             Get notified when we launch{' '}
             <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">new tools</span>
           </h2>
@@ -110,7 +110,7 @@ export default function EmailCapture({ variant = 'hero' }: Props) {
                 >
                   <Check className="w-8 h-8 text-emerald-400" />
                 </motion.div>
-                <p className="text-lg font-semibold text-white">You&apos;re on the list! 🎉</p>
+                <p className="text-lg font-semibold text-slate-900 dark:text-white">You&apos;re on the list! 🎉</p>
                 <p className="text-sm text-slate-400">We&apos;ll ping you when something cool drops.</p>
               </motion.div>
             ) : (
@@ -127,7 +127,7 @@ export default function EmailCapture({ variant = 'hero' }: Props) {
                     onChange={e => setEmail(e.target.value)}
                     placeholder="you@example.com"
                     required
-                    className="w-full pl-10 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all text-sm"
+                    className="w-full pl-10 pr-4 py-3.5 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all text-sm"
                   />
                 </div>
                 <motion.button

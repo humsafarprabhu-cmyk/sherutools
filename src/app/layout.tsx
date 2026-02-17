@@ -4,6 +4,8 @@ import './globals.css';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import MouseSpotlight from '@/components/MouseSpotlight';
+import ScrollProgress from '@/components/ScrollProgress';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' });
 
@@ -48,8 +50,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className={`${geist.variable} font-sans antialiased bg-slate-950 text-white`}>
+      <body className={`${geist.variable} font-sans antialiased bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300`}>
         <GoogleAnalytics />
+        <ScrollProgress />
+        <MouseSpotlight />
         <Navigation />
         <main className="min-h-screen">{children}</main>
         <Footer />

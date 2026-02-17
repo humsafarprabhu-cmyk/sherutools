@@ -26,6 +26,7 @@ const colorMap: Record<string, { bg: string; bgLight: string; text: string; glow
   yellow:  { bg: 'bg-yellow-500/10', bgLight: 'bg-yellow-100', text: 'text-yellow-500', glow: 'bg-yellow-500' },
   violet:  { bg: 'bg-violet-500/10', bgLight: 'bg-violet-100', text: 'text-violet-500', glow: 'bg-violet-500' },
   sky:     { bg: 'bg-sky-500/10', bgLight: 'bg-sky-100', text: 'text-sky-500', glow: 'bg-sky-500' },
+  fuchsia: { bg: 'bg-fuchsia-500/10', bgLight: 'bg-fuchsia-100', text: 'text-fuchsia-500', glow: 'bg-fuchsia-500' },
 };
 
 export default function ToolCard({ name, description, href, icon: Icon, color }: Props) {

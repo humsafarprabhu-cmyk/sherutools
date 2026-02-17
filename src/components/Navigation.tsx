@@ -7,6 +7,7 @@ import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
 
 const tools = [
+  { name: 'AI Rewriter ✨', href: '/ai-rewriter', icon: Sparkles },
   { name: 'AI Email ✨', href: '/ai-email-writer', icon: Mail },
   { name: 'Invoice Generator', href: '/invoice-generator', icon: FileText },
   { name: 'QR Code', href: '/qr-code-generator', icon: QrCode },

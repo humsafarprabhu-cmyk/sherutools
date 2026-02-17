@@ -333,12 +333,12 @@ export default function AIEmailWriter() {
                   <h3 className="font-semibold text-slate-900 dark:text-white text-sm">Upgrade to Pro</h3>
                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Unlimited emails, templates library, custom tones & more.</p>
                   <div className="mt-2 flex items-center gap-2">
-                    <span className="text-lg font-bold text-amber-500">$5.99</span>
+                    <span className="text-lg font-bold text-amber-500">$2.99</span>
                     <span className="text-xs text-slate-400">/month</span>
                   </div>
-                  <button className="mt-2 px-4 py-1.5 rounded-lg bg-amber-500 text-white text-xs font-medium hover:bg-amber-600 transition-colors">
-                    Coming Soon
-                  </button>
+                  <a href="https://sherutools.lemonsqueezy.com/checkout/buy/bc0a3fd1-9f86-4148-8c78-ff84708bf027" target="_blank" rel="noopener noreferrer" className="mt-2 inline-block px-4 py-1.5 rounded-lg bg-amber-500 text-white text-xs font-medium hover:bg-amber-600 transition-colors">
+                    Upgrade Now →
+                  </a>
                 </div>
               </div>
             </motion.div>

@@ -1,34 +1,39 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, KeyRound, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2 } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, Wand2 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
 import SocialProof from '@/components/SocialProof';
 
-const tools = [
+/* ───── AI Tools ───── */
+const aiTools = [
   {
-    name: 'AI Rewriter',
-    description: 'Rewrite and paraphrase content with AI. Simplify, formalize, expand, or summarize any text instantly.',
+    name: 'AI Email Writer',
+    description: 'Generate professional emails instantly. Choose purpose, tone, and key points. Perfect emails in seconds.',
+    href: '/ai-email-writer',
+    icon: Mail,
+    color: 'sky',
+  },
+  {
+    name: 'AI Content Rewriter',
+    description: 'Paraphrase, simplify, formalize, expand, or summarize any text. 6 rewrite modes powered by AI.',
     href: '/ai-rewriter',
     icon: Sparkles,
     color: 'fuchsia',
   },
   {
     name: 'AI Code Explainer',
-    description: 'Paste any code and get instant AI explanations. Line-by-line breakdown, key concepts, and potential issues.',
+    description: 'Paste any code and get instant explanations. Line-by-line breakdown, key concepts, and potential issues.',
     href: '/ai-code-explainer',
     icon: Code2,
     color: 'orange',
   },
-  {
-    name: 'AI Email Writer',
-    description: 'Generate professional emails instantly with AI. Choose purpose, tone, and key points. Perfect emails in seconds.',
-    href: '/ai-email-writer',
-    icon: Mail,
-    color: 'sky',
-  },
+];
+
+/* ───── Document & Business Tools ───── */
+const documentTools = [
   {
     name: 'Invoice Generator',
     description: 'Create professional invoices in seconds. 3 templates, live preview, instant PDF download.',
@@ -37,89 +42,102 @@ const tools = [
     color: 'blue',
   },
   {
-    name: 'QR Code Generator',
-    description: 'Generate QR codes for URLs, WiFi, vCards, email and more. Custom colors, instant PNG download.',
-    href: '/qr-code-generator',
-    icon: QrCode,
-    color: 'emerald',
-  },
-  {
     name: 'Resume Builder',
-    description: 'Build a professional resume in minutes. 3 beautiful templates, real-time preview, instant PDF download.',
+    description: 'Build a professional resume in minutes. 3 templates, real-time preview, instant PDF.',
     href: '/resume-builder',
     icon: FileCheck,
     color: 'purple',
   },
   {
     name: 'PDF Tools',
-    description: 'Merge, split, compress PDFs and convert between PDF & images. All processing happens in your browser.',
+    description: 'Merge, split, compress PDFs and convert between PDF & images. All in your browser.',
     href: '/pdf-tools',
     icon: FileUp,
     color: 'amber',
   },
-  {
-    name: 'Color Palette Generator',
-    description: 'Generate beautiful color palettes instantly. Random, analogous, complementary, triadic schemes. Export as CSS, Tailwind, PNG.',
-    href: '/color-palette-generator',
-    icon: Palette,
-    color: 'pink',
-  },
-  {
-    name: 'Image Tools',
-    description: 'Compress, resize, and convert images. Reduce file size up to 90% without losing quality. All processing in your browser.',
-    href: '/image-tools',
-    icon: ImageIcon,
-    color: 'rose',
-  },
-  {
-    name: 'Text Compare',
-    description: 'Compare two texts side-by-side with real-time diff highlighting. Find additions, deletions, and changes instantly.',
-    href: '/text-compare',
-    icon: GitCompareArrows,
-    color: 'cyan',
-  },
-  {
-    name: 'Password Generator',
-    description: 'Generate strong, secure passwords instantly. Random, passphrase, and pronounceable modes. Web Crypto API powered.',
-    href: '/password-generator',
-    icon: Shield,
-    color: 'green',
-  },
-  {
-    name: 'Markdown Editor',
-    description: 'Write and preview Markdown in real-time. Toolbar, syntax highlighting, export to HTML & MD. Full-featured and free.',
-    href: '/markdown-editor',
-    icon: Code,
-    color: 'indigo',
-  },
+];
+
+/* ───── Developer Tools ───── */
+const devTools = [
   {
     name: 'JSON Formatter',
-    description: 'Format, validate, and explore JSON data. Syntax highlighting, tree view, and minification. All in your browser.',
+    description: 'Format, validate, and explore JSON. Syntax highlighting, tree view, and minification.',
     href: '/json-formatter',
     icon: Braces,
     color: 'yellow',
   },
   {
+    name: 'Markdown Editor',
+    description: 'Write and preview Markdown in real-time. Toolbar, syntax highlighting, export to HTML & MD.',
+    href: '/markdown-editor',
+    icon: Code,
+    color: 'indigo',
+  },
+  {
+    name: 'Text Compare',
+    description: 'Compare two texts side-by-side with real-time diff highlighting. Find changes instantly.',
+    href: '/text-compare',
+    icon: GitCompareArrows,
+    color: 'cyan',
+  },
+  {
     name: 'Lorem Ipsum',
-    description: 'Generate placeholder text instantly. Classic, hipster, office, and tech variants. Paragraphs, sentences, words, or lists.',
+    description: 'Generate placeholder text. Classic, hipster, office, and tech variants.',
     href: '/lorem-ipsum',
     icon: Type,
     color: 'violet',
   },
 ];
 
-const comingSoonTools: { name: string; icon: typeof Code; bgClass: string; iconClass: string }[] = [
+/* ───── Design & Media Tools ───── */
+const designTools = [
+  {
+    name: 'Color Palette Generator',
+    description: 'Generate beautiful color palettes. Random, analogous, complementary, triadic schemes.',
+    href: '/color-palette-generator',
+    icon: Palette,
+    color: 'pink',
+  },
+  {
+    name: 'Image Tools',
+    description: 'Compress, resize, and convert images. Reduce file size up to 90%. All in your browser.',
+    href: '/image-tools',
+    icon: ImageIcon,
+    color: 'rose',
+  },
+  {
+    name: 'QR Code Generator',
+    description: 'Generate QR codes for URLs, WiFi, vCards, email and more. Custom colors, instant download.',
+    href: '/qr-code-generator',
+    icon: QrCode,
+    color: 'emerald',
+  },
+];
+
+/* ───── Security & Utility ───── */
+const utilityTools = [
+  {
+    name: 'Password Generator',
+    description: 'Generate strong, secure passwords. Random, passphrase, and pronounceable modes.',
+    href: '/password-generator',
+    icon: Shield,
+    color: 'green',
+  },
+];
+
+const comingSoonTools = [
   { name: 'CSS Gradient Generator', icon: Paintbrush, bgClass: 'bg-pink-500/10', iconClass: 'text-pink-400' },
+  { name: 'AI Translator', icon: Wand2, bgClass: 'bg-purple-500/10', iconClass: 'text-purple-400' },
 ];
 
 const stats = [
   { label: 'Free Tools', value: 14, suffix: '+', icon: Wrench },
-  { label: 'Invoices Generated', value: 500, suffix: '+', icon: FileText },
-  { label: 'Happy Users', value: 200, suffix: '+', icon: Users },
+  { label: 'AI-Powered', value: 3, suffix: '', icon: Bot },
+  { label: 'Happy Users', value: 500, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },
 ];
 
-const rotatingWords = ['That Actually Work', 'That Save Time', 'That Make Money', 'That Just Work'];
+const rotatingWords = ['That Actually Work', 'That Save Time', 'That Make Money', 'That Just Work', 'Powered by AI'];
 
 function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -152,7 +170,6 @@ function useWordRotation(words: string[], intervalMs = 2500) {
   return words[index];
 }
 
-// Floating shapes component
 function FloatingShapes() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -175,14 +192,23 @@ function FloatingShapes() {
   );
 }
 
-const stagger = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
-};
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
+const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
+const fadeUp = { hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.5 } } };
+
+/* ───── Section Header ───── */
+function SectionHeader({ emoji, label, title, subtitle, gradient }: { emoji: string; label: string; title: string; subtitle: string; gradient: string }) {
+  return (
+    <motion.div variants={fadeUp} className="mb-8">
+      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-slate-500 dark:text-slate-400 mb-3">
+        <span>{emoji}</span> {label}
+      </div>
+      <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2">
+        <span className={`bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>{title}</span>
+      </h2>
+      <p className="text-slate-500 dark:text-slate-400 text-sm md:text-base">{subtitle}</p>
+    </motion.div>
+  );
+}
 
 export default function Home() {
   const currentWord = useWordRotation(rotatingWords);
@@ -192,15 +218,12 @@ export default function Home() {
       {/* Hero */}
       <section className="relative pt-20 pb-16 px-4 overflow-hidden">
         <FloatingShapes />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-500/10 dark:bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute top-20 right-1/4 w-[300px] h-[300px] bg-emerald-500/10 dark:bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-20 right-1/4 w-[300px] h-[300px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-4xl mx-auto text-center relative">
           <motion.div variants={fadeUp} className="space-y-6">
-            <motion.div
-              variants={fadeUp}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 dark:bg-white/5 border border-white/10 dark:border-white/10 text-sm text-slate-600 dark:text-slate-300"
-            >
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-slate-600 dark:text-slate-300">
               <span className="text-lg">🦁</span> Free tools, no BS
             </motion.div>
 
@@ -213,15 +236,12 @@ export default function Home() {
             </h1>
 
             <p className="text-lg md:text-xl text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
-              Beautiful, fast, and free tools for creators, freelancers, and businesses.
-              No sign-ups. No hidden fees. Beautiful tools that just work.
+              Beautiful, fast, and free tools for creators, developers, and businesses.
+              No sign-ups. No hidden fees. Just tools that work.
             </p>
 
             <motion.div variants={fadeUp}>
-              <a
-                href="#tools"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-blue-500/25 transition-all text-sm hover:scale-105 active:scale-95"
-              >
+              <a href="#ai-tools" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-blue-500/25 transition-all text-sm hover:scale-105 active:scale-95">
                 Browse Free Tools <ArrowDown className="w-4 h-4" />
               </a>
             </motion.div>
@@ -232,13 +252,8 @@ export default function Home() {
       {/* Stats */}
       <section className="py-12 px-4">
         <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              variants={fadeUp}
-              whileHover={{ scale: 1.05 }}
-              className="group relative text-center p-5 rounded-2xl bg-white/80 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 backdrop-blur-xl shadow-sm dark:shadow-none transition-all"
-            >
+          {stats.map((stat) => (
+            <motion.div key={stat.label} variants={fadeUp} whileHover={{ scale: 1.05 }} className="group relative text-center p-5 rounded-2xl bg-white/80 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 backdrop-blur-xl shadow-sm dark:shadow-none transition-all">
               <div className="absolute inset-0 rounded-2xl bg-blue-500/0 group-hover:bg-blue-500/5 transition-colors duration-500" />
               <stat.icon className="w-5 h-5 text-blue-500 dark:text-blue-400 mx-auto mb-2 relative z-10" />
               <div className="text-2xl font-bold text-slate-900 dark:text-white relative z-10">
@@ -250,28 +265,86 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tools Grid */}
-      <section id="tools" className="py-16 px-4">
+      {/* ═══════ AI-Powered Tools ═══════ */}
+      <section id="ai-tools" className="py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <motion.div variants={fadeUp} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3">
-              Our <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">Tools</span>
-            </h2>
-            <p className="text-slate-500 dark:text-slate-400">Pick a tool and get started. No sign-up required.</p>
-          </motion.div>
+          <SectionHeader
+            emoji="✨"
+            label="NEW — AI-Powered"
+            title="AI Tools"
+            subtitle="Supercharge your workflow with AI. Write emails, rewrite content, explain code — all powered by GPT."
+            gradient="from-purple-400 to-pink-400"
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {aiTools.map(tool => <ToolCard key={tool.href} {...tool} />)}
+          </div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {tools.map(tool => (
-              <ToolCard key={tool.href} {...tool} />
-            ))}
+      {/* ═══════ Document & Business ═══════ */}
+      <section className="py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <SectionHeader
+            emoji="📄"
+            label="Documents & Business"
+            title="Document Tools"
+            subtitle="Create invoices, build resumes, and manage PDFs. All processing happens in your browser."
+            gradient="from-blue-400 to-cyan-400"
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {documentTools.map(tool => <ToolCard key={tool.href} {...tool} />)}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ Developer Tools ═══════ */}
+      <section className="py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <SectionHeader
+            emoji="💻"
+            label="For Developers"
+            title="Developer Tools"
+            subtitle="JSON formatting, Markdown editing, text diffing, and placeholder text generation."
+            gradient="from-emerald-400 to-teal-400"
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {devTools.map(tool => <ToolCard key={tool.href} {...tool} />)}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ Design & Media ═══════ */}
+      <section className="py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <SectionHeader
+            emoji="🎨"
+            label="Design & Media"
+            title="Creative Tools"
+            subtitle="Color palettes, image compression, QR codes — everything for designers and creators."
+            gradient="from-pink-400 to-rose-400"
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {designTools.map(tool => <ToolCard key={tool.href} {...tool} />)}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════ Security & Utility ═══════ */}
+      <section className="py-12 px-4">
+        <div className="max-w-6xl mx-auto">
+          <SectionHeader
+            emoji="🔒"
+            label="Security & Utility"
+            title="Utility Tools"
+            subtitle="Secure password generation with true cryptographic randomness."
+            gradient="from-green-400 to-emerald-400"
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {utilityTools.map(tool => <ToolCard key={tool.href} {...tool} />)}
 
             {/* Coming soon cards */}
-            {comingSoonTools.map((tool, i) => (
-              <motion.div
-                key={tool.name}
-                variants={fadeUp}
-                className="relative p-6 rounded-2xl bg-white/60 dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 backdrop-blur-xl opacity-70 hover:opacity-90 transition-all duration-300"
-              >
+            {comingSoonTools.map((tool) => (
+              <motion.div key={tool.name} variants={fadeUp} className="relative p-6 rounded-2xl bg-white/60 dark:bg-white/[0.02] border border-slate-200 dark:border-white/10 backdrop-blur-xl opacity-60 hover:opacity-80 transition-all duration-300">
                 <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-slate-200 dark:bg-white/10 text-[10px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                   Coming Soon
                 </div>
@@ -285,13 +358,9 @@ export default function Home() {
           </div>
 
           {/* Suggest a tool */}
-          <motion.div variants={fadeUp} className="text-center mt-8">
-            <a
-              href="mailto:humsafarprabhu@gmail.com?subject=Tool%20Suggestion%20for%20SheruTools"
-              className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-blue-500 transition-colors"
-            >
-              <MessageSquare className="w-4 h-4" />
-              Want to suggest a tool? Let us know!
+          <motion.div variants={fadeUp} className="text-center mt-12">
+            <a href="mailto:humsafarprabhu@gmail.com?subject=Tool%20Suggestion%20for%20SheruTools" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-blue-500 transition-colors">
+              <MessageSquare className="w-4 h-4" /> Want to suggest a tool? Let us know!
             </a>
           </motion.div>
         </div>

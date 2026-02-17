@@ -20,5 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/lorem-ipsum`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/css-gradient-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/unit-converter`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/base64`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/regex-tester`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
   ];
 }

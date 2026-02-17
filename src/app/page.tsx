@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, Wand2, ArrowLeftRight } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, Wand2, ArrowLeftRight, Binary, Terminal } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -87,6 +87,20 @@ const devTools = [
     icon: Type,
     color: 'violet',
   },
+  {
+    name: 'Base64 Encoder',
+    description: 'Encode and decode Base64 strings and files instantly. Text and file support with URL-safe option.',
+    href: '/base64',
+    icon: Binary,
+    color: 'slate',
+  },
+  {
+    name: 'Regex Tester',
+    description: 'Test and debug regular expressions in real-time. Match highlighting, capture groups, replace mode, and pattern library.',
+    href: '/regex-tester',
+    icon: Terminal,
+    color: 'lime',
+  },
 ];
 
 /* ───── Design & Media Tools ───── */
@@ -144,7 +158,7 @@ const comingSoonTools = [
 ];
 
 const stats = [
-  { label: 'Free Tools', value: 16, suffix: '+', icon: Wrench },
+  { label: 'Free Tools', value: 18, suffix: '+', icon: Wrench },
   { label: 'AI-Powered', value: 3, suffix: '', icon: Bot },
   { label: 'Happy Users', value: 500, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },

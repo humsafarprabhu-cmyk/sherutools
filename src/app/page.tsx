@@ -15,17 +15,23 @@ const tools = [
     icon: FileText,
     color: 'blue',
   },
+  {
+    name: 'QR Code Generator',
+    description: 'Generate QR codes for URLs, WiFi, vCards, email and more. Custom colors, instant PNG download.',
+    href: '/qr-code-generator',
+    icon: QrCode,
+    color: 'emerald',
+  },
 ];
 
 const comingSoonTools = [
   { name: 'Resume Builder', icon: FileCheck, bgClass: 'bg-purple-100 dark:bg-purple-500/10', iconClass: 'text-purple-500 dark:text-purple-400' },
   { name: 'PDF Converter', icon: FileUp, bgClass: 'bg-amber-100 dark:bg-amber-500/10', iconClass: 'text-amber-500 dark:text-amber-400' },
-  { name: 'QR Code Generator', icon: QrCode, bgClass: 'bg-emerald-100 dark:bg-emerald-500/10', iconClass: 'text-emerald-500 dark:text-emerald-400' },
   { name: 'Color Palette Generator', icon: Palette, bgClass: 'bg-pink-100 dark:bg-pink-500/10', iconClass: 'text-pink-500 dark:text-pink-400' },
 ];
 
 const stats = [
-  { label: 'Free Tools', value: 1, suffix: '+', icon: Wrench },
+  { label: 'Free Tools', value: 2, suffix: '+', icon: Wrench },
   { label: 'Invoices Generated', value: 500, suffix: '+', icon: FileText },
   { label: 'Happy Users', value: 200, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },

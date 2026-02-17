@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Menu, X } from 'lucide-react';
+import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
 
@@ -14,6 +14,7 @@ const tools = [
   { name: 'Color Palette', href: '/color-palette-generator', icon: Palette },
   { name: 'Image Tools', href: '/image-tools', icon: ImageIcon },
   { name: 'Text Compare', href: '/text-compare', icon: GitCompareArrows },
+  { name: 'Passwords', href: '/password-generator', icon: Shield },
 ];
 
 export default function Navigation() {

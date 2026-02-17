@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, KeyRound, ImageIcon, GitCompareArrows } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, KeyRound, ImageIcon, GitCompareArrows, Shield } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -57,15 +57,21 @@ const tools = [
     icon: GitCompareArrows,
     color: 'cyan',
   },
+  {
+    name: 'Password Generator',
+    description: 'Generate strong, secure passwords instantly. Random, passphrase, and pronounceable modes. Web Crypto API powered.',
+    href: '/password-generator',
+    icon: Shield,
+    color: 'green',
+  },
 ];
 
 const comingSoonTools = [
   { name: 'Markdown Editor', icon: Code, bgClass: 'bg-cyan-100 dark:bg-cyan-500/10', iconClass: 'text-cyan-500 dark:text-cyan-400' },
-  { name: 'Password Generator', icon: KeyRound, bgClass: 'bg-red-100 dark:bg-red-500/10', iconClass: 'text-red-500 dark:text-red-400' },
 ];
 
 const stats = [
-  { label: 'Free Tools', value: 7, suffix: '+', icon: Wrench },
+  { label: 'Free Tools', value: 8, suffix: '+', icon: Wrench },
   { label: 'Invoices Generated', value: 500, suffix: '+', icon: FileText },
   { label: 'Happy Users', value: 200, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },

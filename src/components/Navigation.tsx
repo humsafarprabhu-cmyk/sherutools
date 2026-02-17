@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Code, Menu, X, Braces } from 'lucide-react';
+import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Code, Menu, X, Braces, Type } from 'lucide-react';
 import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
 
@@ -17,6 +17,7 @@ const tools = [
   { name: 'Passwords', href: '/password-generator', icon: Shield },
   { name: 'Markdown', href: '/markdown-editor', icon: Code },
   { name: 'JSON', href: '/json-formatter', icon: Braces },
+  { name: 'Lorem Ipsum', href: '/lorem-ipsum', icon: Type },
 ];
 
 export default function Navigation() {

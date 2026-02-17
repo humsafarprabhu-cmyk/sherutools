@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, KeyRound, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, KeyRound, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -78,6 +78,13 @@ const tools = [
     icon: Braces,
     color: 'yellow',
   },
+  {
+    name: 'Lorem Ipsum',
+    description: 'Generate placeholder text instantly. Classic, hipster, office, and tech variants. Paragraphs, sentences, words, or lists.',
+    href: '/lorem-ipsum',
+    icon: Type,
+    color: 'violet',
+  },
 ];
 
 const comingSoonTools: { name: string; icon: typeof Code; bgClass: string; iconClass: string }[] = [
@@ -85,7 +92,7 @@ const comingSoonTools: { name: string; icon: typeof Code; bgClass: string; iconC
 ];
 
 const stats = [
-  { label: 'Free Tools', value: 10, suffix: '+', icon: Wrench },
+  { label: 'Free Tools', value: 11, suffix: '+', icon: Wrench },
   { label: 'Invoices Generated', value: 500, suffix: '+', icon: FileText },
   { label: 'Happy Users', value: 200, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },

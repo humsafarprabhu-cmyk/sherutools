@@ -14,5 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/password-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/markdown-editor`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/json-formatter`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/lorem-ipsum`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
   ];
 }

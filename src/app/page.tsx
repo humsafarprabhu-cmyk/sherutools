@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, Wand2, ArrowLeftRight, Binary, Terminal } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, Wand2, ArrowLeftRight, Binary, Terminal, Layout } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -9,6 +9,13 @@ import SocialProof from '@/components/SocialProof';
 
 /* ───── AI Tools ───── */
 const aiTools = [
+  {
+    name: 'AI Landing Page Generator',
+    description: 'Type one line, get a complete landing page. Beautiful, responsive, ready to deploy. Powered by AI.',
+    href: '/ai-landing-page',
+    icon: Layout,
+    color: 'sky',
+  },
   {
     name: 'AI Email Writer',
     description: 'Generate professional emails instantly. Choose purpose, tone, and key points. Perfect emails in seconds.',

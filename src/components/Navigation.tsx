@@ -2,11 +2,12 @@
 
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Code, Menu, X, Braces, Type, Mail, Sparkles, ChevronDown, Wrench, Code2, Paintbrush, ArrowLeftRight, Binary, Terminal } from 'lucide-react';
+import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Code, Menu, X, Braces, Type, Mail, Sparkles, ChevronDown, Wrench, Code2, Paintbrush, ArrowLeftRight, Binary, Terminal, Layout } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import ThemeToggle from './ThemeToggle';
 
 const aiTools = [
+  { name: 'AI Landing Page', href: '/ai-landing-page', icon: Layout },
   { name: 'AI Code Explainer', href: '/ai-code-explainer', icon: Code2 },
   { name: 'AI Email Writer', href: '/ai-email-writer', icon: Mail },
   { name: 'AI Rewriter', href: '/ai-rewriter', icon: Sparkles },

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Code, Menu, X, Braces, Type, Mail, Sparkles, ChevronDown, Wrench, Code2, Paintbrush } from 'lucide-react';
+import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Code, Menu, X, Braces, Type, Mail, Sparkles, ChevronDown, Wrench, Code2, Paintbrush, ArrowLeftRight } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import ThemeToggle from './ThemeToggle';
 
@@ -25,6 +25,7 @@ const utilityTools = [
   { name: 'JSON Formatter', href: '/json-formatter', icon: Braces },
   { name: 'Lorem Ipsum', href: '/lorem-ipsum', icon: Type },
   { name: 'CSS Gradient Generator', href: '/css-gradient-generator', icon: Paintbrush },
+  { name: 'Unit Converter', href: '/unit-converter', icon: ArrowLeftRight },
 ];
 
 const allTools = [...aiTools, ...utilityTools];

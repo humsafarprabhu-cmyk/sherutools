@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, Wand2 } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, Wand2, ArrowLeftRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -130,6 +130,13 @@ const utilityTools = [
     icon: Shield,
     color: 'green',
   },
+  {
+    name: 'Unit Converter',
+    description: 'Convert between 100+ units instantly. Length, weight, temperature, volume, data, and more.',
+    href: '/unit-converter',
+    icon: ArrowLeftRight,
+    color: 'teal',
+  },
 ];
 
 const comingSoonTools = [
@@ -137,7 +144,7 @@ const comingSoonTools = [
 ];
 
 const stats = [
-  { label: 'Free Tools', value: 15, suffix: '+', icon: Wrench },
+  { label: 'Free Tools', value: 16, suffix: '+', icon: Wrench },
   { label: 'AI-Powered', value: 3, suffix: '', icon: Bot },
   { label: 'Happy Users', value: 500, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },

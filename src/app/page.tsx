@@ -1,13 +1,20 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, KeyRound, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, KeyRound, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
 import SocialProof from '@/components/SocialProof';
 
 const tools = [
+  {
+    name: 'AI Email Writer',
+    description: 'Generate professional emails instantly with AI. Choose purpose, tone, and key points. Perfect emails in seconds.',
+    href: '/ai-email-writer',
+    icon: Mail,
+    color: 'sky',
+  },
   {
     name: 'Invoice Generator',
     description: 'Create professional invoices in seconds. 3 templates, live preview, instant PDF download.',
@@ -92,7 +99,7 @@ const comingSoonTools: { name: string; icon: typeof Code; bgClass: string; iconC
 ];
 
 const stats = [
-  { label: 'Free Tools', value: 11, suffix: '+', icon: Wrench },
+  { label: 'Free Tools', value: 12, suffix: '+', icon: Wrench },
   { label: 'Invoices Generated', value: 500, suffix: '+', icon: FileText },
   { label: 'Happy Users', value: 200, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },

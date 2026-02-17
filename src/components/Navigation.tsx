@@ -2,11 +2,12 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Code, Menu, X, Braces, Type } from 'lucide-react';
+import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Code, Menu, X, Braces, Type, Mail, Sparkles } from 'lucide-react';
 import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
 
 const tools = [
+  { name: 'AI Email ✨', href: '/ai-email-writer', icon: Mail },
   { name: 'Invoice Generator', href: '/invoice-generator', icon: FileText },
   { name: 'QR Code', href: '/qr-code-generator', icon: QrCode },
   { name: 'Resume Builder', href: '/resume-builder', icon: FileCheck },

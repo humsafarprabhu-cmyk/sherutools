@@ -22,16 +22,22 @@ const tools = [
     icon: QrCode,
     color: 'emerald',
   },
+  {
+    name: 'Resume Builder',
+    description: 'Build a professional resume in minutes. 3 beautiful templates, real-time preview, instant PDF download.',
+    href: '/resume-builder',
+    icon: FileCheck,
+    color: 'purple',
+  },
 ];
 
 const comingSoonTools = [
-  { name: 'Resume Builder', icon: FileCheck, bgClass: 'bg-purple-100 dark:bg-purple-500/10', iconClass: 'text-purple-500 dark:text-purple-400' },
   { name: 'PDF Converter', icon: FileUp, bgClass: 'bg-amber-100 dark:bg-amber-500/10', iconClass: 'text-amber-500 dark:text-amber-400' },
   { name: 'Color Palette Generator', icon: Palette, bgClass: 'bg-pink-100 dark:bg-pink-500/10', iconClass: 'text-pink-500 dark:text-pink-400' },
 ];
 
 const stats = [
-  { label: 'Free Tools', value: 2, suffix: '+', icon: Wrench },
+  { label: 'Free Tools', value: 3, suffix: '+', icon: Wrench },
   { label: 'Invoices Generated', value: 500, suffix: '+', icon: FileText },
   { label: 'Happy Users', value: 200, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },

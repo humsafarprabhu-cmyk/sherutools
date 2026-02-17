@@ -2,13 +2,14 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FileText, QrCode, Menu, X } from 'lucide-react';
+import { FileText, QrCode, FileCheck, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
 
 const tools = [
   { name: 'Invoice Generator', href: '/invoice-generator', icon: FileText },
   { name: 'QR Code', href: '/qr-code-generator', icon: QrCode },
+  { name: 'Resume Builder', href: '/resume-builder', icon: FileCheck },
 ];
 
 export default function Navigation() {

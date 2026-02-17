@@ -408,7 +408,7 @@ function DiffView({ original, rewritten }: { original: string; rewritten: string
   const lcs = getLCS(origWords, rewriteWords);
 
   let oi = 0, ri = 0, li = 0;
-  const elements: JSX.Element[] = [];
+  const elements: React.ReactElement[] = [];
   let key = 0;
 
   while (oi < origWords.length || ri < rewriteWords.length) {

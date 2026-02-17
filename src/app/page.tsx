@@ -29,15 +29,21 @@ const tools = [
     icon: FileCheck,
     color: 'purple',
   },
+  {
+    name: 'PDF Tools',
+    description: 'Merge, split, compress PDFs and convert between PDF & images. All processing happens in your browser.',
+    href: '/pdf-tools',
+    icon: FileUp,
+    color: 'amber',
+  },
 ];
 
 const comingSoonTools = [
-  { name: 'PDF Converter', icon: FileUp, bgClass: 'bg-amber-100 dark:bg-amber-500/10', iconClass: 'text-amber-500 dark:text-amber-400' },
   { name: 'Color Palette Generator', icon: Palette, bgClass: 'bg-pink-100 dark:bg-pink-500/10', iconClass: 'text-pink-500 dark:text-pink-400' },
 ];
 
 const stats = [
-  { label: 'Free Tools', value: 3, suffix: '+', icon: Wrench },
+  { label: 'Free Tools', value: 4, suffix: '+', icon: Wrench },
   { label: 'Invoices Generated', value: 500, suffix: '+', icon: FileText },
   { label: 'Happy Users', value: 200, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },

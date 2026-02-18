@@ -458,7 +458,7 @@ export default function AICodeExplainerPage() {
                     <li>✦ Generate documentation from code</li>
                   </ul>
                   <a
-                    href="https://sherutools.lemonsqueezy.com/buy/ai-code-explainer-pro"
+                    href="https://sherutools.lemonsqueezy.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-500 text-white text-xs font-medium rounded-lg hover:bg-purple-600 transition-colors"

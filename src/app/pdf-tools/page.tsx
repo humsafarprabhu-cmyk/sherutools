@@ -769,7 +769,7 @@ export default function PDFToolsPage() {
                   </p>
                 </div>
                 <a
-                  href="https://sherutools.lemonsqueezy.com/buy/pdf-tools-pro"
+                  href="https://sherutools.lemonsqueezy.com"
                   target="_blank"
                   rel="noopener"
                   className="px-4 py-2 rounded-lg bg-amber-500 text-white text-xs font-semibold hover:bg-amber-600 transition-colors flex-shrink-0"

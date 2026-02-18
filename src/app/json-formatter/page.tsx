@@ -470,7 +470,7 @@ export default function JsonFormatterPage() {
               </div>
             </div>
             <a
-              href="https://sherutools.lemonsqueezy.com/buy/json-formatter-pro"
+              href="https://sherutools.lemonsqueezy.com"
               target="_blank"
               rel="noopener noreferrer"
               className="px-5 py-2 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-500 text-white text-sm font-semibold hover:shadow-lg hover:shadow-yellow-500/25 transition-all hover:scale-105 active:scale-95 whitespace-nowrap"

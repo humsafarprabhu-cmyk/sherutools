@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://sherutools.com';
   return [
     { url: base, lastModified: new Date(), changeFrequency: 'weekly', priority: 1 },
+    { url: `${base}/app-builder`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
     { url: `${base}/ai-landing-page`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
     { url: `${base}/ai-rewriter`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/ai-email-writer`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },

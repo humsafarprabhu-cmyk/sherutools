@@ -40,7 +40,7 @@ const FREE_LIMIT = 3;
 const FREE_MAX_SIZE = 5 * 1024 * 1024; // 5MB
 const PRO_MAX_SIZE = 50 * 1024 * 1024; // 50MB
 const STORAGE_KEY = 'sherutools_converter_usage';
-const LEMON_SQUEEZY_URL = 'https://sherutools.lemonsqueezy.com/buy/file-converter-pro';
+const LEMON_SQUEEZY_URL = 'https://sherutools.lemonsqueezy.com';
 
 /* ───── Helpers ───── */
 function formatBytes(bytes: number) {

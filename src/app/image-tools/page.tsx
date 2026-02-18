@@ -504,7 +504,7 @@ export default function ImageToolsPage() {
         >
           <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Unlock Pro Features</h3>
           <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">Unlimited batch size, zip download, and more — one-time payment.</p>
-          <a href="https://sherutools.lemonsqueezy.com/buy/image-tools-pro" target="_blank" rel="noopener noreferrer"
+          <a href="https://sherutools.lemonsqueezy.com" target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-semibold text-sm hover:shadow-lg hover:shadow-rose-500/25 transition-all hover:scale-105 active:scale-95"
           >
             Get Pro — $3.99

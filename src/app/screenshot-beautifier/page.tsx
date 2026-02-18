@@ -373,7 +373,7 @@ export default function ScreenshotBeautifierPage() {
                   <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">No watermark · SVG export · Custom font upload</p>
                 </div>
                 <a
-                  href="https://sherutools.lemonsqueezy.com/buy/screenshot-beautifier-pro"
+                  href="https://sherutools.lemonsqueezy.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4 py-2 text-xs font-semibold bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors shadow-lg shadow-purple-500/25 whitespace-nowrap"

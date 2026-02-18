@@ -768,7 +768,7 @@ export default function CSSGradientGenerator() {
                 <li className="flex items-center gap-2"><Lock className="w-3.5 h-3.5 text-purple-400" /> Gradient mesh (4-corner blend)</li>
               </ul>
               <a
-                href="https://sherutools.lemonsqueezy.com/buy/css-gradient-pro"
+                href="https://sherutools.lemonsqueezy.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full text-center px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold text-sm hover:shadow-lg hover:shadow-purple-500/25 transition-all hover:scale-105 active:scale-95"

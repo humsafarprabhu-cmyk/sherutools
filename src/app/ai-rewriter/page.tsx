@@ -380,7 +380,7 @@ export default function AIRewriterPage() {
                 <li className="flex items-center gap-2"><Zap className="w-3.5 h-3.5 text-fuchsia-400" /> Bulk rewrite multiple paragraphs</li>
               </ul>
               <a
-                href="https://sherutools.lemonsqueezy.com/buy/ai-rewriter-pro"
+                href="https://sherutools.lemonsqueezy.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-gradient-to-r from-fuchsia-500 to-pink-500 text-white text-sm font-medium hover:shadow-lg hover:shadow-fuchsia-500/25 transition-all hover:scale-105 active:scale-95"

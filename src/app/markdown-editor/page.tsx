@@ -515,7 +515,7 @@ export default function MarkdownEditorPage() {
               <div className="text-3xl font-bold text-slate-900 dark:text-white mb-1">$3.99</div>
               <div className="text-xs text-slate-500 dark:text-slate-400 mb-3">One-time payment</div>
               <a
-                href="https://sherutools.lemonsqueezy.com/buy/markdown-editor-pro"
+                href="https://sherutools.lemonsqueezy.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-2.5 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-xl transition-all text-sm hover:scale-105 active:scale-95 shadow-lg shadow-indigo-500/25"

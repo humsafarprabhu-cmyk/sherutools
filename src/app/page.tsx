@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile, BarChart3, Camera, RefreshCw, Eraser, Search, User, Clock, ZoomIn, BookOpen, GitBranch, Globe } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile, BarChart3, Camera, RefreshCw, Eraser, Search, User, Clock, ZoomIn, BookOpen, GitBranch, Globe, Smartphone } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -9,6 +9,14 @@ import SocialProof from '@/components/SocialProof';
 
 /* ───── AI Tools ───── */
 const aiTools = [
+  {
+    name: 'AI App Builder',
+    description: 'Describe your app idea, AI generates beautiful React Native screens. Preview in phone mockups, customize, download your Expo project. No coding needed.',
+    href: '/app-builder',
+    icon: Smartphone,
+    color: 'purple',
+    badge: 'NEW',
+  },
   {
     name: 'AI Landing Page Generator',
     description: 'Type one line, get a complete landing page. Beautiful, responsive, ready to deploy. Powered by AI.',

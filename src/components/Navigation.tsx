@@ -2,11 +2,12 @@
 
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Code, Menu, X, Braces, Type, Mail, Sparkles, ChevronDown, Wrench, Code2, Paintbrush, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile, BarChart3, Camera, RefreshCw, Eraser, Search, User, Clock, ZoomIn, BookOpen, GitBranch, Globe } from 'lucide-react';
+import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Code, Menu, X, Braces, Type, Mail, Sparkles, ChevronDown, Wrench, Code2, Paintbrush, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile, BarChart3, Camera, RefreshCw, Eraser, Search, User, Clock, ZoomIn, BookOpen, GitBranch, Globe, Smartphone } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import ThemeToggle from './ThemeToggle';
 
 const aiTools = [
+  { name: 'AI App Builder', href: '/app-builder', icon: Smartphone },
   { name: 'AI Landing Page', href: '/ai-landing-page', icon: Layout },
   { name: 'AI Code Explainer', href: '/ai-code-explainer', icon: Code2 },
   { name: 'AI Email Writer', href: '/ai-email-writer', icon: Mail },

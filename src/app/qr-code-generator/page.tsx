@@ -151,7 +151,7 @@ function UpgradeModal({ open, onClose }: { open: boolean; onClose: () => void })
 
             <motion.button
               whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-              onClick={() => window.open('https://sherutools.lemonsqueezy.com/buy/qr-code-generator-pro', '_blank')}
+              onClick={() => window.open('https://sherutools.lemonsqueezy.com', '_blank')}
               className="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-blue-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-emerald-500/25 transition-all text-sm"
             >
               Get Pro Now

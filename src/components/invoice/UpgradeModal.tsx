@@ -17,7 +17,7 @@ const features = [
 
 export default function UpgradeModal({ open, onClose }: Props) {
   const handleCheckout = () => {
-    window.open('https://sherutools.lemonsqueezy.com/checkout/buy/placeholder', '_blank');
+    window.open('https://sherutools.lemonsqueezy.com', '_blank');
   };
 
   return (

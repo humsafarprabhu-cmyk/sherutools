@@ -36,16 +36,53 @@ export async function POST(req: NextRequest) {
       messages: [
         {
           role: 'system',
-          content: `You are an expert React Native/Expo app generator. You generate complete, beautiful mobile app screens.
+          content: `You are an expert React Native/Expo app generator. Generate complete, compilable mobile app screens.
 
-Given an app description, generate 4-6 screens. For each screen, provide:
+CRITICAL RULES FOR CODE:
+- ONLY use imports from 'react' and 'react-native' (View, Text, ScrollView, TouchableOpacity, StyleSheet, FlatList, TextInput, Image, Alert, Dimensions)
+- Do NOT import from react-native-paper, @expo/vector-icons, react-native-vector-icons, or any third-party library
+- Use emoji strings instead of icon components (e.g. "🏠" instead of <Icon name="home" />)
+- Each screen must be a single default export function component
+- Use StyleSheet.create for all styles
+- Use React.useState for state management
+- All code must be valid TypeScript/JSX that compiles without errors
+- Do NOT use any TypeScript type annotations in JSX (no "as" casts)
+- Use simple, clean patterns that always compile
+
+EXAMPLE SCREEN:
+\`\`\`
+import React, { useState } from 'react';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+
+export default function HomeScreen() {
+  const [count, setCount] = useState(0);
+  return (
+    <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Welcome</Text>
+      </View>
+      <TouchableOpacity style={styles.button} onPress={() => setCount(c => c + 1)}>
+        <Text style={styles.buttonText}>Pressed {count} times</Text>
+      </TouchableOpacity>
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#f8f9fa' },
+  header: { padding: 24, backgroundColor: '${color}' },
+  title: { fontSize: 28, fontWeight: 'bold', color: '#fff' },
+  button: { margin: 16, padding: 16, backgroundColor: '${color}', borderRadius: 12, alignItems: 'center' },
+  buttonText: { color: '#fff', fontSize: 16, fontWeight: '600' },
+});
+\`\`\`
+
+Given an app description, generate 4-5 screens. For each screen provide:
 1. "name": Screen name (e.g., "Home", "Profile")
-2. "code": Complete React Native screen component code using StyleSheet, react-native-paper, and vector icons
-3. "preview": An HTML string that visually represents how this screen would look on mobile. Use inline styles. Make it look like a real mobile app screen. Use the primary color: ${color}. Make it beautiful with proper spacing, shadows, rounded corners. Keep HTML self-contained with inline styles only.
+2. "code": Complete compilable React Native code following ALL rules above
+3. "preview": HTML string that visually represents the mobile screen. Use inline styles, primary color ${color}, emoji for icons. Make it look like a real app.
 
-The preview HTML should be a realistic mobile UI mockup - include header bars, cards, lists, buttons, icons (use emoji as icons), proper typography, and the app's color scheme.
-
-Return JSON only. No markdown. Format:
+Return ONLY valid JSON. No markdown. Format:
 {
   "screens": [
     { "name": "...", "code": "...", "preview": "..." }
@@ -58,22 +95,19 @@ Return JSON only. No markdown. Format:
 Primary Color: ${color}
 Description: ${appDesc}
 
-Generate the screens.`,
+Generate the screens. Remember: ONLY react and react-native imports. NO third-party libraries. Must compile on Expo SDK 51.`,
         },
       ],
-      temperature: 0.7,
+      temperature: 0.5,
       max_tokens: 4000,
     });
 
     const content = completion.choices[0]?.message?.content || '';
 
-    // Parse JSON from response
     let parsed;
     try {
-      // Try direct parse first
       parsed = JSON.parse(content);
     } catch {
-      // Try extracting JSON from markdown code blocks
       const jsonMatch = content.match(/```(?:json)?\s*([\s\S]*?)```/) || content.match(/\{[\s\S]*\}/);
       if (jsonMatch) {
         parsed = JSON.parse(jsonMatch[1] || jsonMatch[0]);
@@ -82,10 +116,50 @@ Generate the screens.`,
       }
     }
 
+    // Sanitize screen code - remove any problematic imports
+    if (parsed.screens) {
+      parsed.screens = parsed.screens.map((screen: { name: string; code: string; preview: string }) => ({
+        ...screen,
+        code: sanitizeCode(screen.code, screen.name, color),
+      }));
+    }
+
     return NextResponse.json(parsed);
   } catch (error: unknown) {
     console.error('AI App Builder error:', error);
     const message = error instanceof Error ? error.message : 'Generation failed';
     return NextResponse.json({ error: message }, { status: 500 });
   }
+}
+
+function sanitizeCode(code: string, screenName: string, color: string): string {
+  // Remove any non-react-native imports
+  code = code.replace(/import\s+.*from\s+['"](?!react['"]|react-native['"]).*['"];?\n?/g, '');
+  
+  // Remove TypeScript-only syntax that might cause issues
+  code = code.replace(/:\s*React\.FC\b/g, '');
+  code = code.replace(/<[A-Z]\w+>\(/g, '(');
+  
+  // Ensure it has the basic imports
+  if (!code.includes("from 'react'") && !code.includes('from "react"')) {
+    code = "import React, { useState } from 'react';\n" + code;
+  }
+  if (!code.includes("from 'react-native'") && !code.includes('from "react-native"')) {
+    code = "import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';\n" + code;
+  }
+
+  // Ensure it has a default export
+  if (!code.includes('export default')) {
+    const safeName = screenName.replace(/[^a-zA-Z0-9]/g, '') + 'Screen';
+    code = code.replace(
+      new RegExp(`function\\s+${safeName}`),
+      `export default function ${safeName}`
+    );
+    // If still no default export, wrap the whole thing
+    if (!code.includes('export default')) {
+      code += `\nexport default function ${safeName}() { return <View style={{flex:1,justifyContent:'center',alignItems:'center'}}><Text style={{fontSize:24}}>${screenName}</Text></View>; }`;
+    }
+  }
+
+  return code;
 }

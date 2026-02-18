@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Code, Menu, X, Braces, Type, Mail, Sparkles, ChevronDown, Wrench, Code2, Paintbrush, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile, BarChart3, Camera } from 'lucide-react';
+import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Code, Menu, X, Braces, Type, Mail, Sparkles, ChevronDown, Wrench, Code2, Paintbrush, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile, BarChart3, Camera, RefreshCw, Eraser, Search, User, Clock, ZoomIn, BookOpen, GitBranch, Globe } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import ThemeToggle from './ThemeToggle';
 
@@ -11,6 +11,13 @@ const aiTools = [
   { name: 'AI Code Explainer', href: '/ai-code-explainer', icon: Code2 },
   { name: 'AI Email Writer', href: '/ai-email-writer', icon: Mail },
   { name: 'AI Rewriter', href: '/ai-rewriter', icon: Sparkles },
+  { name: 'Background Remover', href: '/background-remover', icon: Eraser },
+  { name: 'AI Detector', href: '/ai-detector', icon: Search },
+  { name: 'Passport Photo', href: '/passport-photo', icon: User },
+  { name: 'OCR / Image to Text', href: '/ocr', icon: FileText },
+  { name: 'Image Upscaler', href: '/image-upscaler', icon: ZoomIn },
+  { name: 'Flashcard Generator', href: '/flashcard-generator', icon: BookOpen },
+  { name: 'Diagram Generator', href: '/diagram-generator', icon: GitBranch },
 ];
 
 const utilityTools = [
@@ -33,6 +40,9 @@ const utilityTools = [
   { name: 'Emoji Picker', href: '/emoji-picker', icon: Smile },
   { name: 'Word Counter', href: '/word-counter', icon: BarChart3 },
   { name: 'Screenshot Beautifier', href: '/screenshot-beautifier', icon: Camera },
+  { name: 'File Converter', href: '/file-converter', icon: RefreshCw },
+  { name: 'Cron Generator', href: '/cron-generator', icon: Clock },
+  { name: 'Favicon Generator', href: '/favicon-generator', icon: Globe },
 ];
 
 const allTools = [...aiTools, ...utilityTools];

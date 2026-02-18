@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, Wand2, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile, BarChart3, Camera } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, Wand2, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile, BarChart3, Camera, RefreshCw, Eraser, Search, User, Clock, ZoomIn, BookOpen, GitBranch, Globe } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -36,6 +36,55 @@ const aiTools = [
     href: '/ai-code-explainer',
     icon: Code2,
     color: 'orange',
+  },
+  {
+    name: 'AI Background Remover',
+    description: 'Remove backgrounds from images instantly using AI. 100% private — runs in your browser. Replace with colors, gradients, or custom images.',
+    href: '/background-remover',
+    icon: Eraser,
+    color: 'purple',
+  },
+  {
+    name: 'AI Content Detector',
+    description: 'Detect AI-generated text with sentence-by-sentence analysis. Humanize AI content to bypass detectors.',
+    href: '/ai-detector',
+    icon: Search,
+    color: 'pink',
+  },
+  {
+    name: 'AI Passport Photo Maker',
+    description: 'Create passport-compliant photos instantly. Auto-crop, white background, correct dimensions for 8+ countries. 100% private.',
+    href: '/passport-photo',
+    icon: User,
+    color: 'cyan',
+  },
+  {
+    name: 'AI OCR / Image to Text',
+    description: 'Extract text from images instantly with AI-powered OCR. Supports 15+ languages. 100% private, runs in your browser.',
+    href: '/ocr',
+    icon: FileText,
+    color: 'emerald',
+  },
+  {
+    name: 'AI Image Upscaler',
+    description: 'Enlarge and enhance images up to 8× without losing quality. Smart sharpening, denoising, and color enhancement. 100% private.',
+    href: '/image-upscaler',
+    icon: ZoomIn,
+    color: 'emerald',
+  },
+  {
+    name: 'AI Flashcard Generator',
+    description: 'Paste notes or any text and instantly generate study flashcards with AI. Flip cards, quiz yourself, export to Anki.',
+    href: '/flashcard-generator',
+    icon: BookOpen,
+    color: 'purple',
+  },
+  {
+    name: 'AI Diagram Generator',
+    description: 'Describe what you want, AI generates beautiful diagrams instantly. Flowcharts, sequence diagrams, mindmaps, ER diagrams & more.',
+    href: '/diagram-generator',
+    icon: GitBranch,
+    color: 'cyan',
   },
 ];
 
@@ -108,6 +157,13 @@ const devTools = [
     icon: Terminal,
     color: 'lime',
   },
+  {
+    name: 'Cron Generator',
+    description: 'Build cron expressions visually or parse existing ones. Presets, next execution times, and cheat sheet.',
+    href: '/cron-generator',
+    icon: Clock,
+    color: 'cyan',
+  },
 ];
 
 /* ───── Design & Media Tools ───── */
@@ -148,11 +204,25 @@ const designTools = [
     color: 'purple',
   },
   {
+    name: 'File Converter',
+    description: 'Convert images between PNG, JPG, WebP, AVIF, BMP, GIF, and ICO. Instant, free, 100% client-side.',
+    href: '/file-converter',
+    icon: RefreshCw,
+    color: 'violet',
+  },
+  {
     name: 'Emoji Picker',
     description: 'Search and copy any emoji instantly. Browse by category, skin tones, recently used. Copy as emoji, HTML, or Unicode.',
     href: '/emoji-picker',
     icon: Smile,
     color: 'amber',
+  },
+  {
+    name: 'Favicon Generator',
+    description: 'Create beautiful favicons from text, emoji, or images. Download complete favicon pack with all sizes. 100% client-side.',
+    href: '/favicon-generator',
+    icon: Globe,
+    color: 'indigo',
   },
 ];
 

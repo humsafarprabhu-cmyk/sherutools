@@ -1,5 +1,13 @@
 import { MetadataRoute } from 'next';
 
+const CONVERSION_PAIRS = [
+  'webp-to-png', 'webp-to-jpg', 'heic-to-jpg', 'heic-to-png', 'png-to-jpg', 'jpg-to-png',
+  'png-to-webp', 'jpg-to-webp', 'avif-to-png', 'avif-to-jpg', 'png-to-avif', 'jpg-to-avif',
+  'bmp-to-jpg', 'bmp-to-png', 'gif-to-png', 'gif-to-jpg', 'png-to-ico', 'jpg-to-ico',
+  'png-to-bmp', 'jpg-to-bmp', 'webp-to-avif', 'avif-to-webp', 'heic-to-webp',
+  'png-to-gif', 'jpg-to-gif',
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://sherutools.com';
   return [
@@ -8,6 +16,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/ai-rewriter`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/ai-email-writer`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/ai-code-explainer`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/ai-detector`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/background-remover`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/passport-photo`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
     { url: `${base}/invoice-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/qr-code-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/resume-builder`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
@@ -27,5 +38,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/emoji-picker`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/word-counter`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
     { url: `${base}/screenshot-beautifier`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/ocr`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/file-converter`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/cron-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/image-upscaler`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/flashcard-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/diagram-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/favicon-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    ...CONVERSION_PAIRS.map(pair => ({
+      url: `${base}/convert/${pair}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    })),
   ];
 }

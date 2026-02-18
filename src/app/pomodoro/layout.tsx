@@ -1,12 +1,45 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free Pomodoro Timer - Focus Timer Online',
+  title: 'Free Pomodoro Timer — Focus Timer Online',
   description: 'Stay focused with the Pomodoro technique. 25-minute work sessions, customizable timers, browser notifications, daily stats tracking.',
   keywords: ['pomodoro timer', 'focus timer', 'pomodoro online', 'study timer', 'productivity timer'],
   alternates: { canonical: 'https://sherutools.com/pomodoro' },
 };
 
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'SheruTools Pomodoro Timer',
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Web',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    description: 'Stay focused with the Pomodoro technique. Customizable timers, browser notifications, daily stats.',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is the Pomodoro Technique?',
+        acceptedAnswer: { '@type': 'Answer', text: 'The Pomodoro Technique is a time management method using 25-minute focused work sessions followed by 5-minute breaks.' },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is this Pomodoro timer free?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Yes! The timer, notifications, and stats tracking are all completely free.' },
+      },
+    ],
+  },
+];
+
 export default function PomodoroLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {children}
+    </>
+  );
 }

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     default: 'SheruTools — Free Online Tools That Actually Work',
     template: '%s | SheruTools',
   },
-  description: 'Free, beautiful online tools. Invoice generator, PDF tools, and more. No sign-up required.',
+  description: 'Free online tools for creators, developers & businesses. AI-powered content tools, image editors, PDF tools, converters & more. No sign-up required.',
   metadataBase: new URL('https://sherutools.com'),
   openGraph: {
     type: 'website',
@@ -22,12 +22,12 @@ export const metadata: Metadata = {
     url: 'https://sherutools.com',
     siteName: 'SheruTools',
     title: 'SheruTools — Free Online Tools That Actually Work',
-    description: 'Free, beautiful online tools. Invoice generator, PDF tools, and more.',
+    description: 'Free online tools for creators, developers & businesses. AI-powered content tools, image editors, PDF tools, converters & more. No sign-up required.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'SheruTools — Free Online Tools That Actually Work',
-    description: 'Free, beautiful online tools. Invoice generator, PDF tools, and more.',
+    description: 'Free, beautiful online tools powered by AI. No sign-up required.',
   },
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://sherutools.com' },

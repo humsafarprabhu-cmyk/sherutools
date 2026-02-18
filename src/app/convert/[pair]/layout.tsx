@@ -8,18 +8,18 @@ const FORMAT_NAMES: Record<string, string> = {
 export async function generateMetadata({ params }: { params: Promise<{ pair: string }> }): Promise<Metadata> {
   const { pair } = await params;
   const match = pair.match(/^(\w+)-to-(\w+)$/);
-  if (!match) return { title: 'File Converter | SheruTools' };
+  if (!match) return { title: 'File Converter ' };
 
   const from = FORMAT_NAMES[match[1]] || match[1].toUpperCase();
   const to = FORMAT_NAMES[match[2]] || match[2].toUpperCase();
 
   return {
-    title: `Convert ${from} to ${to} Free Online — Instant, No Upload | SheruTools`,
+    title: `Convert ${from} to ${to} Free Online — Instant, No Upload`,
     description: `Convert ${from} to ${to} instantly in your browser. Free ${from.toLowerCase()} to ${to.toLowerCase()} converter — no upload, no watermark, 100% private. Drag & drop conversion.`,
     keywords: [`${from.toLowerCase()} to ${to.toLowerCase()}`, `convert ${from.toLowerCase()} to ${to.toLowerCase()}`, `${from.toLowerCase()} to ${to.toLowerCase()} converter`, `${from.toLowerCase()} ${to.toLowerCase()} converter online free`],
     alternates: { canonical: `https://sherutools.com/convert/${pair}` },
     openGraph: {
-      title: `Convert ${from} to ${to} Free Online — Instant, No Upload | SheruTools`,
+      title: `Convert ${from} to ${to} Free Online — Instant, No Upload`,
       description: `Convert ${from} to ${to} instantly in your browser. Free, no upload, 100% private.`,
       url: `https://sherutools.com/convert/${pair}`,
     },

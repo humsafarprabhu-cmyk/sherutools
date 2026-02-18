@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, Wand2, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile, BarChart3, Camera, RefreshCw, Eraser, Search, User, Clock, ZoomIn, BookOpen, GitBranch, Globe } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile, BarChart3, Camera, RefreshCw, Eraser, Search, User, Clock, ZoomIn, BookOpen, GitBranch, Globe } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -258,14 +258,12 @@ const utilityTools = [
   },
 ];
 
-const comingSoonTools = [
-  { name: 'AI Translator', icon: Wand2, bgClass: 'bg-purple-500/10', iconClass: 'text-purple-400' },
-];
+const comingSoonTools: { name: string; icon: any; bgClass: string; iconClass: string }[] = [];
 
 const stats = [
-  { label: 'Free Tools', value: 18, suffix: '+', icon: Wrench },
-  { label: 'AI-Powered', value: 3, suffix: '', icon: Bot },
-  { label: 'Happy Users', value: 500, suffix: '+', icon: Users },
+  { label: 'Free Tools', value: 33, suffix: '+', icon: Wrench },
+  { label: 'AI-Powered', value: 11, suffix: '', icon: Bot },
+  { label: 'Happy Users', value: 1000, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },
 ];
 

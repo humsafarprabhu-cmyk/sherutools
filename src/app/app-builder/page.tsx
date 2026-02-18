@@ -183,7 +183,6 @@ export default function AppBuilderPage() {
 
       {/* FAQ */}
       <section className="max-w-3xl mx-auto px-4 py-16">
-        <h2 className="text-2xl font-bold text-center text-slate-900 dark:text-white mb-8">Frequently Asked Questions</h2>
         <FAQSection faqs={faqs} />
       </section>
     </div>

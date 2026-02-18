@@ -8,6 +8,8 @@ export interface ScreenData {
   name: string;
   code: string;
   preview: string; // HTML string for preview
+  html?: string;   // Full HTML document for WebView/iframe
+  icon?: string;   // Emoji icon for tab bar
 }
 
 interface Props {

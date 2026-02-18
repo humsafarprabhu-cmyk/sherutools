@@ -13,6 +13,9 @@ interface Props {
 }
 
 export default function StepPreview({ screens, selectedScreen, setSelectedScreen, onNext }: Props) {
+  const currentScreen = screens[selectedScreen];
+  const hasHtml = !!currentScreen?.html;
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 20 }}
@@ -23,7 +26,9 @@ export default function StepPreview({ screens, selectedScreen, setSelectedScreen
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Screen list */}
         <div className="lg:w-64 shrink-0 space-y-2">
-          <h3 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">Screens ({screens.length})</h3>
+          <h3 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-3">
+            Screens ({screens.length})
+          </h3>
           {screens.map((s, i) => (
             <motion.button
               key={i}
@@ -35,10 +40,10 @@ export default function StepPreview({ screens, selectedScreen, setSelectedScreen
                   : 'hover:bg-slate-100 dark:hover:bg-white/5 text-slate-700 dark:text-slate-300 border border-transparent'
               }`}
             >
-              <span className="w-6 h-6 rounded-lg bg-slate-200 dark:bg-white/10 flex items-center justify-center text-xs font-bold">
-                {i + 1}
+              <span className="w-8 h-8 rounded-lg bg-slate-200 dark:bg-white/10 flex items-center justify-center text-base">
+                {s.icon || `${i + 1}`}
               </span>
-              {s.name}
+              <span className="font-medium">{s.name}</span>
             </motion.button>
           ))}
 
@@ -48,12 +53,27 @@ export default function StepPreview({ screens, selectedScreen, setSelectedScreen
             <div className="flex flex-wrap items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
               {screens.map((s, i) => (
                 <span key={i} className="flex items-center gap-1">
-                  <span className="px-2 py-0.5 rounded bg-slate-100 dark:bg-white/5 font-medium">{s.name}</span>
+                  <span className="px-2 py-0.5 rounded bg-slate-100 dark:bg-white/5 font-medium">
+                    {s.icon || ''} {s.name}
+                  </span>
                   {i < screens.length - 1 && <ArrowRight className="w-3 h-3" />}
                 </span>
               ))}
             </div>
           </div>
+
+          {/* Live app badge */}
+          {hasHtml && (
+            <div className="mt-4 p-3 rounded-xl bg-green-500/10 border border-green-500/20">
+              <div className="flex items-center gap-2 text-green-500 text-xs font-semibold">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                Live Interactive Preview
+              </div>
+              <p className="text-xs text-slate-400 mt-1">
+                This is the actual app — tap buttons, fill forms, everything works!
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Phone preview */}
@@ -66,13 +86,26 @@ export default function StepPreview({ screens, selectedScreen, setSelectedScreen
               exit={{ opacity: 0, y: -10 }}
             >
               <PhoneMockup>
-                <div
-                  className="w-full h-full overflow-auto"
-                  dangerouslySetInnerHTML={{ __html: screens[selectedScreen]?.preview || '' }}
-                />
+                {hasHtml ? (
+                  // Render actual HTML in iframe — WYSIWYG!
+                  <iframe
+                    srcDoc={currentScreen.html}
+                    className="w-full h-full border-0 rounded-[20px]"
+                    sandbox="allow-scripts allow-same-origin"
+                    title={currentScreen.name}
+                  />
+                ) : (
+                  // Fallback to HTML preview
+                  <div
+                    className="w-full h-full overflow-auto"
+                    dangerouslySetInnerHTML={{ __html: currentScreen?.preview || '' }}
+                  />
+                )}
               </PhoneMockup>
               <div className="text-center mt-4">
-                <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">{screens[selectedScreen]?.name}</span>
+                <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                  {currentScreen?.icon || ''} {currentScreen?.name}
+                </span>
               </div>
             </motion.div>
           </AnimatePresence>

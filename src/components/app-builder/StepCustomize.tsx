@@ -125,10 +125,19 @@ export default function StepCustomize({ screens, setScreens, primaryColor, setPr
               <AnimatePresence mode="wait">
                 <motion.div key={selectedIdx} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}>
                   <PhoneMockup>
-                    <div
-                      className={`w-full h-full overflow-auto ${theme === 'dark' ? 'bg-slate-900 text-white' : 'bg-white text-slate-900'}`}
-                      dangerouslySetInnerHTML={{ __html: selected.preview }}
-                    />
+                    {selected.html ? (
+                      <iframe
+                        srcDoc={selected.html}
+                        className="w-full h-full border-0 rounded-[20px]"
+                        sandbox="allow-scripts allow-same-origin"
+                        title={selected.name}
+                      />
+                    ) : (
+                      <div
+                        className={`w-full h-full overflow-auto ${theme === 'dark' ? 'bg-slate-900 text-white' : 'bg-white text-slate-900'}`}
+                        dangerouslySetInnerHTML={{ __html: selected.preview }}
+                      />
+                    )}
                   </PhoneMockup>
                 </motion.div>
               </AnimatePresence>

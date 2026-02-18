@@ -1,12 +1,7 @@
-import Anthropic from '@anthropic-ai/sdk';
 import OpenAI from 'openai';
 import { NextRequest, NextResponse } from 'next/server';
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
-// Force OpenAI for now (Anthropic credits low)
-const USE_CLAUDE = false;
 
 export async function POST(req: NextRequest) {
   try {
@@ -20,15 +15,15 @@ export async function POST(req: NextRequest) {
     const name = appName || 'My App';
 
     const templateDescriptions: Record<string, string> = {
-      fitness: 'A fitness tracking app with workout logging, exercise library, progress charts showing weekly/monthly stats, and a personal dashboard',
-      restaurant: 'A restaurant/food menu app with menu categories, dish details with photos, cart/ordering system, table reservations, and contact info',
-      notes: 'A notes and todo app with task lists, note editor, categories/tags, reminders, and a clean minimal dashboard',
-      ecommerce: 'An e-commerce store app with product catalog grid, product detail pages, shopping cart, checkout flow, and order history',
-      news: 'A news/blog reader app with article feed, categories, article detail view, bookmarks, and search functionality',
-      portfolio: 'A portfolio/business app showcasing projects/work, about section, services offered, testimonials, and contact form',
-      gallery: 'A photo gallery app with album grid, photo viewer with swipe, upload functionality, and favorites collection',
-      quiz: 'A quiz/education app with quiz categories, question screens with multiple choice, score tracking, and leaderboard',
-      expense: 'An expense tracker app with transaction list, add expense form, budget overview with charts, and monthly reports',
+      fitness: 'A fitness tracking app with workout logging, exercise library, progress charts showing weekly/monthly stats, and a personal dashboard. Include sample exercises, a timer, and weekly summary.',
+      restaurant: 'A restaurant/food menu app with menu categories, dish details with prices, cart/ordering system with quantity, and contact info. Include 10+ sample dishes with descriptions and prices.',
+      notes: 'A notes and todo app with task lists, note editor with title+body, categories/tags, and a clean dashboard. Notes must SAVE to localStorage and persist. Include add, edit, delete functionality.',
+      ecommerce: 'An e-commerce store app with product catalog grid, product detail modal, shopping cart with add/remove/quantity, and checkout summary. Include 8+ sample products with prices and images (use emoji as images).',
+      news: 'A news/blog reader app with article feed, categories filter, article detail view, and bookmarks. Include 10+ sample articles with titles, excerpts, dates, and categories.',
+      portfolio: 'A portfolio/business app showcasing projects/work, about section, services offered, testimonials, and contact form. Include sample projects with descriptions.',
+      gallery: 'A photo gallery app with album grid, fullscreen viewer, categories, and favorites. Use colorful gradient placeholder images.',
+      quiz: 'A quiz/education app with quiz categories, question screens with 4 options each, score tracking, and results. Include 10+ real trivia questions with correct answers.',
+      expense: 'An expense tracker app with transaction list, add expense form (amount, category, date), budget overview with visual bars, and monthly total. Data must persist in localStorage.',
       custom: '',
     };
 
@@ -36,77 +31,82 @@ export async function POST(req: NextRequest) {
       ? `${templateDescriptions[template]}. Additional details: ${description || 'Make it beautiful and functional.'}`
       : description;
 
-    const systemPrompt = `You are an expert React Native/Expo developer. Generate production-quality mobile app screens.
+    const systemPrompt = `You are an expert mobile app UI developer. Generate beautiful, FUNCTIONAL mobile app screens as HTML/CSS/JS.
 
-STRICT RULES:
-1. ONLY import from 'react' and 'react-native'
-2. Available RN imports: View, Text, ScrollView, TouchableOpacity, StyleSheet, FlatList, TextInput, Image, Alert, Dimensions, SafeAreaView, StatusBar, Switch, Modal, ActivityIndicator, Animated, Platform, KeyboardAvoidingView
-3. NO third-party libraries (no react-native-paper, no @expo/vector-icons, no vector-icons, no expo-*, no @react-navigation)
-4. Use emoji strings for icons: "🏠" "⚙️" "➕" "🔍" etc
-5. Each screen is a single file with one default export
-6. Use StyleSheet.create() for all styles
-7. Use React.useState and React.useEffect for state/effects
-8. Use AsyncStorage pattern with simple state for data persistence (mock it with useState + sample data)
-9. Make screens FUNCTIONAL — not just UI mockups. Lists should render data, forms should work, buttons should do things.
-10. Use modern, beautiful styling: rounded corners (borderRadius: 16), shadows, gradients via overlapping Views, proper spacing
-11. Primary color: ${color}
-12. All code must compile without errors on Expo SDK 51 + React Native 0.74
+CRITICAL RULES:
+1. Each screen is a COMPLETE, self-contained HTML document
+2. Use INLINE <style> and <script> tags — no external dependencies
+3. Design for mobile viewport (375x812 — iPhone size)
+4. Use modern CSS: flexbox, grid, border-radius, box-shadow, transitions, gradients
+5. Primary color: ${color}
+6. Dark theme by default (dark backgrounds, light text)
+7. ALL screens must be FUNCTIONAL:
+   - Forms must save data to localStorage
+   - Lists must render from stored data
+   - Buttons must work (add, delete, edit, toggle)
+   - Counters must count
+   - Navigation between screens via JavaScript
+8. Use emoji for icons: 🏠 ➕ 🔍 ❤️ 🗑️ ✏️ etc.
+9. Beautiful typography: system-ui font, proper hierarchy
+10. Include realistic sample/mock data
+11. Each screen must have a header bar with app name and optional back button
+12. Bottom tab bar on the Home screen showing all screens
+13. Smooth transitions and micro-interactions (CSS transitions)
+14. Use CSS variables for theming: --primary: ${color}; --bg: #0f172a; --card: #1e293b; --text: #f1f5f9;
 
-QUALITY STANDARDS:
-- Each screen should have 80-150 lines of code (substantial, not trivial)
-- Include sample/mock data that looks realistic
-- Proper error states and empty states
-- Smooth UX: loading indicators, confirmation dialogs
-- Beautiful typography hierarchy (title, subtitle, body, caption)
-- Card-based layouts with proper shadows and spacing
-- Status bar aware (use SafeAreaView or padding)
+STRUCTURE FOR EACH SCREEN:
+\`\`\`html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Screen Name</title>
+  <style>
+    :root { --primary: ${color}; --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --muted: #94a3b8; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    /* ... more styles */
+  </style>
+</head>
+<body>
+  <!-- Content -->
+  <script>
+    // Functional JavaScript with localStorage
+  </script>
+</body>
+</html>
+\`\`\`
 
-Generate 4-5 screens. Return ONLY valid JSON:
+Generate 4-5 screens. Return ONLY valid JSON (no markdown, no code blocks):
 {
   "screens": [
     {
       "name": "Home",
-      "code": "import React, { useState } from 'react';\\nimport { View, Text, ... } from 'react-native';\\n\\nexport default function HomeScreen() {\\n  ...\\n}\\n\\nconst styles = StyleSheet.create({...});",
-      "preview": "<div style='...'>HTML preview of screen</div>"
+      "html": "<!DOCTYPE html>...",
+      "icon": "🏠"
     }
   ]
-}
-
-The preview HTML should be a realistic mobile UI mockup with inline styles, using the primary color ${color}.`;
+}`;
 
     const userPrompt = `App Name: "${name}"
 Primary Color: ${color}
 Description: ${appDesc}
 
-Generate 4-5 complete, compilable, functional screens. Each screen must work standalone with sample data. Make it beautiful and production-quality.`;
+Generate 4-5 complete, beautiful, FUNCTIONAL screens. Every button must work, every form must save. This should feel like a REAL app, not a mockup.`;
 
-    let content: string;
+    const completion = await openai.chat.completions.create({
+      model: 'gpt-4o',
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userPrompt },
+      ],
+      temperature: 0.5,
+      max_tokens: 16000,
+    });
 
-    if (USE_CLAUDE) {
-      // Use Claude Sonnet 3.5 for superior code quality
-      const response = await anthropic.messages.create({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 8000,
-        messages: [
-          { role: 'user', content: `${systemPrompt}\n\n${userPrompt}` }
-        ],
-      });
-      content = response.content[0].type === 'text' ? response.content[0].text : '';
-    } else {
-      // Fallback to GPT-4o
-      const completion = await openai.chat.completions.create({
-        model: 'gpt-4o',
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: userPrompt },
-        ],
-        temperature: 0.5,
-        max_tokens: 8000,
-      });
-      content = completion.choices[0]?.message?.content || '';
-    }
+    const content = completion.choices[0]?.message?.content || '';
 
-    // Parse JSON from response
     let parsed;
     try {
       parsed = JSON.parse(content);
@@ -119,15 +119,19 @@ Generate 4-5 complete, compilable, functional screens. Each screen must work sta
       }
     }
 
-    // Sanitize screen code
+    // Also generate React Native code for ZIP download (lightweight)
     if (parsed.screens) {
-      parsed.screens = parsed.screens.map((screen: { name: string; code: string; preview: string }) => ({
+      parsed.screens = parsed.screens.map((screen: { name: string; html: string; icon?: string; code?: string; preview?: string }) => ({
         ...screen,
-        code: sanitizeCode(screen.code, screen.name, color),
+        // Keep html as-is for preview and WebView APK
+        // Generate simple RN fallback code for ZIP
+        code: screen.code || generateRNCode(screen.name, color),
+        // Preview is the HTML itself (rendered in iframe)
+        preview: screen.html || screen.preview || '',
       }));
     }
 
-    return NextResponse.json({ ...parsed, model: USE_CLAUDE ? 'claude-sonnet' : 'gpt-4o' });
+    return NextResponse.json(parsed);
   } catch (error: unknown) {
     console.error('AI App Builder error:', error);
     const message = error instanceof Error ? error.message : 'Generation failed';
@@ -135,32 +139,30 @@ Generate 4-5 complete, compilable, functional screens. Each screen must work sta
   }
 }
 
-function sanitizeCode(code: string, screenName: string, color: string): string {
-  // Remove any non-react/react-native imports
-  code = code.replace(/import\s+.*from\s+['"](?!react['"]|react-native['"]).*['"];?\n?/g, '');
-  
-  // Remove TypeScript-only syntax
-  code = code.replace(/:\s*React\.FC\b[^{]*/g, '');
-  
-  // Ensure basic imports
-  if (!code.includes("from 'react'") && !code.includes('from "react"')) {
-    code = "import React, { useState, useEffect } from 'react';\n" + code;
-  }
-  if (!code.includes("from 'react-native'") && !code.includes('from "react-native"')) {
-    code = "import { View, Text, ScrollView, TouchableOpacity, StyleSheet, FlatList, TextInput, SafeAreaView, Dimensions, Alert } from 'react-native';\n" + code;
-  }
+function generateRNCode(screenName: string, color: string): string {
+  const safe = screenName.replace(/[^a-zA-Z0-9]/g, '');
+  return `import React from 'react';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
 
-  // Ensure default export
-  if (!code.includes('export default')) {
-    const safeName = screenName.replace(/[^a-zA-Z0-9]/g, '') + 'Screen';
-    code = code.replace(new RegExp(`(function\\s+${safeName})`), 'export default $1');
-    if (!code.includes('export default')) {
-      code = code.replace(/^(function\s+\w+)/m, 'export default $1');
-    }
-    if (!code.includes('export default')) {
-      code += `\nexport default function ${safeName}() { return <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'#f8f9fa'}}><Text style={{fontSize:24,fontWeight:'bold',color:'${color}'}}>Welcome to ${screenName}</Text></View>; }`;
-    }
-  }
+export default function ${safe}Screen() {
+  return (
+    <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>${screenName}</Text>
+      </View>
+      <View style={styles.content}>
+        <Text style={styles.text}>Welcome to ${screenName}</Text>
+      </View>
+    </ScrollView>
+  );
+}
 
-  return code;
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#0f172a' },
+  header: { padding: 20, backgroundColor: '${color}' },
+  title: { fontSize: 24, fontWeight: 'bold', color: '#fff' },
+  content: { padding: 20 },
+  text: { fontSize: 16, color: '#f1f5f9' },
+});
+`;
 }

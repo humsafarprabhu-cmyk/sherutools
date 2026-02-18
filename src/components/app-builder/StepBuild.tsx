@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Download, Smartphone, Rocket, Lock, PartyPopper, Loader2, CheckCircle, XCircle } from 'lucide-react';
+import { Download, Smartphone, Rocket, Lock, Loader2, CheckCircle, XCircle, Globe, Save, Zap } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { ScreenData } from './ScreenCard';
 
@@ -12,9 +12,8 @@ interface Props {
 }
 
 export default function StepBuild({ screens, appName, primaryColor }: Props) {
-  const [downloading, setDownloading] = useState(false);
   const [showConfetti, setShowConfetti] = useState(true);
-  const [progress, setProgress] = useState(0);
+  const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     if (showConfetti) {
@@ -23,164 +22,14 @@ export default function StepBuild({ screens, appName, primaryColor }: Props) {
     }
   }, [showConfetti]);
 
-  const downloadZip = async () => {
-    setDownloading(true);
-    setProgress(0);
-
-    // Simulate progress
-    const interval = setInterval(() => {
-      setProgress(p => Math.min(p + Math.random() * 15, 90));
-    }, 200);
-
-    try {
-      const JSZip = (await import('jszip')).default;
-      const zip = new JSZip();
-
-      const safeName = appName.replace(/[^a-zA-Z0-9-_]/g, '').toLowerCase() || 'my-app';
-
-      // app.json
-      zip.file('app.json', JSON.stringify({
-        expo: {
-          name: appName || 'My App',
-          slug: safeName,
-          version: '1.0.0',
-          orientation: 'portrait',
-          icon: './assets/icon.png',
-          userInterfaceStyle: 'automatic',
-          splash: { image: './assets/splash.png', resizeMode: 'contain', backgroundColor: primaryColor },
-          ios: { supportsTablet: true },
-          android: { adaptiveIcon: { foregroundImage: './assets/adaptive-icon.png', backgroundColor: primaryColor }, package: `com.${safeName}.app` },
-          web: { favicon: './assets/favicon.png' },
-        },
-      }, null, 2));
-
-      // package.json
-      zip.file('package.json', JSON.stringify({
-        name: safeName,
-        version: '1.0.0',
-        main: 'node_modules/expo/AppEntry.js',
-        scripts: { start: 'expo start', android: 'expo start --android', ios: 'expo start --ios', web: 'expo start --web' },
-        dependencies: {
-          expo: '~50.0.0',
-          'expo-status-bar': '~1.11.1',
-          react: '18.2.0',
-          'react-native': '0.73.4',
-          '@react-navigation/native': '^6.1.9',
-          '@react-navigation/native-stack': '^6.9.17',
-          '@react-navigation/bottom-tabs': '^6.5.11',
-          'react-native-screens': '~3.29.0',
-          'react-native-safe-area-context': '4.8.2',
-          'react-native-paper': '^5.12.3',
-          'react-native-vector-icons': '^10.0.3',
-        },
-        devDependencies: { '@babel/core': '^7.20.0', '@types/react': '~18.2.45', typescript: '^5.1.3' },
-        private: true,
-      }, null, 2));
-
-      // babel.config.js
-      zip.file('babel.config.js', `module.exports = function(api) {
-  api.cache(true);
-  return {
-    presets: ['babel-preset-expo'],
-  };
-};
-`);
-
-      // tsconfig.json
-      zip.file('tsconfig.json', JSON.stringify({
-        extends: 'expo/tsconfig.base',
-        compilerOptions: { strict: true },
-      }, null, 2));
-
-      // Generate screen files
-      const screenFiles = screens.map(s => {
-        const fileName = s.name.replace(/[^a-zA-Z0-9]/g, '') + 'Screen';
-        return { fileName, code: s.code || generateDefaultScreenCode(s.name, primaryColor) };
-      });
-
-      const screensDir = zip.folder('screens')!;
-      screenFiles.forEach(sf => {
-        screensDir.file(`${sf.fileName}.tsx`, sf.code);
-      });
-
-      // App.tsx
-      const imports = screenFiles.map(sf => `import ${sf.fileName} from './screens/${sf.fileName}';`).join('\n');
-      const tabScreens = screenFiles.map(sf => `        <Tab.Screen name="${sf.fileName.replace('Screen', '')}" component={${sf.fileName}} />`).join('\n');
-
-      zip.file('App.tsx', `import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StatusBar } from 'expo-status-bar';
-import { PaperProvider, MD3LightTheme } from 'react-native-paper';
-
-${imports}
-
-const Tab = createBottomTabNavigator();
-
-const theme = {
-  ...MD3LightTheme,
-  colors: {
-    ...MD3LightTheme.colors,
-    primary: '${primaryColor}',
-  },
-};
-
-export default function App() {
-  return (
-    <PaperProvider theme={theme}>
-      <NavigationContainer>
-        <Tab.Navigator screenOptions={{ headerStyle: { backgroundColor: '${primaryColor}' }, headerTintColor: '#fff' }}>
-${tabScreens}
-        </Tab.Navigator>
-      </NavigationContainer>
-      <StatusBar style="auto" />
-    </PaperProvider>
-  );
-}
-`);
-
-      // assets folder placeholder
-      const assets = zip.folder('assets')!;
-      assets.file('.gitkeep', '');
-
-      // README
-      zip.file('README.md', `# ${appName || 'My App'}
-
-Generated by [SheruTools AI App Builder](https://sherutools.com/app-builder)
-
-## Getting Started
-
-\`\`\`bash
-npm install
-npx expo start
-\`\`\`
-
-Scan the QR code with Expo Go on your phone, or press \`a\` for Android emulator.
-
-## Screens
-${screens.map((s, i) => `${i + 1}. ${s.name}`).join('\n')}
-
-## Build APK
-\`\`\`bash
-npx eas build --platform android --profile preview
-\`\`\`
-`);
-
-      clearInterval(interval);
-      setProgress(100);
-
-      const blob = await zip.generateAsync({ type: 'blob' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${safeName}-expo-project.zip`;
-      a.click();
-      URL.revokeObjectURL(url);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setDownloading(false);
-    }
+  // Save project to localStorage
+  const saveProject = () => {
+    const project = { appName, primaryColor, screens, savedAt: Date.now() };
+    const projects = JSON.parse(localStorage.getItem('sherutools_app_projects') || '[]');
+    projects.unshift(project);
+    localStorage.setItem('sherutools_app_projects', JSON.stringify(projects.slice(0, 10)));
+    setSaved(true);
+    setTimeout(() => setSaved(false), 3000);
   };
 
   return (
@@ -188,7 +37,7 @@ npx eas build --platform android --profile preview
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
-      className="space-y-8"
+      className="space-y-6"
     >
       {/* Confetti */}
       {showConfetti && (
@@ -204,41 +53,26 @@ npx eas build --platform android --profile preview
         </motion.div>
       )}
 
-      {/* Download ZIP */}
-      <div className="p-6 rounded-2xl border border-slate-200 dark:border-white/10 bg-white/50 dark:bg-white/[0.02] space-y-4">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center">
-            <Download className="w-6 h-6 text-blue-500" />
-          </div>
-          <div>
-            <h3 className="font-bold text-slate-900 dark:text-white">Download Expo Project</h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400">Complete project ZIP — run with npx expo start</p>
-          </div>
-        </div>
-
-        {downloading && (
-          <div className="w-full h-2 rounded-full bg-slate-200 dark:bg-white/10 overflow-hidden">
-            <motion.div
-              className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
-              initial={{ width: 0 }}
-              animate={{ width: `${progress}%` }}
-            />
-          </div>
-        )}
-
+      {/* Save Project */}
+      <div className="flex justify-end">
         <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={downloadZip}
-          disabled={downloading}
-          className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold shadow-lg disabled:opacity-50 flex items-center justify-center gap-2"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={saveProject}
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/10 transition-all"
         >
-          <Download className="w-5 h-5" />
-          {downloading ? 'Generating ZIP...' : 'Download ZIP'}
+          <Save className="w-4 h-4" />
+          {saved ? '✅ Saved!' : 'Save Project'}
         </motion.button>
       </div>
 
-      {/* APK Build - LIVE */}
+      {/* Download as Web App (PWA) - INSTANT */}
+      <DownloadWebApp screens={screens} appName={appName} primaryColor={primaryColor} />
+
+      {/* Download ZIP Source Code */}
+      <DownloadZip screens={screens} appName={appName} primaryColor={primaryColor} />
+
+      {/* Build APK */}
       <APKBuildSection screens={screens} appName={appName} primaryColor={primaryColor} />
 
       {/* Pro upsell */}
@@ -250,8 +84,8 @@ npx eas build --platform android --profile preview
         <ul className="text-sm text-slate-600 dark:text-slate-300 space-y-1">
           <li>✨ Unlimited app generations</li>
           <li>📱 8+ screens per app</li>
-          <li>🔨 APK build included</li>
-          <li>🎨 Custom app icons</li>
+          <li>🔨 Priority APK builds</li>
+          <li>🎨 AI-generated app icons</li>
           <li>🔔 Push notifications config</li>
         </ul>
         <button className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-sm shadow-lg">
@@ -259,6 +93,159 @@ npx eas build --platform android --profile preview
         </button>
       </div>
     </motion.div>
+  );
+}
+
+function DownloadWebApp({ screens, appName, primaryColor }: Props) {
+  const [downloading, setDownloading] = useState(false);
+
+  const download = async () => {
+    setDownloading(true);
+    try {
+      // Build a single HTML file with all screens + navigation
+      const html = buildFullAppHtml(screens, appName, primaryColor);
+      const blob = new Blob([html], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${appName.toLowerCase().replace(/[^a-z0-9]/g, '-') || 'my-app'}.html`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } finally {
+      setDownloading(false);
+    }
+  };
+
+  return (
+    <div className="p-6 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 space-y-4">
+      <div className="flex items-center gap-3">
+        <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center">
+          <Globe className="w-6 h-6 text-emerald-500" />
+        </div>
+        <div>
+          <div className="flex items-center gap-2">
+            <h3 className="font-bold text-slate-900 dark:text-white">Download as Web App</h3>
+            <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold">INSTANT</span>
+          </div>
+          <p className="text-sm text-slate-500 dark:text-slate-400">Single HTML file — open in any browser, works offline</p>
+        </div>
+      </div>
+      <motion.button
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        onClick={download}
+        disabled={downloading}
+        className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold shadow-lg disabled:opacity-50 flex items-center justify-center gap-2"
+      >
+        <Zap className="w-5 h-5" />
+        {downloading ? 'Generating...' : 'Download Web App (Instant)'}
+      </motion.button>
+    </div>
+  );
+}
+
+function DownloadZip({ screens, appName, primaryColor }: Props) {
+  const [downloading, setDownloading] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  const downloadZip = async () => {
+    setDownloading(true);
+    setProgress(0);
+    const interval = setInterval(() => setProgress(p => Math.min(p + Math.random() * 15, 90)), 200);
+
+    try {
+      const JSZip = (await import('jszip')).default;
+      const zip = new JSZip();
+      const safeName = appName.replace(/[^a-zA-Z0-9-_]/g, '').toLowerCase() || 'my-app';
+
+      // app.json
+      zip.file('app.json', JSON.stringify({
+        expo: {
+          name: appName || 'My App', slug: safeName, version: '1.0.0', orientation: 'portrait',
+          userInterfaceStyle: 'dark',
+          splash: { backgroundColor: primaryColor },
+          android: { package: `com.${safeName}.app` },
+        },
+      }, null, 2));
+
+      // package.json
+      zip.file('package.json', JSON.stringify({
+        name: safeName, version: '1.0.0', main: 'node_modules/expo/AppEntry.js',
+        scripts: { start: 'expo start', android: 'expo start --android' },
+        dependencies: {
+          expo: '~51.0.0', 'expo-status-bar': '~1.12.1', react: '18.2.0', 'react-native': '0.74.5',
+          '@react-navigation/native': '^6.1.18', '@react-navigation/bottom-tabs': '^6.6.1',
+          'react-native-screens': '~3.31.1', 'react-native-safe-area-context': '4.10.5',
+        },
+        devDependencies: { '@babel/core': '^7.20.0' },
+      }, null, 2));
+
+      zip.file('babel.config.js', `module.exports = function(api) { api.cache(true); return { presets: ['babel-preset-expo'] }; };\n`);
+
+      const screensDir = zip.folder('screens')!;
+      screens.forEach(s => {
+        const fileName = s.name.replace(/[^a-zA-Z0-9]/g, '') + 'Screen.tsx';
+        screensDir.file(fileName, s.code || `import React from 'react';\nimport { View, Text } from 'react-native';\nexport default function ${s.name.replace(/[^a-zA-Z0-9]/g, '')}Screen() { return <View style={{flex:1,justifyContent:'center',alignItems:'center'}}><Text>${s.name}</Text></View>; }`);
+      });
+
+      // Also include HTML files
+      const htmlDir = zip.folder('web')!;
+      screens.forEach(s => {
+        if (s.html) htmlDir.file(`${s.name.replace(/[^a-zA-Z0-9]/g, '')}.html`, s.html);
+      });
+      htmlDir.file('index.html', buildFullAppHtml(screens, appName, primaryColor));
+
+      // App.tsx with navigation
+      const imports = screens.map(s => `import ${s.name.replace(/[^a-zA-Z0-9]/g, '')}Screen from './screens/${s.name.replace(/[^a-zA-Z0-9]/g, '')}Screen';`).join('\n');
+      const tabs = screens.map(s => `        <Tab.Screen name="${s.name}" component={${s.name.replace(/[^a-zA-Z0-9]/g, '')}Screen} />`).join('\n');
+      zip.file('App.tsx', `import React from 'react';\nimport { NavigationContainer } from '@react-navigation/native';\nimport { createBottomTabNavigator } from '@react-navigation/bottom-tabs';\nimport { StatusBar } from 'expo-status-bar';\n${imports}\nconst Tab = createBottomTabNavigator();\nexport default function App() {\n  return (\n    <NavigationContainer>\n      <Tab.Navigator screenOptions={{ headerStyle: { backgroundColor: '${primaryColor}' }, headerTintColor: '#fff', tabBarActiveTintColor: '${primaryColor}', tabBarStyle: { backgroundColor: '#0f172a' } }}>\n${tabs}\n      </Tab.Navigator>\n      <StatusBar style="light" />\n    </NavigationContainer>\n  );\n}\n`);
+
+      zip.file('README.md', `# ${appName}\n\nGenerated by [SheruTools AI App Builder](https://sherutools.com/app-builder)\n\n## Run as Web App\nOpen \`web/index.html\` in any browser.\n\n## Run as Mobile App\n\`\`\`bash\nnpm install\nnpx expo start\n\`\`\`\n\n## Build APK\n\`\`\`bash\nnpx eas build --platform android --profile preview\n\`\`\`\n`);
+
+      clearInterval(interval);
+      setProgress(100);
+
+      const blob = await zip.generateAsync({ type: 'blob' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${safeName}-project.zip`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setDownloading(false);
+    }
+  };
+
+  return (
+    <div className="p-6 rounded-2xl border border-blue-500/20 bg-blue-500/5 space-y-4">
+      <div className="flex items-center gap-3">
+        <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center">
+          <Download className="w-6 h-6 text-blue-500" />
+        </div>
+        <div>
+          <h3 className="font-bold text-slate-900 dark:text-white">Download Source Code</h3>
+          <p className="text-sm text-slate-500 dark:text-slate-400">Expo project ZIP + Web app — run with npx expo start</p>
+        </div>
+      </div>
+      {downloading && (
+        <div className="w-full h-2 rounded-full bg-slate-200 dark:bg-white/10 overflow-hidden">
+          <motion.div className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" initial={{ width: 0 }} animate={{ width: `${progress}%` }} />
+        </div>
+      )}
+      <motion.button
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        onClick={downloadZip}
+        disabled={downloading}
+        className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold shadow-lg disabled:opacity-50 flex items-center justify-center gap-2"
+      >
+        <Download className="w-5 h-5" />
+        {downloading ? 'Generating ZIP...' : 'Download Project ZIP'}
+      </motion.button>
+    </div>
   );
 }
 
@@ -294,12 +281,10 @@ function APKBuildSection({ screens, appName, primaryColor }: Props) {
       const data = await res.json();
       const buildId = data.buildId;
 
-      // Poll for status
       pollRef.current = setInterval(async () => {
         try {
           const statusRes = await fetch(`/api/build-apk?buildId=${buildId}`);
           const status = await statusRes.json();
-          
           setBuildProgress(status.progress || 0);
           setBuildLogs(status.logs || []);
 
@@ -312,9 +297,7 @@ function APKBuildSection({ screens, appName, primaryColor }: Props) {
             setBuildStatus('failed');
             setBuildError(status.error || 'Build failed');
           }
-        } catch {
-          // Ignore poll errors, keep trying
-        }
+        } catch { /* retry */ }
       }, 3000);
     } catch (err) {
       setBuildStatus('failed');
@@ -327,42 +310,32 @@ function APKBuildSection({ screens, appName, primaryColor }: Props) {
   }, []);
 
   return (
-    <div className="p-6 rounded-2xl border border-green-500/20 bg-green-500/5 space-y-4 relative overflow-hidden">
+    <div className="p-6 rounded-2xl border border-orange-500/20 bg-orange-500/5 space-y-4 relative overflow-hidden">
       <div className="flex items-center gap-3">
-        <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center">
-          <Smartphone className="w-6 h-6 text-green-500" />
+        <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center">
+          <Smartphone className="w-6 h-6 text-orange-500" />
         </div>
         <div>
           <h3 className="font-bold text-slate-900 dark:text-white">Build Android APK</h3>
-          <p className="text-sm text-slate-500 dark:text-slate-400">Compile a real installable APK — takes 3-8 minutes</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400">Real installable APK via cloud build — takes 5-8 minutes</p>
         </div>
       </div>
 
-      {/* Progress bar */}
       {buildStatus === 'building' && (
         <div className="space-y-2">
           <div className="w-full h-2 rounded-full bg-slate-200 dark:bg-white/10 overflow-hidden">
-            <motion.div
-              className="h-full bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"
-              initial={{ width: 0 }}
-              animate={{ width: `${buildProgress}%` }}
-              transition={{ duration: 0.5 }}
-            />
+            <motion.div className="h-full bg-gradient-to-r from-orange-500 to-amber-500 rounded-full" initial={{ width: 0 }} animate={{ width: `${buildProgress}%` }} transition={{ duration: 0.5 }} />
           </div>
           <p className="text-xs text-slate-400">{buildProgress}% — {buildLogs[buildLogs.length - 1] || 'Building...'}</p>
         </div>
       )}
 
-      {/* Build logs */}
       {buildStatus === 'building' && buildLogs.length > 0 && (
-        <div className="max-h-32 overflow-y-auto bg-black/20 rounded-lg p-3 font-mono text-xs text-green-400 space-y-0.5">
-          {buildLogs.map((log, i) => (
-            <div key={i}>{'>'} {log}</div>
-          ))}
+        <div className="max-h-32 overflow-y-auto bg-black/20 rounded-lg p-3 font-mono text-xs text-orange-400 space-y-0.5">
+          {buildLogs.map((log, i) => <div key={i}>{'>'} {log}</div>)}
         </div>
       )}
 
-      {/* Success */}
       {buildStatus === 'success' && (
         <div className="flex items-center gap-3 p-3 rounded-xl bg-green-500/10 border border-green-500/20">
           <CheckCircle className="w-5 h-5 text-green-500" />
@@ -370,7 +343,6 @@ function APKBuildSection({ screens, appName, primaryColor }: Props) {
         </div>
       )}
 
-      {/* Error */}
       {buildStatus === 'failed' && (
         <div className="flex items-center gap-3 p-3 rounded-xl bg-red-500/10 border border-red-500/20">
           <XCircle className="w-5 h-5 text-red-500" />
@@ -378,15 +350,10 @@ function APKBuildSection({ screens, appName, primaryColor }: Props) {
         </div>
       )}
 
-      {/* Buttons */}
       {buildStatus === 'idle' && (
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={startBuild}
-          className="w-full py-3 rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold shadow-lg flex items-center justify-center gap-2 hover:from-green-500 hover:to-emerald-500 transition-all"
-        >
-          <Rocket className="w-5 h-5" /> Build APK
+        <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={startBuild}
+          className="w-full py-3 rounded-xl bg-gradient-to-r from-orange-600 to-amber-600 text-white font-bold shadow-lg flex items-center justify-center gap-2 hover:from-orange-500 hover:to-amber-500 transition-all">
+          <Rocket className="w-5 h-5" /> Build APK (Cloud)
         </motion.button>
       )}
 
@@ -397,42 +364,23 @@ function APKBuildSection({ screens, appName, primaryColor }: Props) {
       )}
 
       {buildStatus === 'success' && downloadUrl && (
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+        <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
           onClick={async () => {
             try {
-              // Fetch signed URL from our download endpoint
               const res = await fetch(downloadUrl);
-              if (res.redirected) {
-                // Browser followed redirect to signed S3 URL
-                window.open(res.url, '_blank');
-              } else if (res.ok) {
-                const data = await res.json();
-                if (data.downloadUrl) {
-                  window.open(data.downloadUrl, '_blank');
-                }
-              } else {
-                // Fallback: open proxy URL directly
-                window.open(downloadUrl, '_blank');
-              }
-            } catch {
-              window.open(downloadUrl, '_blank');
-            }
+              if (res.redirected) { window.open(res.url, '_blank'); }
+              else if (res.ok) { const data = await res.json(); if (data.downloadUrl) window.open(data.downloadUrl, '_blank'); }
+              else { window.open(downloadUrl, '_blank'); }
+            } catch { window.open(downloadUrl, '_blank'); }
           }}
-          className="w-full py-3 rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold shadow-lg text-center hover:from-green-500 hover:to-emerald-500 transition-all flex items-center justify-center gap-2"
-        >
+          className="w-full py-3 rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold shadow-lg flex items-center justify-center gap-2">
           <Download className="w-5 h-5" /> Download APK
         </motion.button>
       )}
 
       {buildStatus === 'failed' && (
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={startBuild}
-          className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 text-white font-bold shadow-lg flex items-center justify-center gap-2"
-        >
+        <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={startBuild}
+          className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 text-white font-bold shadow-lg flex items-center justify-center gap-2">
           <Rocket className="w-5 h-5" /> Retry Build
         </motion.button>
       )}
@@ -440,30 +388,72 @@ function APKBuildSection({ screens, appName, primaryColor }: Props) {
   );
 }
 
+// Build a single HTML file with all screens + tab navigation
+function buildFullAppHtml(screens: ScreenData[], appName: string, primaryColor: string): string {
+  const hasHtmlScreens = screens.some(s => s.html);
+  
+  if (!hasHtmlScreens) {
+    // Fallback for old-style screens
+    return `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${appName}</title></head><body style="font-family:system-ui;background:#0f172a;color:#f1f5f9;display:flex;align-items:center;justify-content:center;min-height:100vh"><h1>${appName}</h1></body></html>`;
+  }
+
+  const tabHtml = screens.map((s, i) => 
+    `<button onclick="showScreen(${i})" class="tab${i === 0 ? ' active' : ''}" id="tab-${i}">${s.icon || '📱'}<span>${s.name}</span></button>`
+  ).join('\n        ');
+
+  const screenFrames = screens.map((s, i) =>
+    `<iframe id="screen-${i}" class="screen-frame${i === 0 ? ' active' : ''}" sandbox="allow-scripts allow-same-origin" srcdoc="${(s.html || '').replace(/"/g, '&quot;')}"></iframe>`
+  ).join('\n      ');
+
+  return `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>${appName}</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #0f172a; overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
+    .screen-container { flex: 1; position: relative; overflow: hidden; }
+    .screen-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: none; }
+    .screen-frame.active { display: block; }
+    .tab-bar { display: flex; background: #1e293b; border-top: 1px solid rgba(255,255,255,0.1); padding: 8px 0 env(safe-area-inset-bottom, 8px); }
+    .tab { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0; background: none; border: none; color: #94a3b8; font-size: 10px; cursor: pointer; transition: color 0.2s; }
+    .tab.active { color: ${primaryColor}; }
+    .tab span { font-size: 10px; }
+  </style>
+</head>
+<body>
+  <div class="screen-container">
+    ${screenFrames}
+  </div>
+  <nav class="tab-bar">
+    ${tabHtml}
+  </nav>
+  <script>
+    function showScreen(index) {
+      document.querySelectorAll('.screen-frame').forEach((f, i) => f.classList.toggle('active', i === index));
+      document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', i === index));
+    }
+  </script>
+</body>
+</html>`;
+}
+
 function generateDefaultScreenCode(name: string, color: string): string {
   const safeName = name.replace(/[^a-zA-Z0-9]/g, '');
   return `import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
-
+import { View, Text, StyleSheet } from 'react-native';
 export default function ${safeName}Screen() {
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>${name}</Text>
-      </View>
-      <View style={styles.content}>
-        <Text style={styles.text}>Welcome to ${name}</Text>
-      </View>
-    </ScrollView>
+    <View style={styles.container}>
+      <Text style={styles.title}>${name}</Text>
+    </View>
   );
 }
-
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
-  header: { padding: 20, backgroundColor: '${color}' },
-  title: { fontSize: 24, fontWeight: 'bold', color: '#fff' },
-  content: { padding: 20 },
-  text: { fontSize: 16, color: '#333' },
+  container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#0f172a' },
+  title: { fontSize: 24, fontWeight: 'bold', color: '#f1f5f9' },
 });
 `;
 }

@@ -1,7 +1,12 @@
+import Anthropic from '@anthropic-ai/sdk';
 import OpenAI from 'openai';
 import { NextRequest, NextResponse } from 'next/server';
 
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+// Use Claude for code generation (superior code quality), fallback to GPT-4o
+const USE_CLAUDE = !!process.env.ANTHROPIC_API_KEY;
 
 export async function POST(req: NextRequest) {
   try {
@@ -31,79 +36,77 @@ export async function POST(req: NextRequest) {
       ? `${templateDescriptions[template]}. Additional details: ${description || 'Make it beautiful and functional.'}`
       : description;
 
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [
-        {
-          role: 'system',
-          content: `You are an expert React Native/Expo app generator. Generate complete, compilable mobile app screens.
+    const systemPrompt = `You are an expert React Native/Expo developer. Generate production-quality mobile app screens.
 
-CRITICAL RULES FOR CODE:
-- ONLY use imports from 'react' and 'react-native' (View, Text, ScrollView, TouchableOpacity, StyleSheet, FlatList, TextInput, Image, Alert, Dimensions)
-- Do NOT import from react-native-paper, @expo/vector-icons, react-native-vector-icons, or any third-party library
-- Use emoji strings instead of icon components (e.g. "🏠" instead of <Icon name="home" />)
-- Each screen must be a single default export function component
-- Use StyleSheet.create for all styles
-- Use React.useState for state management
-- All code must be valid TypeScript/JSX that compiles without errors
-- Do NOT use any TypeScript type annotations in JSX (no "as" casts)
-- Use simple, clean patterns that always compile
+STRICT RULES:
+1. ONLY import from 'react' and 'react-native'
+2. Available RN imports: View, Text, ScrollView, TouchableOpacity, StyleSheet, FlatList, TextInput, Image, Alert, Dimensions, SafeAreaView, StatusBar, Switch, Modal, ActivityIndicator, Animated, Platform, KeyboardAvoidingView
+3. NO third-party libraries (no react-native-paper, no @expo/vector-icons, no vector-icons, no expo-*, no @react-navigation)
+4. Use emoji strings for icons: "🏠" "⚙️" "➕" "🔍" etc
+5. Each screen is a single file with one default export
+6. Use StyleSheet.create() for all styles
+7. Use React.useState and React.useEffect for state/effects
+8. Use AsyncStorage pattern with simple state for data persistence (mock it with useState + sample data)
+9. Make screens FUNCTIONAL — not just UI mockups. Lists should render data, forms should work, buttons should do things.
+10. Use modern, beautiful styling: rounded corners (borderRadius: 16), shadows, gradients via overlapping Views, proper spacing
+11. Primary color: ${color}
+12. All code must compile without errors on Expo SDK 51 + React Native 0.74
 
-EXAMPLE SCREEN:
-\`\`\`
-import React, { useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+QUALITY STANDARDS:
+- Each screen should have 80-150 lines of code (substantial, not trivial)
+- Include sample/mock data that looks realistic
+- Proper error states and empty states
+- Smooth UX: loading indicators, confirmation dialogs
+- Beautiful typography hierarchy (title, subtitle, body, caption)
+- Card-based layouts with proper shadows and spacing
+- Status bar aware (use SafeAreaView or padding)
 
-export default function HomeScreen() {
-  const [count, setCount] = useState(0);
-  return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Welcome</Text>
-      </View>
-      <TouchableOpacity style={styles.button} onPress={() => setCount(c => c + 1)}>
-        <Text style={styles.buttonText}>Pressed {count} times</Text>
-      </TouchableOpacity>
-    </ScrollView>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f8f9fa' },
-  header: { padding: 24, backgroundColor: '${color}' },
-  title: { fontSize: 28, fontWeight: 'bold', color: '#fff' },
-  button: { margin: 16, padding: 16, backgroundColor: '${color}', borderRadius: 12, alignItems: 'center' },
-  buttonText: { color: '#fff', fontSize: 16, fontWeight: '600' },
-});
-\`\`\`
-
-Given an app description, generate 4-5 screens. For each screen provide:
-1. "name": Screen name (e.g., "Home", "Profile")
-2. "code": Complete compilable React Native code following ALL rules above
-3. "preview": HTML string that visually represents the mobile screen. Use inline styles, primary color ${color}, emoji for icons. Make it look like a real app.
-
-Return ONLY valid JSON. No markdown. Format:
+Generate 4-5 screens. Return ONLY valid JSON:
 {
   "screens": [
-    { "name": "...", "code": "...", "preview": "..." }
+    {
+      "name": "Home",
+      "code": "import React, { useState } from 'react';\\nimport { View, Text, ... } from 'react-native';\\n\\nexport default function HomeScreen() {\\n  ...\\n}\\n\\nconst styles = StyleSheet.create({...});",
+      "preview": "<div style='...'>HTML preview of screen</div>"
+    }
   ]
-}`,
-        },
-        {
-          role: 'user',
-          content: `App Name: "${name}"
+}
+
+The preview HTML should be a realistic mobile UI mockup with inline styles, using the primary color ${color}.`;
+
+    const userPrompt = `App Name: "${name}"
 Primary Color: ${color}
 Description: ${appDesc}
 
-Generate the screens. Remember: ONLY react and react-native imports. NO third-party libraries. Must compile on Expo SDK 51.`,
-        },
-      ],
-      temperature: 0.5,
-      max_tokens: 4000,
-    });
+Generate 4-5 complete, compilable, functional screens. Each screen must work standalone with sample data. Make it beautiful and production-quality.`;
 
-    const content = completion.choices[0]?.message?.content || '';
+    let content: string;
 
+    if (USE_CLAUDE) {
+      // Use Claude Sonnet 3.5 for superior code quality
+      const response = await anthropic.messages.create({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 8000,
+        messages: [
+          { role: 'user', content: `${systemPrompt}\n\n${userPrompt}` }
+        ],
+      });
+      content = response.content[0].type === 'text' ? response.content[0].text : '';
+    } else {
+      // Fallback to GPT-4o
+      const completion = await openai.chat.completions.create({
+        model: 'gpt-4o',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: userPrompt },
+        ],
+        temperature: 0.5,
+        max_tokens: 8000,
+      });
+      content = completion.choices[0]?.message?.content || '';
+    }
+
+    // Parse JSON from response
     let parsed;
     try {
       parsed = JSON.parse(content);
@@ -116,7 +119,7 @@ Generate the screens. Remember: ONLY react and react-native imports. NO third-pa
       }
     }
 
-    // Sanitize screen code - remove any problematic imports
+    // Sanitize screen code
     if (parsed.screens) {
       parsed.screens = parsed.screens.map((screen: { name: string; code: string; preview: string }) => ({
         ...screen,
@@ -124,7 +127,7 @@ Generate the screens. Remember: ONLY react and react-native imports. NO third-pa
       }));
     }
 
-    return NextResponse.json(parsed);
+    return NextResponse.json({ ...parsed, model: USE_CLAUDE ? 'claude-sonnet' : 'gpt-4o' });
   } catch (error: unknown) {
     console.error('AI App Builder error:', error);
     const message = error instanceof Error ? error.message : 'Generation failed';
@@ -133,31 +136,29 @@ Generate the screens. Remember: ONLY react and react-native imports. NO third-pa
 }
 
 function sanitizeCode(code: string, screenName: string, color: string): string {
-  // Remove any non-react-native imports
+  // Remove any non-react/react-native imports
   code = code.replace(/import\s+.*from\s+['"](?!react['"]|react-native['"]).*['"];?\n?/g, '');
   
-  // Remove TypeScript-only syntax that might cause issues
-  code = code.replace(/:\s*React\.FC\b/g, '');
-  code = code.replace(/<[A-Z]\w+>\(/g, '(');
+  // Remove TypeScript-only syntax
+  code = code.replace(/:\s*React\.FC\b[^{]*/g, '');
   
-  // Ensure it has the basic imports
+  // Ensure basic imports
   if (!code.includes("from 'react'") && !code.includes('from "react"')) {
-    code = "import React, { useState } from 'react';\n" + code;
+    code = "import React, { useState, useEffect } from 'react';\n" + code;
   }
   if (!code.includes("from 'react-native'") && !code.includes('from "react-native"')) {
-    code = "import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';\n" + code;
+    code = "import { View, Text, ScrollView, TouchableOpacity, StyleSheet, FlatList, TextInput, SafeAreaView, Dimensions, Alert } from 'react-native';\n" + code;
   }
 
-  // Ensure it has a default export
+  // Ensure default export
   if (!code.includes('export default')) {
     const safeName = screenName.replace(/[^a-zA-Z0-9]/g, '') + 'Screen';
-    code = code.replace(
-      new RegExp(`function\\s+${safeName}`),
-      `export default function ${safeName}`
-    );
-    // If still no default export, wrap the whole thing
+    code = code.replace(new RegExp(`(function\\s+${safeName})`), 'export default $1');
     if (!code.includes('export default')) {
-      code += `\nexport default function ${safeName}() { return <View style={{flex:1,justifyContent:'center',alignItems:'center'}}><Text style={{fontSize:24}}>${screenName}</Text></View>; }`;
+      code = code.replace(/^(function\s+\w+)/m, 'export default $1');
+    }
+    if (!code.includes('export default')) {
+      code += `\nexport default function ${safeName}() { return <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'#f8f9fa'}}><Text style={{fontSize:24,fontWeight:'bold',color:'${color}'}}>Welcome to ${screenName}</Text></View>; }`;
     }
   }
 

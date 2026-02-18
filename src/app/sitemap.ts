@@ -46,6 +46,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/flashcard-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/diagram-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/favicon-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/ai-summarizer`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/hash-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/jwt-decoder`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/ai-translator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
     ...CONVERSION_PAIRS.map(pair => ({
       url: `${base}/convert/${pair}`,
       lastModified: new Date(),

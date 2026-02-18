@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile, BarChart3, Camera, RefreshCw, Eraser, Search, User, Clock, ZoomIn, BookOpen, GitBranch, Globe, Smartphone } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile, BarChart3, Camera, RefreshCw, Eraser, Search, User, Clock, ZoomIn, BookOpen, GitBranch, Globe, Smartphone, Languages, Hash, Key } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -94,6 +94,22 @@ const aiTools = [
     icon: GitBranch,
     color: 'cyan',
   },
+  {
+    name: 'AI Text Summarizer',
+    description: 'Instantly condense articles, papers, and documents into clear summaries. 5 styles: concise, bullet, detailed, ELI5, academic.',
+    href: '/ai-summarizer',
+    icon: FileText,
+    color: 'purple',
+    badge: 'NEW',
+  },
+  {
+    name: 'AI Translator',
+    description: 'Translate between 33+ languages with context-aware AI. Choose formal, casual, business, or literary tone.',
+    href: '/ai-translator',
+    icon: Languages,
+    color: 'blue',
+    badge: 'NEW',
+  },
 ];
 
 /* ───── Document & Business Tools ───── */
@@ -171,6 +187,22 @@ const devTools = [
     href: '/cron-generator',
     icon: Clock,
     color: 'cyan',
+  },
+  {
+    name: 'Hash Generator',
+    description: 'Generate SHA-256, SHA-512, SHA-1, MD5 hashes instantly. Real-time hashing, file support, hash comparison.',
+    href: '/hash-generator',
+    icon: Hash,
+    color: 'emerald',
+    badge: 'NEW',
+  },
+  {
+    name: 'JWT Decoder',
+    description: 'Decode and inspect JSON Web Tokens. View header, payload, claims breakdown, and expiration status.',
+    href: '/jwt-decoder',
+    icon: Key,
+    color: 'amber',
+    badge: 'NEW',
   },
 ];
 
@@ -269,8 +301,8 @@ const utilityTools = [
 const comingSoonTools: { name: string; icon: any; bgClass: string; iconClass: string }[] = [];
 
 const stats = [
-  { label: 'Free Tools', value: 33, suffix: '+', icon: Wrench },
-  { label: 'AI-Powered', value: 11, suffix: '', icon: Bot },
+  { label: 'Free Tools', value: 37, suffix: '+', icon: Wrench },
+  { label: 'AI-Powered', value: 14, suffix: '', icon: Bot },
   { label: 'Happy Users', value: 1000, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },
 ];

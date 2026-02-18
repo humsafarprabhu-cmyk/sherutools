@@ -80,15 +80,37 @@ export default function Navigation() {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-5">
-          {/* Featured AI tools shown directly */}
-          {aiTools.map(t => (
-            <Link key={t.href} href={t.href} className="flex items-center gap-1.5 text-sm font-medium text-purple-500 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
+        <div className="hidden md:flex items-center gap-4">
+          {/* Featured AI tools — show only top 3 */}
+          {aiTools.slice(0, 3).map(t => (
+            <Link key={t.href} href={t.href} className="flex items-center gap-1.5 text-sm font-medium text-purple-500 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors whitespace-nowrap">
               <t.icon className="w-4 h-4" />
               {t.name}
-              <span className="text-[10px] bg-purple-500/10 text-purple-500 dark:text-purple-400 px-1.5 py-0.5 rounded-full">AI</span>
             </Link>
           ))}
+
+          {/* AI Tools dropdown — remaining AI tools */}
+          <div className="relative group">
+            <button className="flex items-center gap-1.5 text-sm font-medium text-purple-500 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors">
+              <Sparkles className="w-4 h-4" />
+              AI Tools
+              <ChevronDown className="w-3.5 h-3.5" />
+            </button>
+            <div className="absolute right-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+              <div className="w-64 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-white/10 shadow-xl overflow-hidden p-2">
+                {aiTools.map(t => (
+                  <Link
+                    key={t.href}
+                    href={t.href}
+                    className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:bg-purple-50 dark:hover:bg-purple-500/10 transition-colors"
+                  >
+                    <t.icon className="w-4 h-4 text-purple-500" />
+                    {t.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
 
           {/* All Tools dropdown */}
           <div ref={dropdownRef} className="relative">
@@ -110,26 +132,9 @@ export default function Navigation() {
                   transition={{ duration: 0.15 }}
                   className="absolute right-0 top-full mt-2 w-72 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-white/10 shadow-xl overflow-hidden"
                 >
-                  {/* AI Tools section */}
-                  <div className="p-2 border-b border-slate-100 dark:border-white/5">
-                    <p className="px-3 py-1 text-[10px] uppercase tracking-wider text-purple-500 font-semibold">✨ AI-Powered</p>
-                    {aiTools.map(t => (
-                      <Link
-                        key={t.href}
-                        href={t.href}
-                        onClick={() => setDropdownOpen(false)}
-                        className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-700 dark:text-slate-300 hover:bg-purple-50 dark:hover:bg-purple-500/10 transition-colors"
-                      >
-                        <t.icon className="w-4 h-4 text-purple-500" />
-                        {t.name}
-                      </Link>
-                    ))}
-                  </div>
-
-                  {/* Utility Tools section */}
-                  <div className="p-2 max-h-72 overflow-y-auto">
-                    <p className="px-3 py-1 text-[10px] uppercase tracking-wider text-slate-400 font-semibold">🛠️ Utility Tools</p>
-                    {utilityTools.map(t => (
+                  <div className="p-2 max-h-96 overflow-y-auto">
+                    <p className="px-3 py-1 text-[10px] uppercase tracking-wider text-slate-400 font-semibold">🛠️ All Tools</p>
+                    {allTools.map(t => (
                       <Link
                         key={t.href}
                         href={t.href}

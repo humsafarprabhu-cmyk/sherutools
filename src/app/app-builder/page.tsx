@@ -37,6 +37,32 @@ export default function AppBuilderPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const regenerateScreen = async (index: number) => {
+    const screen = screens[index];
+    if (!screen) return;
+    try {
+      const res = await fetch('/api/ai-app-builder', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          description: `Regenerate this screen: "${screen.name}" for an app called "${appName}". Make it different from the current version but keep the same purpose. Make it beautiful, functional, and interactive.`,
+          template: 'custom',
+          appName: appName || 'My App',
+          primaryColor,
+          singleScreen: true,
+        }),
+      });
+      const data = await res.json();
+      if (data.screens?.[0]?.html) {
+        const copy = [...screens];
+        copy[index] = { ...copy[index], html: data.screens[0].html, preview: data.screens[0].html };
+        setScreens(copy);
+      }
+    } catch (err) {
+      console.error('Regenerate failed:', err);
+    }
+  };
+
   const generate = async () => {
     setLoading(true);
     setError('');
@@ -158,6 +184,7 @@ export default function AppBuilderPage() {
               selectedScreen={selectedScreen}
               setSelectedScreen={setSelectedScreen}
               onNext={() => setStep(2)}
+              onRegenerateScreen={regenerateScreen}
             />
           )}
           {step === 2 && (

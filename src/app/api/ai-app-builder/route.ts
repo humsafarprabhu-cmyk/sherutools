@@ -5,7 +5,7 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 export async function POST(req: NextRequest) {
   try {
-    const { description, template, appName, primaryColor } = await req.json();
+    const { description, template, appName, primaryColor, singleScreen, editMode, existingHtml } = await req.json();
 
     if (!description && !template) {
       return NextResponse.json({ error: 'Description or template is required' }, { status: 400 });
@@ -90,14 +90,21 @@ CSS TEMPLATE:
 body { font-family:system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
 \`\`\`
 
-IMPORTANT: Generate EXACTLY 5 screens. Each screen must have 200+ lines of rich HTML with lots of content, interactivity, and visual elements. Return ONLY valid JSON — no markdown, no code blocks, no explanation:
+IMPORTANT: Generate EXACTLY ${singleScreen ? '1' : '5'} screen${singleScreen ? '' : 's'}. Each screen must have 200+ lines of rich HTML with lots of content, interactivity, and visual elements. Return ONLY valid JSON — no markdown, no code blocks, no explanation:
 {"screens":[{"name":"Screen Name","html":"<!DOCTYPE html>...complete HTML...","icon":"🏠"}]}`;
 
-    const userPrompt = `App: "${name}"
+    const userPrompt = singleScreen
+      ? `App: "${name}"
+Color: ${color}
+Description: ${appDesc}
+${editMode && existingHtml ? `\nCurrent screen HTML to modify:\n${existingHtml.substring(0, 3000)}` : ''}
+
+Create 1 STUNNING screen. ${editMode ? 'Modify the existing screen as described.' : 'Make it different from any previous version.'} Beautiful layout, working interactions, smooth animations.`
+      : `App: "${name}"
 Color: ${color}
 Description: ${appDesc}
 
-Create 4-5 STUNNING screens. This must look like a $50,000 professionally designed app — rich content, beautiful layout, working interactions, smooth animations. NOT a basic mockup.`;
+Create 5 STUNNING screens. This must look like a $50,000 professionally designed app — rich content, beautiful layout, working interactions, smooth animations. NOT a basic mockup.`;
 
     const completion = await openai.chat.completions.create({
       model: 'gpt-4o',

@@ -283,7 +283,7 @@ export default function AILandingPage() {
               {usage}/{DAILY_LIMIT} free today
               {usage >= DAILY_LIMIT && (
                 <span className="ml-2 text-indigo-500 dark:text-indigo-400">
-                  — <a href="#pro" className="underline">Upgrade to Pro</a> for unlimited
+                  — <a href="https://sherutools.lemonsqueezy.com/buy/ai-landing-page-pro" target="_blank" rel="noopener noreferrer" className="underline">Upgrade to Pro</a> for unlimited
                 </span>
               )}
             </div>
@@ -522,7 +522,7 @@ export default function AILandingPage() {
               <span className="text-slate-500 dark:text-slate-400 mb-1">/month</span>
             </div>
             <a
-              href="https://sherutools.lemonsqueezy.com/buy/placeholder"
+              href="https://sherutools.lemonsqueezy.com/buy/ai-landing-page-pro"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-3 rounded-xl text-white font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 transition-all shadow-xl shadow-indigo-500/25"

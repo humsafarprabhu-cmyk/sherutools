@@ -533,7 +533,9 @@ export default function PasswordGeneratorPage() {
               <h3 className="text-lg font-semibold mb-1">Password Generator Pro</h3>
               <p className="text-gray-400 text-sm mb-3">Generate up to 100 at once, export as CSV/TXT, and check against known breaches.</p>
               <a
-                href="#pro"
+                href="https://sherutools.lemonsqueezy.com/buy/password-generator-pro"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500 text-white font-medium text-sm hover:bg-emerald-600 transition-colors"
               >
                 <Lock className="w-4 h-4" /> Get Pro — $2.99

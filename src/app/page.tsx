@@ -398,7 +398,7 @@ export default function Home() {
             </motion.div>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-              <span className="text-slate-900 dark:text-white">Free Online Tools</span>
+              <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 bg-clip-text text-transparent">Free Online Tools</span>
               <br />
               <span className="shimmer-text bg-gradient-to-r from-blue-400 via-emerald-400 to-blue-400 bg-clip-text text-transparent bg-[length:200%_auto]">
                 {currentWord}

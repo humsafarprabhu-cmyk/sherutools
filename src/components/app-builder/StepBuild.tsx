@@ -1,8 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Download, Smartphone, Rocket, Lock, PartyPopper } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { Download, Smartphone, Rocket, Lock, PartyPopper, Loader2, CheckCircle, XCircle } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
 import { ScreenData } from './ScreenCard';
 
 interface Props {
@@ -238,22 +238,8 @@ npx eas build --platform android --profile preview
         </motion.button>
       </div>
 
-      {/* APK Build - Coming Soon */}
-      <div className="p-6 rounded-2xl border border-dashed border-slate-300 dark:border-white/10 bg-slate-50/50 dark:bg-white/[0.01] space-y-4 relative overflow-hidden">
-        <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-amber-500/10 text-amber-500 text-xs font-bold">Coming Soon</div>
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center">
-            <Smartphone className="w-6 h-6 text-green-500" />
-          </div>
-          <div>
-            <h3 className="font-bold text-slate-900 dark:text-white">Build Android APK</h3>
-            <p className="text-sm text-slate-500 dark:text-slate-400">We&apos;ll compile a real APK you can install — $4.99/build or free with Pro</p>
-          </div>
-        </div>
-        <button disabled className="w-full py-3 rounded-xl bg-slate-200 dark:bg-white/5 text-slate-400 font-bold cursor-not-allowed flex items-center justify-center gap-2">
-          <Rocket className="w-5 h-5" /> Build APK — Coming Soon
-        </button>
-      </div>
+      {/* APK Build - LIVE */}
+      <APKBuildSection screens={screens} appName={appName} primaryColor={primaryColor} />
 
       {/* Pro upsell */}
       <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-500/10 via-blue-500/10 to-pink-500/10 border border-purple-500/20 space-y-3">
@@ -273,6 +259,160 @@ npx eas build --platform android --profile preview
         </button>
       </div>
     </motion.div>
+  );
+}
+
+function APKBuildSection({ screens, appName, primaryColor }: Props) {
+  const [buildStatus, setBuildStatus] = useState<'idle' | 'building' | 'success' | 'failed'>('idle');
+  const [buildProgress, setBuildProgress] = useState(0);
+  const [buildLogs, setBuildLogs] = useState<string[]>([]);
+  const [downloadUrl, setDownloadUrl] = useState('');
+  const [buildError, setBuildError] = useState('');
+  const pollRef = useRef<NodeJS.Timeout | null>(null);
+
+  const startBuild = async () => {
+    setBuildStatus('building');
+    setBuildProgress(0);
+    setBuildLogs(['Starting build...']);
+    setBuildError('');
+
+    try {
+      const res = await fetch('/api/build-apk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          appName,
+          primaryColor,
+          screens: screens.map(s => ({
+            name: s.name,
+            code: s.code || generateDefaultScreenCode(s.name, primaryColor),
+          })),
+        }),
+      });
+
+      if (!res.ok) throw new Error('Build server unavailable');
+      const data = await res.json();
+      const buildId = data.buildId;
+
+      // Poll for status
+      pollRef.current = setInterval(async () => {
+        try {
+          const statusRes = await fetch(`/api/build-apk?buildId=${buildId}`);
+          const status = await statusRes.json();
+          
+          setBuildProgress(status.progress || 0);
+          setBuildLogs(status.logs || []);
+
+          if (status.status === 'success') {
+            clearInterval(pollRef.current!);
+            setBuildStatus('success');
+            setDownloadUrl(status.downloadUrl);
+          } else if (status.status === 'failed') {
+            clearInterval(pollRef.current!);
+            setBuildStatus('failed');
+            setBuildError(status.error || 'Build failed');
+          }
+        } catch {
+          // Ignore poll errors, keep trying
+        }
+      }, 3000);
+    } catch (err) {
+      setBuildStatus('failed');
+      setBuildError(err instanceof Error ? err.message : 'Build failed');
+    }
+  };
+
+  useEffect(() => {
+    return () => { if (pollRef.current) clearInterval(pollRef.current); };
+  }, []);
+
+  return (
+    <div className="p-6 rounded-2xl border border-green-500/20 bg-green-500/5 space-y-4 relative overflow-hidden">
+      <div className="flex items-center gap-3">
+        <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center">
+          <Smartphone className="w-6 h-6 text-green-500" />
+        </div>
+        <div>
+          <h3 className="font-bold text-slate-900 dark:text-white">Build Android APK</h3>
+          <p className="text-sm text-slate-500 dark:text-slate-400">Compile a real installable APK — takes 3-8 minutes</p>
+        </div>
+      </div>
+
+      {/* Progress bar */}
+      {buildStatus === 'building' && (
+        <div className="space-y-2">
+          <div className="w-full h-2 rounded-full bg-slate-200 dark:bg-white/10 overflow-hidden">
+            <motion.div
+              className="h-full bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"
+              initial={{ width: 0 }}
+              animate={{ width: `${buildProgress}%` }}
+              transition={{ duration: 0.5 }}
+            />
+          </div>
+          <p className="text-xs text-slate-400">{buildProgress}% — {buildLogs[buildLogs.length - 1] || 'Building...'}</p>
+        </div>
+      )}
+
+      {/* Build logs */}
+      {buildStatus === 'building' && buildLogs.length > 0 && (
+        <div className="max-h-32 overflow-y-auto bg-black/20 rounded-lg p-3 font-mono text-xs text-green-400 space-y-0.5">
+          {buildLogs.map((log, i) => (
+            <div key={i}>{'>'} {log}</div>
+          ))}
+        </div>
+      )}
+
+      {/* Success */}
+      {buildStatus === 'success' && (
+        <div className="flex items-center gap-3 p-3 rounded-xl bg-green-500/10 border border-green-500/20">
+          <CheckCircle className="w-5 h-5 text-green-500" />
+          <span className="text-sm text-green-400 font-medium">APK built successfully!</span>
+        </div>
+      )}
+
+      {/* Error */}
+      {buildStatus === 'failed' && (
+        <div className="flex items-center gap-3 p-3 rounded-xl bg-red-500/10 border border-red-500/20">
+          <XCircle className="w-5 h-5 text-red-500" />
+          <span className="text-sm text-red-400">{buildError}</span>
+        </div>
+      )}
+
+      {/* Buttons */}
+      {buildStatus === 'idle' && (
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={startBuild}
+          className="w-full py-3 rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold shadow-lg flex items-center justify-center gap-2 hover:from-green-500 hover:to-emerald-500 transition-all"
+        >
+          <Rocket className="w-5 h-5" /> Build APK
+        </motion.button>
+      )}
+
+      {buildStatus === 'building' && (
+        <button disabled className="w-full py-3 rounded-xl bg-slate-200 dark:bg-white/5 text-slate-400 font-bold cursor-not-allowed flex items-center justify-center gap-2">
+          <Loader2 className="w-5 h-5 animate-spin" /> Building APK...
+        </button>
+      )}
+
+      {buildStatus === 'success' && downloadUrl && (
+        <a href={downloadUrl} className="block w-full py-3 rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold shadow-lg text-center hover:from-green-500 hover:to-emerald-500 transition-all">
+          <span className="flex items-center justify-center gap-2"><Download className="w-5 h-5" /> Download APK</span>
+        </a>
+      )}
+
+      {buildStatus === 'failed' && (
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={startBuild}
+          className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 text-white font-bold shadow-lg flex items-center justify-center gap-2"
+        >
+          <Rocket className="w-5 h-5" /> Retry Build
+        </motion.button>
+      )}
+    </div>
   );
 }
 

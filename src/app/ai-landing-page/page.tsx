@@ -76,18 +76,33 @@ export default function AILandingPage() {
     }, 1800);
 
     try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 30000);
       const res = await fetch('/api/ai-landing-page', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ description, style: style.toLowerCase(), color, sections }),
+        signal: controller.signal,
       });
+      clearTimeout(timeout);
+      if (!res.ok) {
+        let errMsg = 'Generation failed';
+        try { const data = await res.json(); errMsg = data.error || errMsg; } catch {}
+        throw new Error(errMsg);
+      }
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Generation failed');
+      if (!data.html || typeof data.html !== 'string' || !data.html.includes('<')) {
+        throw new Error('Invalid response from AI. Please try again.');
+      }
       setHtml(data.html);
       incrementUsage();
       setUsage(getUsageToday());
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Something went wrong');
+      if (err instanceof DOMException && err.name === 'AbortError') {
+        setError('Generation timed out. Try a shorter description or try again.');
+      } else {
+        setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+      }
     } finally {
       clearInterval(interval);
       setLoading(false);
@@ -459,8 +474,9 @@ export default function AILandingPage() {
                     srcDoc={html}
                     className="w-full border-0"
                     style={{ height: '80vh' }}
-                    sandbox="allow-scripts"
+                    sandbox="allow-scripts allow-same-origin"
                     title="Landing Page Preview"
+                    onError={() => setError('Preview failed to render. Try downloading the HTML instead.')}
                   />
                 </motion.div>
               </div>

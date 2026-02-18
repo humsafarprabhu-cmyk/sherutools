@@ -5,8 +5,8 @@ import { NextRequest, NextResponse } from 'next/server';
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-// Use Claude for code generation (superior code quality), fallback to GPT-4o
-const USE_CLAUDE = !!process.env.ANTHROPIC_API_KEY;
+// Force OpenAI for now (Anthropic credits low)
+const USE_CLAUDE = false;
 
 export async function POST(req: NextRequest) {
   try {

@@ -37,7 +37,7 @@ export default function PhoneMockup({ deviceType = 'android', children, classNam
           </div>
 
           {/* Screen content */}
-          <div className="absolute inset-0 top-8 bottom-0 overflow-hidden bg-white dark:bg-slate-900">
+          <div className="absolute inset-0 top-8 bottom-6 overflow-hidden bg-slate-900" style={{ display: 'flex', flexDirection: 'column' }}>
             {children}
           </div>
 

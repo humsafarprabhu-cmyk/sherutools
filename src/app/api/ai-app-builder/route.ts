@@ -15,85 +15,89 @@ export async function POST(req: NextRequest) {
     const name = appName || 'My App';
 
     const templateDescriptions: Record<string, string> = {
-      fitness: 'A fitness tracking app with workout logging, exercise library, progress charts showing weekly/monthly stats, and a personal dashboard. Include sample exercises, a timer, and weekly summary.',
-      restaurant: 'A restaurant/food menu app with menu categories, dish details with prices, cart/ordering system with quantity, and contact info. Include 10+ sample dishes with descriptions and prices.',
-      notes: 'A notes and todo app with task lists, note editor with title+body, categories/tags, and a clean dashboard. Notes must SAVE to localStorage and persist. Include add, edit, delete functionality.',
-      ecommerce: 'An e-commerce store app with product catalog grid, product detail modal, shopping cart with add/remove/quantity, and checkout summary. Include 8+ sample products with prices and images (use emoji as images).',
-      news: 'A news/blog reader app with article feed, categories filter, article detail view, and bookmarks. Include 10+ sample articles with titles, excerpts, dates, and categories.',
-      portfolio: 'A portfolio/business app showcasing projects/work, about section, services offered, testimonials, and contact form. Include sample projects with descriptions.',
-      gallery: 'A photo gallery app with album grid, fullscreen viewer, categories, and favorites. Use colorful gradient placeholder images.',
-      quiz: 'A quiz/education app with quiz categories, question screens with 4 options each, score tracking, and results. Include 10+ real trivia questions with correct answers.',
-      expense: 'An expense tracker app with transaction list, add expense form (amount, category, date), budget overview with visual bars, and monthly total. Data must persist in localStorage.',
+      fitness: 'A fitness tracking app with workout logging, exercise library with muscle groups, progress charts showing weekly/monthly stats with animated bars, and a personal dashboard with streaks, calories burned, workout minutes. Include 8+ sample exercises with sets/reps, a countdown timer that actually works, and motivational quotes.',
+      restaurant: 'A restaurant/food menu app with beautiful food categories with emoji icons, dish cards with prices/ratings/spice level, working cart system with add/remove/quantity controls and total calculation, and a checkout page. Include 12+ dishes across categories (Starters, Mains, Desserts, Drinks) with realistic prices.',
+      notes: 'A notes app with rich note editor (title + body + color tags), working add/edit/delete with localStorage persistence, search/filter, pinned notes, color-coded categories, and a beautiful grid layout. Must actually save and load notes across page refreshes.',
+      ecommerce: 'An e-commerce store with product grid (card layout with image placeholder, price, rating stars, add-to-cart button), working shopping cart with quantity +/-, total calculation, product detail view, and category filters. Include 12+ products with realistic prices and star ratings.',
+      news: 'A news/blog reader with article feed cards (thumbnail placeholder, title, excerpt, date, category badge), category tabs (All, Tech, Business, Science, Sports), article detail view with full text, and working bookmarks saved to localStorage. Include 12+ realistic article titles and excerpts.',
+      portfolio: 'A portfolio app with hero section (name, title, animated gradient), project cards with tech stack tags, skills section with progress bars, testimonials carousel, and contact form. Beautiful glassmorphism design throughout.',
+      gallery: 'A photo gallery app with masonry grid layout using colorful gradient placeholder images, fullscreen lightbox viewer with swipe, album categories, favorites with heart toggle saved to localStorage, and image count badges.',
+      quiz: 'A quiz app with category selection (Science, History, Geography, Tech, Movies), working quiz flow with 4-option MCQ, timer countdown per question, score tracking, animated correct/wrong feedback, and final results with performance grade. Include 15+ real questions with correct answers.',
+      expense: 'An expense tracker with transaction list (amount, category emoji, date, note), working add-expense form that saves to localStorage, budget overview with animated progress bars per category, monthly total with income vs expense, and pie-chart style category breakdown using CSS. Include sample transactions.',
       custom: '',
     };
 
     const appDesc = template && template !== 'custom'
-      ? `${templateDescriptions[template]}. Additional details: ${description || 'Make it beautiful and functional.'}`
+      ? `${templateDescriptions[template]}. Additional details: ${description || 'Make it stunning and highly functional.'}`
       : description;
 
-    const systemPrompt = `You are an expert mobile app UI developer. Generate beautiful, FUNCTIONAL mobile app screens as HTML/CSS/JS.
+    const systemPrompt = `You are an ELITE mobile app UI developer who creates STUNNING, production-quality app interfaces. Generate beautiful, FULLY FUNCTIONAL mobile app screens as complete HTML documents.
+
+DESIGN STANDARDS (2026 quality):
+- Glassmorphism cards: background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1)
+- Smooth gradients for headers and CTAs
+- Subtle shadows: box-shadow: 0 8px 32px rgba(0,0,0,0.3)
+- Rounded corners everywhere (12-20px)
+- Proper spacing (16-24px padding)
+- Animated elements: @keyframes for loading states, number counters, progress bars
+- Hover/active states on all interactive elements with transform: scale(0.97)
+- Status indicators with colored dots (green=active, yellow=warning, red=alert)
+- Emoji as beautiful icons (not text) — use them generously
+- Cards with subtle border-left accent colors
+- Floating action buttons (FAB) for primary actions
+- Pull-to-refresh style headers
+- Smooth transitions on everything: transition: all 0.3s cubic-bezier(0.4,0,0.2,1)
 
 CRITICAL RULES:
-1. Each screen is a COMPLETE, self-contained HTML document
-2. Use INLINE <style> and <script> tags — no external dependencies
-3. Design for mobile viewport (375x812 — iPhone size)
-4. Use modern CSS: flexbox, grid, border-radius, box-shadow, transitions, gradients
-5. Primary color: ${color}
-6. Dark theme by default (dark backgrounds, light text)
-7. ALL screens must be FUNCTIONAL:
-   - Forms must save data to localStorage
-   - Lists must render from stored data
-   - Buttons must work (add, delete, edit, toggle)
-   - Counters must count
-   - Navigation between screens via JavaScript
-8. Use emoji for icons: 🏠 ➕ 🔍 ❤️ 🗑️ ✏️ etc.
-9. Beautiful typography: system-ui font, proper hierarchy
-10. Include realistic sample/mock data
-11. Each screen must have a header bar with app name and optional back button
-12. Bottom tab bar on the Home screen showing all screens
-13. Smooth transitions and micro-interactions (CSS transitions)
-14. Use CSS variables for theming: --primary: ${color}; --bg: #0f172a; --card: #1e293b; --text: #f1f5f9;
+1. Each screen is a COMPLETE <!DOCTYPE html> document with inline <style> and <script>
+2. NO external dependencies — everything self-contained
+3. Mobile viewport: 375x812, use meta viewport tag
+4. Primary color: ${color} — use it for headers, buttons, accents, gradients
+5. Dark theme: --bg: #0f172a; --card: #1e293b; --card-hover: #263348; --text: #f1f5f9; --muted: #94a3b8; --border: rgba(255,255,255,0.08)
+6. EVERY screen must be FULLY FUNCTIONAL:
+   - Forms save to localStorage and reload on page open
+   - Lists render from stored data with add/delete
+   - Counters count, timers time, toggles toggle
+   - Search/filter actually filters visible items
+   - Calculations are real (totals, averages, percentages)
+7. Use emoji icons throughout: 🏠 ➕ 🔍 ❤️ 🗑️ ✏️ 📊 💰 🔔 ⭐ etc
+8. Include RICH sample/mock data (10+ items where applicable)
+9. Header bar: 56px height, app name, subtle background
+10. Scrollable content with -webkit-overflow-scrolling: touch
+11. Input fields: dark background, rounded, with focus glow effect
+12. Buttons: gradient backgrounds, rounded-full for FABs
+13. Lists: alternating subtle backgrounds or card-based
+14. Numbers/stats: large bold font, colored accents
+15. Empty states: emoji + helpful message when no data
 
-STRUCTURE FOR EACH SCREEN:
-\`\`\`html
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <title>Screen Name</title>
-  <style>
-    :root { --primary: ${color}; --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --muted: #94a3b8; }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
-    /* ... more styles */
-  </style>
-</head>
-<body>
-  <!-- Content -->
-  <script>
-    // Functional JavaScript with localStorage
-  </script>
-</body>
-</html>
+CSS TEMPLATE:
+\`\`\`
+:root {
+  --primary: ${color};
+  --primary-light: ${color}33;
+  --primary-glow: ${color}66;
+  --bg: #0f172a;
+  --card: #1e293b;
+  --card-hover: #263348;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --border: rgba(255,255,255,0.08);
+  --success: #22c55e;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { font-family:system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
 \`\`\`
 
-Generate 4-5 screens. Return ONLY valid JSON (no markdown, no code blocks):
-{
-  "screens": [
-    {
-      "name": "Home",
-      "html": "<!DOCTYPE html>...",
-      "icon": "🏠"
-    }
-  ]
-}`;
+Generate 4-5 screens. Return ONLY valid JSON — no markdown, no code blocks, no explanation:
+{"screens":[{"name":"Screen Name","html":"<!DOCTYPE html>...complete HTML...","icon":"🏠"}]}`;
 
-    const userPrompt = `App Name: "${name}"
-Primary Color: ${color}
+    const userPrompt = `App: "${name}"
+Color: ${color}
 Description: ${appDesc}
 
-Generate 4-5 complete, beautiful, FUNCTIONAL screens. Every button must work, every form must save. This should feel like a REAL app, not a mockup.`;
+Create 4-5 STUNNING screens. This must look like a $50,000 professionally designed app — rich content, beautiful layout, working interactions, smooth animations. NOT a basic mockup.`;
 
     const completion = await openai.chat.completions.create({
       model: 'gpt-4o',
@@ -101,7 +105,7 @@ Generate 4-5 complete, beautiful, FUNCTIONAL screens. Every button must work, ev
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt },
       ],
-      temperature: 0.5,
+      temperature: 0.6,
       max_tokens: 16000,
     });
 
@@ -109,24 +113,30 @@ Generate 4-5 complete, beautiful, FUNCTIONAL screens. Every button must work, ev
 
     let parsed;
     try {
+      // Try direct parse first
       parsed = JSON.parse(content);
     } catch {
-      const jsonMatch = content.match(/```(?:json)?\s*([\s\S]*?)```/) || content.match(/\{[\s\S]*\}/);
+      // Try extracting JSON from markdown code blocks
+      const jsonMatch = content.match(/```(?:json)?\s*([\s\S]*?)```/);
       if (jsonMatch) {
-        parsed = JSON.parse(jsonMatch[1] || jsonMatch[0]);
+        parsed = JSON.parse(jsonMatch[1]);
       } else {
-        throw new Error('Failed to parse AI response');
+        // Try finding the JSON object directly
+        const start = content.indexOf('{');
+        const end = content.lastIndexOf('}');
+        if (start !== -1 && end !== -1) {
+          parsed = JSON.parse(content.substring(start, end + 1));
+        } else {
+          throw new Error('Failed to parse AI response');
+        }
       }
     }
 
-    // Also generate React Native code for ZIP download (lightweight)
+    // Post-process screens
     if (parsed.screens) {
       parsed.screens = parsed.screens.map((screen: { name: string; html: string; icon?: string; code?: string; preview?: string }) => ({
         ...screen,
-        // Keep html as-is for preview and WebView APK
-        // Generate simple RN fallback code for ZIP
         code: screen.code || generateRNCode(screen.name, color),
-        // Preview is the HTML itself (rendered in iframe)
         preview: screen.html || screen.preview || '',
       }));
     }

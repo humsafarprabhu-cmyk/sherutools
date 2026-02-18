@@ -1,5 +1,7 @@
 'use client';
 
+import RelatedTools from '@/components/RelatedTools';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Upload, Download, Trash2, Camera, Sparkles, ChevronRight, Home,
@@ -841,7 +843,11 @@ export default function PassportPhotoPage() {
             ))}
           </div>
         </motion.div>
-      </section>
+      
+      <div className="max-w-6xl mx-auto px-4">
+      <RelatedTools tools={[{"name":"Image Tools","href":"/image-tools","description":"Edit and transform images","icon":"🖼️"},{"name":"Background Remover","href":"/background-remover","description":"Remove image backgrounds","icon":"✂️"},{"name":"File Converter","href":"/file-converter","description":"Convert between formats","icon":"🔄"},{"name":"Resume Builder","href":"/resume-builder","description":"Create professional resumes","icon":"📄"}]} />
+      </div>
+    </section>
     </motion.div>
   );
 }

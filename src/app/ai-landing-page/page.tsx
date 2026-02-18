@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { Layout, Monitor, Tablet, Smartphone, Download, Copy, RefreshCw, Code2, Eye, ChevronDown, Check, Sparkles, Crown, Zap } from 'lucide-react';
 import { useState, useRef, useCallback, useEffect } from 'react';
@@ -530,6 +533,11 @@ export default function AILandingPage() {
           </div>
         </motion.div>
       </section>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"How does the AI Landing Page Generator work?","answer":"Simply describe your product or service in one sentence. Our AI generates a complete, responsive landing page with hero section, features, pricing, testimonials, and more."},{"question":"Is the generated landing page responsive?","answer":"Yes! All generated landing pages are fully responsive and look great on desktop, tablet, and mobile devices."},{"question":"Can I download the generated HTML?","answer":"Yes, you can download the complete HTML file and host it anywhere, or copy the code directly to your clipboard."},{"question":"How many landing pages can I generate for free?","answer":"Free users can generate up to 3 landing pages per day. Upgrade to Pro for unlimited generations."}]} />
+      <RelatedTools tools={[{"name":"AI Email Writer","href":"/ai-email-writer","description":"Generate professional emails with AI","icon":"📧"},{"name":"Screenshot Beautifier","href":"/screenshot-beautifier","description":"Make screenshots look professional","icon":"🖼️"},{"name":"Color Palette Generator","href":"/color-palette-generator","description":"Create beautiful color schemes","icon":"🎨"},{"name":"CSS Gradient Generator","href":"/css-gradient-generator","description":"Create stunning CSS gradients","icon":"🌈"}]} />
+      </div>
     </div>
   );
 }

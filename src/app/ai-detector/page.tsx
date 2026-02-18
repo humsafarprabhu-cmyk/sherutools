@@ -1,5 +1,7 @@
 'use client';
 
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Sparkles, Copy, Check, RotateCcw, AlertTriangle, Shield, Zap, Brain, ChevronDown } from 'lucide-react';
@@ -407,7 +409,11 @@ export default function AiDetectorPage() {
               ))}
             </div>
           </section>
-        </div>
+        
+      <div className="max-w-6xl mx-auto px-4">
+      <RelatedTools tools={[{"name":"AI Rewriter","href":"/ai-rewriter","description":"Rewrite text with AI","icon":"✍️"},{"name":"AI Email Writer","href":"/ai-email-writer","description":"Generate professional emails","icon":"📧"},{"name":"Word Counter","href":"/word-counter","description":"Count words and characters","icon":"📊"},{"name":"Text Compare","href":"/text-compare","description":"Compare texts side by side","icon":"🔄"}]} />
+      </div>
+    </div>
       </main>
       <Footer />
     </>

@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { motion, AnimatePresence, Reorder } from 'framer-motion';
 import { 
   FileUp, Merge, Scissors, Minimize2, Image, Images, 
@@ -822,6 +825,11 @@ function FileCard({ file, onRemove, draggable }: { file: PDFFile; onRemove: (id:
       <button onClick={() => onRemove(file.id)} className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-red-500/10 text-slate-400 hover:text-red-500 transition-all">
         <X className="w-4 h-4" />
       </button>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"What PDF operations are supported?","answer":"Merge multiple PDFs, split PDFs into pages, compress PDF file size, and more. All processing happens in your browser."},{"question":"Are my PDF files uploaded to a server?","answer":"No! All PDF processing happens 100% locally in your browser. Your files never leave your device."},{"question":"Is there a file size limit for PDFs?","answer":"Since processing happens locally, limits depend on your device. Most devices handle PDFs up to 100MB."},{"question":"Can I merge multiple PDFs at once?","answer":"Yes! Upload multiple PDF files and merge them into a single document. Drag to reorder pages before merging."}]} />
+      <RelatedTools tools={[{"name":"File Converter","href":"/file-converter","description":"Convert between image formats","icon":"🔄"},{"name":"Invoice Generator","href":"/invoice-generator","description":"Create professional invoices","icon":"🧾"},{"name":"Resume Builder","href":"/resume-builder","description":"Build professional resumes","icon":"📄"},{"name":"Image Tools","href":"/image-tools","description":"Edit and transform images","icon":"🖼️"}]} />
+      </div>
     </div>
   );
 }

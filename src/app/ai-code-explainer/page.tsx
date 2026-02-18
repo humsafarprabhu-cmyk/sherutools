@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { Code, ChevronRight, Copy, Check, Sparkles, Lightbulb, AlertTriangle, BookOpen, Loader2, Zap, Crown, ArrowRight, RefreshCw } from 'lucide-react';
 import { useState, useRef, useCallback, useEffect } from 'react';
@@ -467,6 +470,11 @@ export default function AICodeExplainerPage() {
             </motion.div>
           </motion.div>
         </div>
+      </div>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"What programming languages does the AI Code Explainer support?","answer":"Our AI Code Explainer supports 15+ languages including JavaScript, Python, TypeScript, Java, C++, Go, Rust, Ruby, PHP, and more."},{"question":"Is the AI Code Explainer free to use?","answer":"Yes! You can explain code snippets completely free with no sign-up required. There is a daily usage limit for free users."},{"question":"How does AI code explanation work?","answer":"The tool uses advanced AI to analyze your code, providing line-by-line breakdowns, identifying key concepts, design patterns, and potential issues."},{"question":"Can I use this to learn programming?","answer":"Absolutely! The AI Code Explainer is perfect for students and beginners learning to code. It breaks down complex code into simple, understandable explanations."}]} />
+      <RelatedTools tools={[{"name":"AI Rewriter","href":"/ai-rewriter","description":"Rewrite text in different tones and styles","icon":"✍️"},{"name":"JSON Formatter","href":"/json-formatter","description":"Format, validate, and beautify JSON data","icon":"📋"},{"name":"Regex Tester","href":"/regex-tester","description":"Test and debug regular expressions","icon":"🔍"},{"name":"Markdown Editor","href":"/markdown-editor","description":"Write and preview Markdown in real-time","icon":"📝"}]} />
       </div>
     </div>
   );

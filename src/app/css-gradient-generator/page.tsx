@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { Paintbrush, Copy, Check, Download, Maximize2, Minimize2, Plus, Trash2, Shuffle, ChevronRight, Lock, Sparkles, X } from 'lucide-react';
 import Link from 'next/link';
@@ -783,6 +786,11 @@ export default function CSSGradientGenerator() {
             </motion.div>
           </div>
         </div>
+      </div>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"What types of CSS gradients can I create?","answer":"Create linear, radial, and conic gradients with unlimited color stops, custom angles, and positions."},{"question":"Is the CSS Gradient Generator free?","answer":"Yes, completely free! Generate unlimited gradients with no sign-up required."},{"question":"Can I copy the generated CSS code?","answer":"Yes, copy the CSS gradient code with one click and paste it directly into your stylesheet."},{"question":"Does it support multiple color stops?","answer":"Yes, add as many color stops as you need and position them precisely along the gradient."}]} />
+      <RelatedTools tools={[{"name":"Color Palette Generator","href":"/color-palette-generator","description":"Create beautiful color schemes","icon":"🎨"},{"name":"Screenshot Beautifier","href":"/screenshot-beautifier","description":"Make screenshots look professional","icon":"🖼️"},{"name":"AI Landing Page","href":"/ai-landing-page","description":"Generate landing pages with AI","icon":"🚀"},{"name":"Favicon Generator","href":"/favicon-generator","description":"Generate favicons for your website","icon":"⭐"}]} />
       </div>
     </div>
   );

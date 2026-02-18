@@ -1,5 +1,7 @@
 'use client';
 
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -643,6 +645,10 @@ export default function FaviconGeneratorPage() {
           </motion.div>
         )}
       </AnimatePresence>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <RelatedTools tools={[{"name":"Color Palette Generator","href":"/color-palette-generator","description":"Create color schemes","icon":"🎨"},{"name":"CSS Gradient Generator","href":"/css-gradient-generator","description":"Create CSS gradients","icon":"🌈"},{"name":"Image Tools","href":"/image-tools","description":"Edit and transform images","icon":"🖼️"},{"name":"AI Landing Page","href":"/ai-landing-page","description":"Generate landing pages","icon":"🚀"}]} />
+      </div>
     </div>
   );
 }

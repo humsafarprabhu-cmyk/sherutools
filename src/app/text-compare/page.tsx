@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -452,6 +455,11 @@ export default function TextComparePage() {
             </div>
           </div>
         </motion.div>
+      </div>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"How does the Text Compare tool work?","answer":"Paste two texts side by side and instantly see differences highlighted. Additions, deletions, and changes are color-coded."},{"question":"Can I compare code files?","answer":"Yes! The tool works great for comparing code, documents, or any text content with diff highlighting."},{"question":"Is the Text Compare tool free?","answer":"Yes, completely free with no limits. Compare unlimited texts with no sign-up required."},{"question":"Is my text data stored anywhere?","answer":"No, all comparison happens locally in your browser. Your text is never sent to any server."}]} />
+      <RelatedTools tools={[{"name":"Word Counter","href":"/word-counter","description":"Count words and characters","icon":"📊"},{"name":"AI Rewriter","href":"/ai-rewriter","description":"Rewrite text with AI","icon":"✍️"},{"name":"Markdown Editor","href":"/markdown-editor","description":"Write and preview Markdown","icon":"📝"},{"name":"JSON Formatter","href":"/json-formatter","description":"Format and validate JSON","icon":"📋"}]} />
       </div>
     </div>
   );

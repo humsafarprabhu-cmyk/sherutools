@@ -1,5 +1,7 @@
 'use client';
 
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -554,6 +556,10 @@ export default function FlashcardGeneratorPage() {
             </button>
           </div>
         </div>
+      </div>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <RelatedTools tools={[{"name":"AI Code Explainer","href":"/ai-code-explainer","description":"Understand code with AI","icon":"💻"},{"name":"Word Counter","href":"/word-counter","description":"Count words and characters","icon":"📊"},{"name":"Markdown Editor","href":"/markdown-editor","description":"Write and preview Markdown","icon":"📝"},{"name":"Lorem Ipsum","href":"/lorem-ipsum","description":"Generate placeholder text","icon":"📄"}]} />
       </div>
     </div>
   );

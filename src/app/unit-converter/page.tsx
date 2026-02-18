@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowLeftRight, Ruler, Weight, Thermometer, Droplets, Grid3X3,
@@ -560,6 +563,11 @@ export default function UnitConverterPage() {
             </div>
           </div>
         </motion.div>
+      </div>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"What units can I convert?","answer":"Convert between hundreds of units across categories including length, weight, temperature, volume, speed, time, data storage, and more."},{"question":"Is the Unit Converter accurate?","answer":"Yes, all conversions use precise mathematical formulas. Results are accurate to multiple decimal places."},{"question":"Is this unit converter free?","answer":"Yes, completely free with no limits or sign-up required."},{"question":"Does it work offline?","answer":"Yes! Once loaded, the unit converter works entirely in your browser without needing an internet connection."}]} />
+      <RelatedTools tools={[{"name":"Password Generator","href":"/password-generator","description":"Generate secure passwords","icon":"🔐"},{"name":"QR Code Generator","href":"/qr-code-generator","description":"Generate QR codes","icon":"📱"},{"name":"Base64","href":"/base64","description":"Encode and decode Base64","icon":"🔤"},{"name":"Word Counter","href":"/word-counter","description":"Count words and characters","icon":"📊"}]} />
       </div>
     </div>
   );

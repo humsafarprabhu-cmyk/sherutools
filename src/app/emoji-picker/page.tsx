@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Copy, Heart, Clock, Star, Smile, ChevronRight, Home, X, Check } from 'lucide-react';
@@ -510,6 +513,11 @@ export default function EmojiPickerPage() {
           </motion.div>
         )}
       </AnimatePresence>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"How do I copy emojis?","answer":"Simply click on any emoji to copy it to your clipboard. You can then paste it anywhere."},{"question":"Can I search for specific emojis?","answer":"Yes! Use the search bar to find emojis by name or keyword. Browse by category or search for exactly what you need."},{"question":"Is this emoji picker free?","answer":"Yes, completely free with no limits. Browse and copy thousands of emojis with no sign-up required."},{"question":"Are these emojis compatible with all platforms?","answer":"Yes, these are standard Unicode emojis that work on all modern platforms including iOS, Android, Windows, macOS, and web browsers."}]} />
+      <RelatedTools tools={[{"name":"Lorem Ipsum","href":"/lorem-ipsum","description":"Generate placeholder text instantly","icon":"📄"},{"name":"Word Counter","href":"/word-counter","description":"Count words, characters, and reading time","icon":"📊"},{"name":"Markdown Editor","href":"/markdown-editor","description":"Write and preview Markdown","icon":"📝"},{"name":"Text Compare","href":"/text-compare","description":"Compare two texts side by side","icon":"🔄"}]} />
+      </div>
     </div>
   );
 }

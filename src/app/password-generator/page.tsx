@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -545,6 +548,11 @@ export default function PasswordGeneratorPage() {
             <Shield className="w-4 h-4 text-emerald-400" /> Generated locally. Never sent to any server.
           </div>
         </div>
+      </div>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"How secure are the generated passwords?","answer":"Passwords are generated using cryptographically secure random number generation in your browser. They never leave your device."},{"question":"Can I customize password requirements?","answer":"Yes! Set length, include/exclude uppercase, lowercase, numbers, and special characters."},{"question":"Is this password generator free?","answer":"Yes, completely free with no limits. Generate as many passwords as you need."},{"question":"Are my passwords stored anywhere?","answer":"No! Passwords are generated locally in your browser and never sent to any server."}]} />
+      <RelatedTools tools={[{"name":"QR Code Generator","href":"/qr-code-generator","description":"Generate QR codes for any data","icon":"📱"},{"name":"Base64","href":"/base64","description":"Encode and decode Base64 strings","icon":"🔤"},{"name":"JSON Formatter","href":"/json-formatter","description":"Format and validate JSON","icon":"📋"},{"name":"Regex Tester","href":"/regex-tester","description":"Test regular expressions","icon":"🔍"}]} />
       </div>
     </div>
   );

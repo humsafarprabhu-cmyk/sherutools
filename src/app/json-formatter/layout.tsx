@@ -9,19 +9,51 @@ export const metadata: Metadata = {
     title: 'Free JSON Formatter & Validator Online | SheruTools',
     description: 'Format, beautify, minify, and validate JSON online. Syntax highlighting, tree view, error detection. Free JSON formatter tool.',
     url: 'https://sherutools.com/json-formatter',
-  },
-  other: {
-    'application/ld+json': JSON.stringify({
+  }
+};
+
+const jsonLd = [
+  {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
       name: 'SheruTools JSON Formatter & Validator',
       applicationCategory: 'UtilityApplication',
       operatingSystem: 'Web',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-    }),
+    },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+    {
+      '@type': 'Question',
+      name: "What does the JSON Formatter do?",
+      acceptedAnswer: { '@type': 'Answer', text: "Format, validate, and beautify JSON data. Detect syntax errors, minify JSON, and view it in a tree structure." },
+    },
+    {
+      '@type': 'Question',
+      name: "Can I validate JSON online?",
+      acceptedAnswer: { '@type': 'Answer', text: "Yes! Paste your JSON and instantly see if it is valid. Errors are highlighted with line numbers and descriptions." },
+    },
+    {
+      '@type': 'Question',
+      name: "Is this JSON tool free?",
+      acceptedAnswer: { '@type': 'Answer', text: "Yes, completely free with no limits. Format, validate, and minify JSON with no sign-up required." },
+    },
+    {
+      '@type': 'Question',
+      name: "Can I minify JSON?",
+      acceptedAnswer: { '@type': 'Answer', text: "Yes, switch between beautified and minified views with one click. Copy the result to your clipboard." },
+    }
+    ],
   },
-};
+];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {children}
+    </>
+  );
 }

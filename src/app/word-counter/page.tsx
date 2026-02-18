@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { BarChart3, Upload, Copy, Trash2, ChevronRight, BookOpen, Clock, Mic, FileText, Type, AlignLeft, Layers, BookOpenCheck } from 'lucide-react';
@@ -411,6 +414,11 @@ Top Keywords: ${s.topKeywords.map(k => `${k.word} (${k.count})`).join(', ')}`;
       </main>
 
       <Footer />
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"What does the Word Counter tool measure?","answer":"Count words, characters, sentences, paragraphs, and estimate reading time. Also provides readability scores and keyword density analysis."},{"question":"Is the Word Counter free?","answer":"Yes, completely free with no limits. Count words in any text with no sign-up required."},{"question":"Can I check reading time?","answer":"Yes! The tool estimates reading time based on average reading speed (225 words per minute) for your text."},{"question":"Does it work with any language?","answer":"Yes, the word counter works with text in any language that uses space-separated words."}]} />
+      <RelatedTools tools={[{"name":"Text Compare","href":"/text-compare","description":"Compare two texts side by side","icon":"🔄"},{"name":"Lorem Ipsum","href":"/lorem-ipsum","description":"Generate placeholder text","icon":"📄"},{"name":"Markdown Editor","href":"/markdown-editor","description":"Write and preview Markdown","icon":"📝"},{"name":"AI Rewriter","href":"/ai-rewriter","description":"Rewrite text with AI","icon":"✍️"}]} />
+      </div>
     </div>
   );
 }

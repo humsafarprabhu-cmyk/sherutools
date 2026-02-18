@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { Type, Copy, Check, Download, ChevronRight, Shield, Sparkles, Coffee, Briefcase, Cpu, List, AlignLeft, Hash, LetterText, Lock, Clock } from 'lucide-react';
 import Link from 'next/link';
@@ -647,6 +650,11 @@ export default function LoremIpsumPage() {
           <Shield className="w-3.5 h-3.5" />
           100% client-side. No data leaves your browser.
         </motion.div>
+      </div>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"What is Lorem Ipsum?","answer":"Lorem Ipsum is placeholder text used in design and development to fill layouts before final content is ready."},{"question":"Can I generate different amounts of text?","answer":"Yes! Generate paragraphs, sentences, or words in any quantity you need."},{"question":"Is this Lorem Ipsum generator free?","answer":"Yes, completely free with no limits or sign-up required."},{"question":"Can I copy the generated text?","answer":"Yes, copy generated Lorem Ipsum text to your clipboard with one click."}]} />
+      <RelatedTools tools={[{"name":"Word Counter","href":"/word-counter","description":"Count words, characters, and reading time","icon":"📊"},{"name":"Markdown Editor","href":"/markdown-editor","description":"Write and preview Markdown","icon":"📝"},{"name":"AI Email Writer","href":"/ai-email-writer","description":"Generate professional emails with AI","icon":"📧"},{"name":"Text Compare","href":"/text-compare","description":"Compare two texts side by side","icon":"🔄"}]} />
       </div>
     </div>
   );

@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useCallback, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -476,6 +479,11 @@ export default function JsonFormatterPage() {
             </a>
           </div>
         </motion.div>
+      </div>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"What does the JSON Formatter do?","answer":"Format, validate, and beautify JSON data. Detect syntax errors, minify JSON, and view it in a tree structure."},{"question":"Can I validate JSON online?","answer":"Yes! Paste your JSON and instantly see if it is valid. Errors are highlighted with line numbers and descriptions."},{"question":"Is this JSON tool free?","answer":"Yes, completely free with no limits. Format, validate, and minify JSON with no sign-up required."},{"question":"Can I minify JSON?","answer":"Yes, switch between beautified and minified views with one click. Copy the result to your clipboard."}]} />
+      <RelatedTools tools={[{"name":"Regex Tester","href":"/regex-tester","description":"Test and debug regular expressions","icon":"🔍"},{"name":"Base64","href":"/base64","description":"Encode and decode Base64 strings","icon":"🔤"},{"name":"Markdown Editor","href":"/markdown-editor","description":"Write and preview Markdown","icon":"📝"},{"name":"AI Code Explainer","href":"/ai-code-explainer","description":"Understand code with AI","icon":"💻"}]} />
       </div>
     </div>
   );

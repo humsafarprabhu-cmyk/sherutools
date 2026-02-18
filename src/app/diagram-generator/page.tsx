@@ -1,5 +1,7 @@
 'use client';
 
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -466,6 +468,10 @@ export default function DiagramGeneratorPage() {
           acceptedAnswer: { '@type': 'Answer', text: f.a },
         })),
       }) }} />
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <RelatedTools tools={[{"name":"AI Code Explainer","href":"/ai-code-explainer","description":"Understand code with AI","icon":"💻"},{"name":"Markdown Editor","href":"/markdown-editor","description":"Write and preview Markdown","icon":"📝"},{"name":"Screenshot Beautifier","href":"/screenshot-beautifier","description":"Beautify screenshots","icon":"✨"},{"name":"AI Landing Page","href":"/ai-landing-page","description":"Generate landing pages","icon":"🚀"}]} />
+      </div>
     </div>
   );
 }

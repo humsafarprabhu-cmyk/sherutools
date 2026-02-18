@@ -11,9 +11,11 @@ export const metadata: Metadata = {
     description:
       'Rewrite and paraphrase any text with AI. Simplify, formalize, expand, summarize, or make creative. Free online AI rewriter tool.',
     url: 'https://sherutools.com/ai-rewriter',
-  },
-  other: {
-    'application/ld+json': JSON.stringify({
+  }
+};
+
+const jsonLd = [
+  {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
       name: 'SheruTools AI Content Rewriter',
@@ -21,10 +23,40 @@ export const metadata: Metadata = {
       operatingSystem: 'Web',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       description: 'Rewrite and paraphrase any text with AI. Simplify, formalize, expand, summarize, or make creative.',
-    }),
+    },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+    {
+      '@type': 'Question',
+      name: "What does the AI Rewriter do?",
+      acceptedAnswer: { '@type': 'Answer', text: "The AI Rewriter takes your existing text and rewrites it in a different tone or style while preserving the original meaning. Perfect for improving clarity, changing formality, or avoiding plagiarism." },
+    },
+    {
+      '@type': 'Question',
+      name: "Is the AI Rewriter free to use?",
+      acceptedAnswer: { '@type': 'Answer', text: "Yes! Rewrite text completely free with no sign-up required. Free users have a daily usage limit." },
+    },
+    {
+      '@type': 'Question',
+      name: "What tones can I rewrite text in?",
+      acceptedAnswer: { '@type': 'Answer', text: "Choose from professional, casual, academic, creative, simplified, persuasive, and more tone options." },
+    },
+    {
+      '@type': 'Question',
+      name: "Does rewriting text count as plagiarism?",
+      acceptedAnswer: { '@type': 'Answer', text: "AI-rewritten text is original content. However, always ensure the ideas are properly attributed if they originate from other sources." },
+    }
+    ],
   },
-};
+];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {children}
+    </>
+  );
 }

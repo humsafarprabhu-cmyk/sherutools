@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -394,6 +397,11 @@ export default function AIRewriterPage() {
             <Sparkles className="w-3 h-3" /> Powered by AI • Your text is not stored
           </span>
         </motion.div>
+      </div>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"What does the AI Rewriter do?","answer":"The AI Rewriter takes your existing text and rewrites it in a different tone or style while preserving the original meaning."},{"question":"Is the AI Rewriter free to use?","answer":"Yes! Rewrite text completely free with no sign-up required. Free users have a daily usage limit."},{"question":"What tones can I rewrite text in?","answer":"Choose from professional, casual, academic, creative, simplified, persuasive, and more tone options."},{"question":"Does rewriting text count as plagiarism?","answer":"AI-rewritten text is original content. However, always ensure the ideas are properly attributed if they originate from other sources."}]} />
+      <RelatedTools tools={[{"name":"AI Email Writer","href":"/ai-email-writer","description":"Generate professional emails with AI","icon":"📧"},{"name":"AI Code Explainer","href":"/ai-code-explainer","description":"Understand any code with AI explanations","icon":"💻"},{"name":"Word Counter","href":"/word-counter","description":"Count words, characters, and reading time","icon":"📊"},{"name":"Text Compare","href":"/text-compare","description":"Compare two texts side by side","icon":"🔄"}]} />
       </div>
     </div>
   );

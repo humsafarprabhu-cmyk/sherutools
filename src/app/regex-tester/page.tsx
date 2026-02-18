@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useEffect, useCallback, useRef, useMemo, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -675,6 +678,11 @@ function RegexTesterInner() {
             </motion.div>
           </div>
         </div>
+      </div>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"What regex flavors are supported?","answer":"The tool supports JavaScript regex syntax with all standard flags (g, i, m, s, u, y)."},{"question":"Can I test regex patterns in real-time?","answer":"Yes! Matches are highlighted in real-time as you type your pattern."},{"question":"Is this regex tester free?","answer":"Yes, completely free with no limits. Test unlimited patterns with no sign-up required."},{"question":"Does it explain regex patterns?","answer":"Yes, the tool provides a breakdown of your regex pattern explaining each part in plain language."}]} />
+      <RelatedTools tools={[{"name":"JSON Formatter","href":"/json-formatter","description":"Format and validate JSON","icon":"📋"},{"name":"Base64","href":"/base64","description":"Encode and decode Base64","icon":"🔤"},{"name":"AI Code Explainer","href":"/ai-code-explainer","description":"Understand code with AI","icon":"💻"},{"name":"Text Compare","href":"/text-compare","description":"Compare texts side by side","icon":"🔄"}]} />
       </div>
     </div>
   );

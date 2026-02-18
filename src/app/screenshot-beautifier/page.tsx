@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Download, Copy, Camera, ChevronRight, Sun, Moon, Hash, Type, Lock } from 'lucide-react';
@@ -423,6 +426,11 @@ export default function ScreenshotBeautifierPage() {
       `}</style>
 
       <Footer />
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"What does the Screenshot Beautifier do?","answer":"Transform plain screenshots into beautiful, social-media-ready images with backgrounds, shadows, borders, and device mockups."},{"question":"Can I add device mockups?","answer":"Yes! Wrap your screenshot in browser windows, phone frames, or other device mockups for professional presentations."},{"question":"Is this tool free?","answer":"Yes, completely free with all features. No watermarks or sign-up required."},{"question":"What export formats are supported?","answer":"Export your beautified screenshots as PNG or JPG in custom resolutions."}]} />
+      <RelatedTools tools={[{"name":"Image Tools","href":"/image-tools","description":"Edit and transform images","icon":"🖼️"},{"name":"Color Palette Generator","href":"/color-palette-generator","description":"Create beautiful color schemes","icon":"🎨"},{"name":"CSS Gradient Generator","href":"/css-gradient-generator","description":"Create stunning gradients","icon":"🌈"},{"name":"File Converter","href":"/file-converter","description":"Convert between formats","icon":"🔄"}]} />
+      </div>
     </div>
   );
 }

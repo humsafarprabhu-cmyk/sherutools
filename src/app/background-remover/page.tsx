@@ -1,5 +1,7 @@
 'use client';
 
+import RelatedTools from '@/components/RelatedTools';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Upload, Download, Trash2, ImageIcon, Sparkles, ChevronRight, Home,
@@ -745,6 +747,10 @@ export default function BackgroundRemoverPage() {
             ))}
           </div>
         </div>
+      </div>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <RelatedTools tools={[{"name":"Image Tools","href":"/image-tools","description":"Edit and transform images","icon":"🖼️"},{"name":"File Converter","href":"/file-converter","description":"Convert between formats","icon":"🔄"},{"name":"Screenshot Beautifier","href":"/screenshot-beautifier","description":"Beautify screenshots","icon":"✨"},{"name":"OCR","href":"/ocr","description":"Extract text from images","icon":"🔍"}]} />
       </div>
     </div>
   );

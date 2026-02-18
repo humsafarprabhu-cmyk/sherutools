@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useEffect, useCallback, useRef, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -306,6 +309,9 @@ function ColorPaletteGenerator() {
         </div>
       </div>
 
+      {/* H1 - visually hidden for clean UI but present for SEO */}
+      <h1 className="sr-only">Color Palette Generator — Create Beautiful Color Schemes</h1>
+
       {/* Palette Bars */}
       <div className="flex-1 flex flex-col md:flex-row">
         {colors.map((color, i) => {
@@ -576,6 +582,11 @@ function ColorPaletteGenerator() {
           </motion.div>
         )}
       </AnimatePresence>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"How does the Color Palette Generator work?","answer":"Generate harmonious color palettes using color theory algorithms. Choose from complementary, analogous, triadic, and other harmony rules."},{"question":"Can I export color palettes?","answer":"Yes! Export palettes in multiple formats including HEX, RGB, HSL, CSS variables, Tailwind config, and more."},{"question":"Is this tool free to use?","answer":"Yes, the Color Palette Generator is completely free with no sign-up required. Create and save unlimited palettes."},{"question":"Can I save my color palettes?","answer":"Yes, palettes are saved locally in your browser. You can also export them for use in your design tools."}]} />
+      <RelatedTools tools={[{"name":"CSS Gradient Generator","href":"/css-gradient-generator","description":"Create stunning CSS gradients","icon":"🌈"},{"name":"Screenshot Beautifier","href":"/screenshot-beautifier","description":"Make screenshots look professional","icon":"🖼️"},{"name":"AI Landing Page","href":"/ai-landing-page","description":"Generate landing pages with AI","icon":"🚀"},{"name":"Image Tools","href":"/image-tools","description":"Edit and transform images online","icon":"🖼️"}]} />
+      </div>
     </div>
   );
 }

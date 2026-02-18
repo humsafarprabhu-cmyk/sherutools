@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -493,6 +496,11 @@ function TextareaField({ label, placeholder, value, onChange }: {
         rows={3}
         className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all resize-none"
       />
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"What types of QR codes can I generate?","answer":"Generate QR codes for URLs, text, WiFi credentials, vCards, email, phone numbers, and more."},{"question":"Can I customize QR code colors and style?","answer":"Yes! Change foreground/background colors, add logos, adjust error correction level, and customize the style."},{"question":"Can I download QR codes as images?","answer":"Yes, download QR codes as PNG or SVG files in high resolution, ready for print or digital use."},{"question":"Is this QR code generator free?","answer":"Yes, completely free with all features. No sign-up or watermarks."}]} />
+      <RelatedTools tools={[{"name":"Password Generator","href":"/password-generator","description":"Generate secure passwords","icon":"🔐"},{"name":"Base64","href":"/base64","description":"Encode and decode Base64","icon":"🔤"},{"name":"Emoji Picker","href":"/emoji-picker","description":"Browse and copy emojis","icon":"😀"},{"name":"Unit Converter","href":"/unit-converter","description":"Convert between units","icon":"📐"}]} />
+      </div>
     </div>
   );
 }

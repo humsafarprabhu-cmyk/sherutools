@@ -9,19 +9,51 @@ export const metadata: Metadata = {
     title: 'Free Lorem Ipsum Generator - Placeholder Text | SheruTools',
     description: 'Generate lorem ipsum placeholder text instantly. Multiple variants: classic, hipster, office, tech. Paragraphs, sentences, words, or lists.',
     url: 'https://sherutools.com/lorem-ipsum',
-  },
-  other: {
-    'application/ld+json': JSON.stringify({
+  }
+};
+
+const jsonLd = [
+  {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
       name: 'SheruTools Lorem Ipsum Generator',
       applicationCategory: 'UtilityApplication',
       operatingSystem: 'Web',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-    }),
+    },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+    {
+      '@type': 'Question',
+      name: "What is Lorem Ipsum?",
+      acceptedAnswer: { '@type': 'Answer', text: "Lorem Ipsum is placeholder text used in design and development to fill layouts before final content is ready. It helps visualize how text will look without distracting with real content." },
+    },
+    {
+      '@type': 'Question',
+      name: "Can I generate different amounts of text?",
+      acceptedAnswer: { '@type': 'Answer', text: "Yes! Generate paragraphs, sentences, or words in any quantity you need." },
+    },
+    {
+      '@type': 'Question',
+      name: "Is this Lorem Ipsum generator free?",
+      acceptedAnswer: { '@type': 'Answer', text: "Yes, completely free with no limits or sign-up required." },
+    },
+    {
+      '@type': 'Question',
+      name: "Can I copy the generated text?",
+      acceptedAnswer: { '@type': 'Answer', text: "Yes, copy generated Lorem Ipsum text to your clipboard with one click." },
+    }
+    ],
   },
-};
+];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {children}
+    </>
+  );
 }

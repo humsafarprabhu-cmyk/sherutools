@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Download, Save, FileText, ChevronRight, Crown } from 'lucide-react';
@@ -126,6 +129,11 @@ export default function InvoiceGeneratorPage() {
           }),
         }}
       />
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"Is this invoice generator free?","answer":"Yes! Create and download professional PDF invoices completely free. No sign-up required."},{"question":"Can I customize invoice templates?","answer":"Yes, choose from 3 beautiful templates with live preview. Add your logo, company details, and line items."},{"question":"Can I download invoices as PDF?","answer":"Yes, download your invoices as professional PDF files ready to send to clients."},{"question":"Is my invoice data stored on a server?","answer":"No, all data stays in your browser. Nothing is uploaded to any server."}]} />
+      <RelatedTools tools={[{"name":"Resume Builder","href":"/resume-builder","description":"Create professional resumes","icon":"📄"},{"name":"PDF Tools","href":"/pdf-tools","description":"Merge, split, and compress PDFs","icon":"📑"},{"name":"Word Counter","href":"/word-counter","description":"Count words and characters","icon":"📊"},{"name":"Markdown Editor","href":"/markdown-editor","description":"Write and preview Markdown","icon":"📝"}]} />
+      </div>
     </div>
   );
 }

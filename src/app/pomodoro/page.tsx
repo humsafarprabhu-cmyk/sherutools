@@ -1,5 +1,7 @@
 'use client';
 
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -763,6 +765,10 @@ export default function PomodoroTimer() {
             </div>
           </motion.div>
         )}
+      </div>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <RelatedTools tools={[{"name":"Word Counter","href":"/word-counter","description":"Count words and characters","icon":"📊"},{"name":"Markdown Editor","href":"/markdown-editor","description":"Write and preview Markdown","icon":"📝"},{"name":"AI Email Writer","href":"/ai-email-writer","description":"Generate professional emails","icon":"📧"},{"name":"Cron Generator","href":"/cron-generator","description":"Generate cron expressions","icon":"⏰"}]} />
       </div>
     </div>
   );

@@ -17,9 +17,11 @@ export const metadata: Metadata = {
     description:
       'Generate beautiful landing pages from a single description. AI creates responsive, modern pages with hero, features, pricing, and more. Free, instant, no coding.',
     url: 'https://sherutools.com/ai-landing-page',
-  },
-  other: {
-    'application/ld+json': JSON.stringify({
+  }
+};
+
+const jsonLd = [
+  {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
       name: 'SheruTools AI Landing Page Generator',
@@ -28,10 +30,40 @@ export const metadata: Metadata = {
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       description:
         'Generate beautiful landing pages from a single description. AI creates responsive, modern pages with hero, features, pricing, and more.',
-    }),
+    },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+    {
+      '@type': 'Question',
+      name: "How does the AI Landing Page Generator work?",
+      acceptedAnswer: { '@type': 'Answer', text: "Simply describe your product or service in one sentence. Our AI generates a complete, responsive landing page with hero section, features, pricing, testimonials, and more." },
+    },
+    {
+      '@type': 'Question',
+      name: "Is the generated landing page responsive?",
+      acceptedAnswer: { '@type': 'Answer', text: "Yes! All generated landing pages are fully responsive and look great on desktop, tablet, and mobile devices." },
+    },
+    {
+      '@type': 'Question',
+      name: "Can I download the generated HTML?",
+      acceptedAnswer: { '@type': 'Answer', text: "Yes, you can download the complete HTML file and host it anywhere, or copy the code directly to your clipboard." },
+    },
+    {
+      '@type': 'Question',
+      name: "How many landing pages can I generate for free?",
+      acceptedAnswer: { '@type': 'Answer', text: "Free users can generate up to 3 landing pages per day. Upgrade to Pro for unlimited generations." },
+    }
+    ],
   },
-};
+];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {children}
+    </>
+  );
 }

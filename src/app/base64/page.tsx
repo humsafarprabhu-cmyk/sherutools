@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -389,6 +392,11 @@ export default function Base64Page() {
             </a>
           </div>
         </motion.div>
+      </div>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"What is Base64 encoding?","answer":"Base64 is a binary-to-text encoding scheme that converts binary data into ASCII characters. It is commonly used to embed images in HTML/CSS, transmit data in URLs, and encode email attachments."},{"question":"Is this Base64 tool free?","answer":"Yes, completely free with no limits. All encoding and decoding happens in your browser — no data is sent to any server."},{"question":"Can I encode images to Base64?","answer":"Yes! You can encode any text or file data to Base64 and decode Base64 strings back to their original form."},{"question":"Is Base64 encoding secure?","answer":"Base64 is an encoding scheme, not encryption. It should not be used for security purposes. Anyone can decode Base64 strings."}]} />
+      <RelatedTools tools={[{"name":"JSON Formatter","href":"/json-formatter","description":"Format, validate, and beautify JSON","icon":"📋"},{"name":"Password Generator","href":"/password-generator","description":"Generate secure passwords","icon":"🔐"},{"name":"QR Code Generator","href":"/qr-code-generator","description":"Generate QR codes for any data","icon":"📱"},{"name":"Regex Tester","href":"/regex-tester","description":"Test and debug regular expressions","icon":"🔍"}]} />
       </div>
     </div>
   );

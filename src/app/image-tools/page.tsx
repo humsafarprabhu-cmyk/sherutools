@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ImageIcon, Upload, Download, Lock, Unlock, Check, Loader2, Trash2, Shield,
@@ -507,6 +510,11 @@ export default function ImageToolsPage() {
             Get Pro — $3.99
           </a>
         </motion.div>
+      </div>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"What image editing tools are available?","answer":"Resize, crop, rotate, compress, add watermarks, adjust brightness/contrast, apply filters, and more — all in your browser."},{"question":"Are my images uploaded to a server?","answer":"No! All image processing happens locally in your browser. Your images never leave your device."},{"question":"What image formats are supported?","answer":"Support for PNG, JPG, WebP, GIF, BMP, and more. Convert between formats while editing."},{"question":"Is there a limit on image size?","answer":"Processing happens in your browser, so limits depend on your device. Most devices handle images up to 50MB without issues."}]} />
+      <RelatedTools tools={[{"name":"File Converter","href":"/file-converter","description":"Convert between image formats","icon":"🔄"},{"name":"Screenshot Beautifier","href":"/screenshot-beautifier","description":"Make screenshots look professional","icon":"✨"},{"name":"OCR","href":"/ocr","description":"Extract text from images with AI","icon":"🔍"},{"name":"Color Palette Generator","href":"/color-palette-generator","description":"Create beautiful color schemes","icon":"🎨"}]} />
       </div>
     </div>
   );

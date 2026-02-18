@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useCallback, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -669,6 +672,11 @@ export default function CronGeneratorPage() {
             </div>
           </motion.div>
         </div>
+      </div>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"What is a cron expression?","answer":"A cron expression is a string of 5-6 fields representing a schedule. It is used in Unix-like systems and task schedulers to run commands at specific times."},{"question":"Can I test my cron expression?","answer":"Yes! See the next 5 scheduled run times for any cron expression. The tool validates your expression in real-time."},{"question":"Is this cron generator free?","answer":"Yes, completely free with no sign-up required. Generate and test unlimited cron expressions."},{"question":"What cron format is supported?","answer":"Standard 5-field cron format (minute, hour, day of month, month, day of week) used by most Unix systems and schedulers."}]} />
+      <RelatedTools tools={[{"name":"JSON Formatter","href":"/json-formatter","description":"Format and validate JSON","icon":"📋"},{"name":"Regex Tester","href":"/regex-tester","description":"Test regular expressions","icon":"🔍"},{"name":"Base64","href":"/base64","description":"Encode and decode Base64","icon":"🔤"},{"name":"AI Code Explainer","href":"/ai-code-explainer","description":"Understand code with AI","icon":"💻"}]} />
       </div>
     </div>
   );

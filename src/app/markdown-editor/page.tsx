@@ -1,5 +1,8 @@
 'use client';
 
+import FAQSection from '@/components/FAQSection';
+import RelatedTools from '@/components/RelatedTools';
+
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -522,6 +525,11 @@ export default function MarkdownEditorPage() {
             </div>
           </div>
         </motion.div>
+      </div>
+    
+      <div className="max-w-6xl mx-auto px-4">
+      <FAQSection faqs={[{"question":"What is Markdown?","answer":"Markdown is a lightweight markup language that converts plain text to formatted HTML. It is widely used for documentation, README files, and blogs."},{"question":"Does this editor support live preview?","answer":"Yes! See your Markdown rendered in real-time as you type. Switch between edit and preview modes."},{"question":"Can I export my Markdown?","answer":"Yes, export as Markdown (.md) or copy the rendered HTML. Your content is saved locally in your browser."},{"question":"Is this Markdown editor free?","answer":"Yes, completely free with all features available. No sign-up required."}]} />
+      <RelatedTools tools={[{"name":"JSON Formatter","href":"/json-formatter","description":"Format and validate JSON","icon":"📋"},{"name":"Word Counter","href":"/word-counter","description":"Count words and characters","icon":"📊"},{"name":"Text Compare","href":"/text-compare","description":"Compare two texts side by side","icon":"🔄"},{"name":"Lorem Ipsum","href":"/lorem-ipsum","description":"Generate placeholder text","icon":"📄"}]} />
       </div>
     </div>
   );

@@ -50,6 +50,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/hash-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/jwt-decoder`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/ai-translator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/subscription-tracker`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${base}/resume-scorer`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
+    { url: `${base}/salary-calculator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     ...CONVERSION_PAIRS.map(pair => ({
       url: `${base}/convert/${pair}`,
       lastModified: new Date(),

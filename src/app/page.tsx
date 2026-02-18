@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile, BarChart3, Camera, RefreshCw, Eraser, Search, User, Clock, ZoomIn, BookOpen, GitBranch, Globe, Smartphone, Languages, Hash, Key } from 'lucide-react';
+import { FileText, Wrench, Zap, Users, ArrowDown, FileUp, QrCode, Palette, FileCheck, MessageSquare, Code, ImageIcon, GitCompareArrows, Shield, Braces, Paintbrush, Type, Mail, Sparkles, Code2, Bot, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile, BarChart3, Camera, RefreshCw, Eraser, Search, User, Clock, ZoomIn, BookOpen, GitBranch, Globe, Smartphone, Languages, Hash, Key, DollarSign, Award, Calculator } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ToolCard from '@/components/ToolCard';
 import EmailCapture from '@/components/EmailCapture';
@@ -108,6 +108,14 @@ const aiTools = [
     href: '/ai-translator',
     icon: Languages,
     color: 'blue',
+    badge: 'NEW',
+  },
+  {
+    name: 'AI Resume Scorer',
+    description: 'Get instant AI feedback on your resume. Score, ATS check, keyword analysis, and actionable improvement tips.',
+    href: '/resume-scorer',
+    icon: Award,
+    color: 'emerald',
     badge: 'NEW',
   },
 ];
@@ -296,13 +304,29 @@ const utilityTools = [
     icon: BarChart3,
     color: 'blue',
   },
+  {
+    name: 'Subscription Tracker',
+    description: 'Track all your subscriptions. See total monthly spend, category breakdown, billing reminders. Stop wasting money.',
+    href: '/subscription-tracker',
+    icon: DollarSign,
+    color: 'red',
+    badge: 'NEW',
+  },
+  {
+    name: 'Salary Calculator',
+    description: 'Convert salary between hourly, weekly, monthly, yearly. Calculate take-home pay after taxes.',
+    href: '/salary-calculator',
+    icon: Calculator,
+    color: 'green',
+    badge: 'NEW',
+  },
 ];
 
 const comingSoonTools: { name: string; icon: any; bgClass: string; iconClass: string }[] = [];
 
 const stats = [
-  { label: 'Free Tools', value: 37, suffix: '+', icon: Wrench },
-  { label: 'AI-Powered', value: 14, suffix: '', icon: Bot },
+  { label: 'Free Tools', value: 40, suffix: '+', icon: Wrench },
+  { label: 'AI-Powered', value: 15, suffix: '', icon: Bot },
   { label: 'Happy Users', value: 1000, suffix: '+', icon: Users },
   { label: 'Always Free', value: 100, suffix: '%', icon: Zap },
 ];

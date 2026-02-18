@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Code, Menu, X, Braces, Type, Mail, Sparkles, ChevronDown, Wrench, Code2, Paintbrush, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile, BarChart3, Camera, RefreshCw, Eraser, Search, User, Clock, ZoomIn, BookOpen, GitBranch, Globe, Smartphone } from 'lucide-react';
+import { FileText, QrCode, FileCheck, FileUp, Palette, ImageIcon, GitCompareArrows, Shield, Code, Menu, X, Braces, Type, Mail, Sparkles, ChevronDown, Wrench, Code2, Paintbrush, ArrowLeftRight, Binary, Terminal, Layout, Timer, Smile, BarChart3, Camera, RefreshCw, Eraser, Search, User, Clock, ZoomIn, BookOpen, GitBranch, Globe, Smartphone, Languages, Hash, Key } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import ThemeToggle from './ThemeToggle';
 
@@ -19,6 +19,8 @@ const aiTools = [
   { name: 'Image Upscaler', href: '/image-upscaler', icon: ZoomIn },
   { name: 'Flashcard Generator', href: '/flashcard-generator', icon: BookOpen },
   { name: 'Diagram Generator', href: '/diagram-generator', icon: GitBranch },
+  { name: 'AI Summarizer', href: '/ai-summarizer', icon: FileText },
+  { name: 'AI Translator', href: '/ai-translator', icon: Languages },
 ];
 
 const utilityTools = [
@@ -44,6 +46,8 @@ const utilityTools = [
   { name: 'File Converter', href: '/file-converter', icon: RefreshCw },
   { name: 'Cron Generator', href: '/cron-generator', icon: Clock },
   { name: 'Favicon Generator', href: '/favicon-generator', icon: Globe },
+  { name: 'Hash Generator', href: '/hash-generator', icon: Hash },
+  { name: 'JWT Decoder', href: '/jwt-decoder', icon: Key },
 ];
 
 const allTools = [...aiTools, ...utilityTools];

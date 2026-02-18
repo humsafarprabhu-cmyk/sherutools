@@ -1,8 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Download, Smartphone, Rocket, Lock, Loader2, CheckCircle, XCircle, Globe, Save, Zap } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { Download, Smartphone, Rocket, Lock, Loader2, CheckCircle, XCircle, Globe, Save, Zap, Image } from 'lucide-react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { ScreenData } from './ScreenCard';
 
 interface Props {
@@ -66,6 +66,9 @@ export default function StepBuild({ screens, appName, primaryColor }: Props) {
         </motion.button>
       </div>
 
+      {/* App Icon */}
+      <AppIconGenerator appName={appName} primaryColor={primaryColor} />
+
       {/* Download as Web App (PWA) - INSTANT */}
       <DownloadWebApp screens={screens} appName={appName} primaryColor={primaryColor} />
 
@@ -93,6 +96,164 @@ export default function StepBuild({ screens, appName, primaryColor }: Props) {
         </button>
       </div>
     </motion.div>
+  );
+}
+
+function AppIconGenerator({ appName, primaryColor }: { appName: string; primaryColor: string }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [iconUrl, setIconUrl] = useState('');
+  const [iconStyle, setIconStyle] = useState(0);
+
+  const styles = [
+    { name: 'Gradient', bg: 'gradient' },
+    { name: 'Solid', bg: 'solid' },
+    { name: 'Glass', bg: 'glass' },
+    { name: 'Dark', bg: 'dark' },
+  ];
+
+  const generateIcon = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d')!;
+    const size = 512;
+    canvas.width = size;
+    canvas.height = size;
+
+    // Background
+    const r = parseInt(primaryColor.slice(1, 3), 16);
+    const g = parseInt(primaryColor.slice(3, 5), 16);
+    const b = parseInt(primaryColor.slice(5, 7), 16);
+
+    const style = styles[iconStyle];
+    const radius = 112; // iOS-style rounded square
+
+    // Rounded rect path
+    ctx.beginPath();
+    ctx.moveTo(radius, 0);
+    ctx.lineTo(size - radius, 0);
+    ctx.quadraticCurveTo(size, 0, size, radius);
+    ctx.lineTo(size, size - radius);
+    ctx.quadraticCurveTo(size, size, size - radius, size);
+    ctx.lineTo(radius, size);
+    ctx.quadraticCurveTo(0, size, 0, size - radius);
+    ctx.lineTo(0, radius);
+    ctx.quadraticCurveTo(0, 0, radius, 0);
+    ctx.closePath();
+    ctx.clip();
+
+    if (style.bg === 'gradient') {
+      const grad = ctx.createLinearGradient(0, 0, size, size);
+      grad.addColorStop(0, primaryColor);
+      grad.addColorStop(0.5, `rgba(${Math.min(r + 40, 255)}, ${Math.min(g + 20, 255)}, ${b}, 1)`);
+      grad.addColorStop(1, `rgba(${r}, ${g}, ${Math.min(b + 60, 255)}, 1)`);
+      ctx.fillStyle = grad;
+    } else if (style.bg === 'solid') {
+      ctx.fillStyle = primaryColor;
+    } else if (style.bg === 'glass') {
+      const grad = ctx.createLinearGradient(0, 0, size, size);
+      grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.9)`);
+      grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0.6)`);
+      ctx.fillStyle = grad;
+    } else {
+      ctx.fillStyle = '#1e293b';
+    }
+    ctx.fillRect(0, 0, size, size);
+
+    // Subtle pattern for glass
+    if (style.bg === 'glass') {
+      ctx.fillStyle = 'rgba(255,255,255,0.08)';
+      ctx.fillRect(0, 0, size, size / 2);
+    }
+
+    // Dark style accent
+    if (style.bg === 'dark') {
+      ctx.fillStyle = primaryColor;
+      ctx.beginPath();
+      ctx.arc(size * 0.7, size * 0.3, size * 0.4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalAlpha = 0.15;
+      ctx.fillRect(0, 0, size, size);
+      ctx.globalAlpha = 1;
+    }
+
+    // Letter
+    const letter = (appName || 'A').charAt(0).toUpperCase();
+    ctx.fillStyle = style.bg === 'dark' ? '#f1f5f9' : '#ffffff';
+    ctx.font = 'bold 220px system-ui, -apple-system, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.shadowColor = 'rgba(0,0,0,0.3)';
+    ctx.shadowBlur = 20;
+    ctx.fillText(letter, size / 2, size / 2 - 10);
+    ctx.shadowBlur = 0;
+
+    // Small app name below letter
+    ctx.font = 'bold 48px system-ui, -apple-system, sans-serif';
+    ctx.fillStyle = style.bg === 'dark' ? 'rgba(241,245,249,0.6)' : 'rgba(255,255,255,0.7)';
+    const shortName = appName.length > 12 ? appName.substring(0, 12) : appName;
+    ctx.fillText(shortName, size / 2, size / 2 + 130);
+
+    setIconUrl(canvas.toDataURL('image/png'));
+  }, [appName, primaryColor, iconStyle]);
+
+  useEffect(() => { generateIcon(); }, [generateIcon]);
+
+  const downloadIcon = () => {
+    if (!iconUrl) return;
+    const a = document.createElement('a');
+    a.href = iconUrl;
+    a.download = `${appName.toLowerCase().replace(/[^a-z0-9]/g, '-')}-icon.png`;
+    a.click();
+  };
+
+  return (
+    <div className="p-6 rounded-2xl border border-purple-500/20 bg-purple-500/5 space-y-4">
+      <div className="flex items-center gap-3">
+        <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center">
+          <Image className="w-6 h-6 text-purple-500" />
+        </div>
+        <div>
+          <h3 className="font-bold text-slate-900 dark:text-white">App Icon</h3>
+          <p className="text-sm text-slate-500 dark:text-slate-400">Auto-generated icon for your app</p>
+        </div>
+      </div>
+
+      <div className="flex items-center gap-4">
+        {/* Preview */}
+        <div className="shrink-0">
+          {iconUrl && (
+            <img src={iconUrl} alt="App Icon" className="w-24 h-24 rounded-2xl shadow-xl" />
+          )}
+          <canvas ref={canvasRef} className="hidden" />
+        </div>
+
+        {/* Style picker */}
+        <div className="flex-1 space-y-2">
+          <p className="text-xs font-semibold text-slate-400 uppercase">Style</p>
+          <div className="flex flex-wrap gap-2">
+            {styles.map((s, i) => (
+              <button
+                key={i}
+                onClick={() => setIconStyle(i)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                  iconStyle === i
+                    ? 'bg-purple-500 text-white'
+                    : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-white/10'
+                }`}
+              >
+                {s.name}
+              </button>
+            ))}
+          </div>
+          <button
+            onClick={downloadIcon}
+            className="mt-2 px-4 py-2 rounded-lg bg-purple-500/10 text-purple-500 text-sm font-medium hover:bg-purple-500/20 transition-all"
+          >
+            Download Icon (512x512)
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -405,25 +566,44 @@ function buildFullAppHtml(screens: ScreenData[], appName: string, primaryColor: 
     `<iframe id="screen-${i}" class="screen-frame${i === 0 ? ' active' : ''}" sandbox="allow-scripts allow-same-origin" srcdoc="${(s.html || '').replace(/"/g, '&quot;')}"></iframe>`
   ).join('\n      ');
 
+  const letter = (appName || 'A').charAt(0).toUpperCase();
+  
   return `<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="${primaryColor}">
   <title>${appName}</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: system-ui, -apple-system, sans-serif; background: #0f172a; overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
+    /* Splash screen */
+    .splash { position: fixed; inset: 0; z-index: 999; background: linear-gradient(135deg, ${primaryColor}, ${primaryColor}dd); display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s, transform 0.5s; }
+    .splash.hidden { opacity: 0; transform: scale(1.1); pointer-events: none; }
+    .splash-icon { width: 100px; height: 100px; background: rgba(255,255,255,0.2); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 48px; font-weight: bold; color: #fff; backdrop-filter: blur(10px); margin-bottom: 16px; animation: splashPulse 1.5s ease-in-out infinite; }
+    .splash-name { color: #fff; font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+    .splash-sub { color: rgba(255,255,255,0.7); font-size: 12px; margin-top: 8px; }
+    @keyframes splashPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
     .screen-container { flex: 1; position: relative; overflow: hidden; }
     .screen-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: none; }
     .screen-frame.active { display: block; }
     .tab-bar { display: flex; background: #1e293b; border-top: 1px solid rgba(255,255,255,0.1); padding: 8px 0 env(safe-area-inset-bottom, 8px); }
-    .tab { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0; background: none; border: none; color: #94a3b8; font-size: 10px; cursor: pointer; transition: color 0.2s; }
-    .tab.active { color: ${primaryColor}; }
-    .tab span { font-size: 10px; }
+    .tab { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0; background: none; border: none; color: #94a3b8; font-size: 18px; cursor: pointer; transition: all 0.2s; }
+    .tab.active { color: ${primaryColor}; transform: scale(1.1); }
+    .tab span { font-size: 10px; font-weight: 500; }
   </style>
 </head>
 <body>
+  <!-- Splash Screen -->
+  <div class="splash" id="splash">
+    <div class="splash-icon">${letter}</div>
+    <div class="splash-name">${appName}</div>
+    <div class="splash-sub">Built with SheruTools AI</div>
+  </div>
+
   <div class="screen-container">
     ${screenFrames}
   </div>
@@ -431,6 +611,10 @@ function buildFullAppHtml(screens: ScreenData[], appName: string, primaryColor: 
     ${tabHtml}
   </nav>
   <script>
+    // Hide splash after 1.5s
+    setTimeout(() => document.getElementById('splash').classList.add('hidden'), 1500);
+    setTimeout(() => document.getElementById('splash').style.display = 'none', 2000);
+
     function showScreen(index) {
       document.querySelectorAll('.screen-frame').forEach((f, i) => f.classList.toggle('active', i === index));
       document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', i === index));

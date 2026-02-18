@@ -90,7 +90,7 @@ CSS TEMPLATE:
 body { font-family:system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
 \`\`\`
 
-Generate 4-5 screens. Return ONLY valid JSON — no markdown, no code blocks, no explanation:
+IMPORTANT: Generate EXACTLY 5 screens. Each screen must have 200+ lines of rich HTML with lots of content, interactivity, and visual elements. Return ONLY valid JSON — no markdown, no code blocks, no explanation:
 {"screens":[{"name":"Screen Name","html":"<!DOCTYPE html>...complete HTML...","icon":"🏠"}]}`;
 
     const userPrompt = `App: "${name}"

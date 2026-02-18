@@ -11,24 +11,23 @@ export async function GET(req: Request) {
   }
 
   try {
-    const res = await fetch(`${BUILD_SERVER_URL}/download/${buildId}`, {
+    // Get build status to get the APK URL
+    const statusRes = await fetch(`${BUILD_SERVER_URL}/build/${buildId}`, {
       headers: { 'Bypass-Tunnel-Reminder': 'true' },
     });
 
-    if (!res.ok) {
+    if (!statusRes.ok) {
+      return NextResponse.json({ error: 'Build not found' }, { status: 404 });
+    }
+
+    const statusData = await statusRes.json();
+    
+    if (statusData.status !== 'success' || !statusData.apkUrl) {
       return NextResponse.json({ error: 'APK not ready' }, { status: 404 });
     }
 
-    const apkBuffer = await res.arrayBuffer();
-    const contentDisposition = res.headers.get('content-disposition') || 'attachment; filename="app.apk"';
-    
-    return new NextResponse(apkBuffer, {
-      headers: {
-        'Content-Type': 'application/vnd.android.package-archive',
-        'Content-Disposition': contentDisposition,
-        'Content-Length': String(apkBuffer.byteLength),
-      },
-    });
+    // EAS builds have a direct download URL — redirect to it
+    return NextResponse.redirect(statusData.apkUrl);
   } catch {
     return NextResponse.json({ error: 'Download failed' }, { status: 503 });
   }

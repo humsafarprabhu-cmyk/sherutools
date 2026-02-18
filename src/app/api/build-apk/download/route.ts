@@ -11,7 +11,7 @@ export async function GET(req: Request) {
   }
 
   try {
-    // Proxy through build server (it handles EAS auth)
+    // Get signed download URL from build server
     const res = await fetch(`${BUILD_SERVER_URL}/download/${buildId}`, {
       headers: { 'Bypass-Tunnel-Reminder': 'true' },
     });
@@ -20,16 +20,14 @@ export async function GET(req: Request) {
       return NextResponse.json({ error: 'APK not ready' }, { status: 404 });
     }
 
-    const apkBuffer = await res.arrayBuffer();
-    const contentDisposition = res.headers.get('content-disposition') || 'attachment; filename="app.apk"';
+    const data = await res.json();
     
-    return new NextResponse(apkBuffer, {
-      headers: {
-        'Content-Type': 'application/vnd.android.package-archive',
-        'Content-Disposition': contentDisposition,
-        'Content-Length': String(apkBuffer.byteLength),
-      },
-    });
+    if (data.downloadUrl) {
+      // Redirect user's browser to the signed S3 URL
+      return NextResponse.redirect(data.downloadUrl);
+    }
+    
+    return NextResponse.json({ error: 'No download URL available' }, { status: 404 });
   } catch {
     return NextResponse.json({ error: 'Download failed' }, { status: 503 });
   }

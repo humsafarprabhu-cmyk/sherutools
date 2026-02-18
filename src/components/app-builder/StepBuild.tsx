@@ -397,9 +397,33 @@ function APKBuildSection({ screens, appName, primaryColor }: Props) {
       )}
 
       {buildStatus === 'success' && downloadUrl && (
-        <a href={downloadUrl} className="block w-full py-3 rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold shadow-lg text-center hover:from-green-500 hover:to-emerald-500 transition-all">
-          <span className="flex items-center justify-center gap-2"><Download className="w-5 h-5" /> Download APK</span>
-        </a>
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={async () => {
+            try {
+              // Fetch signed URL from our download endpoint
+              const res = await fetch(downloadUrl);
+              if (res.redirected) {
+                // Browser followed redirect to signed S3 URL
+                window.open(res.url, '_blank');
+              } else if (res.ok) {
+                const data = await res.json();
+                if (data.downloadUrl) {
+                  window.open(data.downloadUrl, '_blank');
+                }
+              } else {
+                // Fallback: open proxy URL directly
+                window.open(downloadUrl, '_blank');
+              }
+            } catch {
+              window.open(downloadUrl, '_blank');
+            }
+          }}
+          className="w-full py-3 rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold shadow-lg text-center hover:from-green-500 hover:to-emerald-500 transition-all flex items-center justify-center gap-2"
+        >
+          <Download className="w-5 h-5" /> Download APK
+        </motion.button>
       )}
 
       {buildStatus === 'failed' && (

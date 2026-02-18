@@ -16,6 +16,14 @@ export const metadata: Metadata = {
 const jsonLd = [
   {
     '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://sherutools.com' },
+      { '@type': 'ListItem', position: 2, name: 'Pdf Tools', item: 'https://sherutools.com/pdf-tools' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     name: 'SheruTools PDF Tools',
     applicationCategory: 'UtilityApplication',

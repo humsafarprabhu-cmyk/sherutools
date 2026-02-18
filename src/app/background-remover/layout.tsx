@@ -15,6 +15,14 @@ export const metadata: Metadata = {
 const jsonLd = [
   {
     '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://sherutools.com' },
+      { '@type': 'ListItem', position: 2, name: 'Background Remover', item: 'https://sherutools.com/background-remover' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     name: 'SheruTools AI Background Remover',
     applicationCategory: 'MultimediaApplication',

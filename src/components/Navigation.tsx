@@ -157,7 +157,7 @@ export default function Navigation() {
         {/* Mobile hamburger */}
         <div className="md:hidden flex items-center gap-2">
           <ThemeToggle />
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="p-2 text-slate-500 dark:text-slate-400">
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="p-2 text-slate-500 dark:text-slate-400" aria-label={mobileOpen ? 'Close menu' : 'Open menu'}>
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>

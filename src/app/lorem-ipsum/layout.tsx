@@ -14,6 +14,14 @@ export const metadata: Metadata = {
 
 const jsonLd = [
   {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://sherutools.com' },
+      { '@type': 'ListItem', position: 2, name: 'Free Lorem Ipsum Generator', item: 'https://sherutools.com/lorem-ipsum' },
+    ],
+  },
+  {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
       name: 'SheruTools Lorem Ipsum Generator',

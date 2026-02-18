@@ -14,6 +14,14 @@ export const metadata: Metadata = {
 
 const jsonLd = [
   {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://sherutools.com' },
+      { '@type': 'ListItem', position: 2, name: 'Free Image Compressor & Resizer', item: 'https://sherutools.com/image-tools' },
+    ],
+  },
+  {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
       name: 'SheruTools Image Compressor & Resizer',

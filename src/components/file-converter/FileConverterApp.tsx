@@ -447,7 +447,7 @@ export default function FileConverterApp({ presetFrom, presetTo }: FileConverter
                   {f.error && (
                     <span className="text-xs text-red-500 flex items-center gap-1"><AlertCircle className="w-3.5 h-3.5" /> {f.error}</span>
                   )}
-                  <button onClick={() => removeFile(f.id)} className="p-2 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors">
+                  <button onClick={() => removeFile(f.id)} className="p-2 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors" aria-label="Remove file">
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </div>

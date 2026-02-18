@@ -22,6 +22,14 @@ export const metadata: Metadata = {
 
 const jsonLd = [
   {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://sherutools.com' },
+      { '@type': 'ListItem', position: 2, name: 'Free AI Landing Page Generator', item: 'https://sherutools.com/ai-landing-page' },
+    ],
+  },
+  {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
       name: 'SheruTools AI Landing Page Generator',

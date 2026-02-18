@@ -16,6 +16,14 @@ export const metadata: Metadata = {
 
 const jsonLd = [
   {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://sherutools.com' },
+      { '@type': 'ListItem', position: 2, name: 'Free AI Content Rewriter & Paraphraser', item: 'https://sherutools.com/ai-rewriter' },
+    ],
+  },
+  {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
       name: 'SheruTools AI Content Rewriter',

@@ -333,7 +333,7 @@ export default function ResumeBuilder() {
                   </button>
                 ))}
               </div>
-              <button onClick={() => setShowMobilePreview(false)} className="text-white p-2">
+              <button onClick={() => setShowMobilePreview(false)} className="text-white p-2" aria-label="Close preview">
                 <X className="w-6 h-6" />
               </button>
             </div>

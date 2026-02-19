@@ -41,7 +41,11 @@ export default function Footer() {
           </div>
 
           <div className="mt-10 pt-6 border-t border-slate-200 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-slate-500 dark:text-slate-600">
-            <p>© {new Date().getFullYear()} SheruTools. All rights reserved.</p>
+            <p className="flex items-center gap-3">
+              <span>© {new Date().getFullYear()} SheruTools. All rights reserved.</span>
+              <Link href="/terms" className="hover:text-slate-900 dark:hover:text-white transition-colors">Terms</Link>
+              <Link href="/privacy" className="hover:text-slate-900 dark:hover:text-white transition-colors">Privacy</Link>
+            </p>
             <motion.p
               className="flex items-center gap-1"
               animate={{ opacity: [0.7, 1, 0.7] }}

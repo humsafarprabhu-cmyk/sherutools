@@ -1,3 +1,4 @@
+import SoftwareAppJsonLd from '@/components/SoftwareAppJsonLd';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -12,5 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (<><SoftwareAppJsonLd name="Resume Scorer" description="Get AI feedback on your resume score" category="BusinessApplication" url="https://sherutools.com/resume-scorer" />{children}</>);
 }

@@ -4,11 +4,18 @@ export const metadata: Metadata = {
   title: 'AI Passport Photo Maker — Free Online Passport Photo Generator',
   description: 'Create passport photos online for free. Supports US, India, UK, EU, Canada, Australia, China & Japan standards. Auto-crop, white background, 300 DPI. 100% browser-based.',
   keywords: ['passport photo maker online free', 'passport photo generator', '2x2 photo maker', 'passport photo online', 'visa photo maker', 'passport size photo', 'ID photo maker'],
+    twitter: {
+    card: 'summary_large_image',
+    title: 'AI Passport Photo Maker — Free Online Passport Photo Generator',
+    description: 'Create passport photos online for free. Supports US, India, UK, EU, Canada, Australia, China & Japan standards. Auto-crop, white background, 300 DPI. 100% brows',
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/passport-photo' },
   openGraph: {
     title: 'AI Passport Photo Maker — Free Online Passport Photo Generator',
     description: 'Create passport-compliant photos instantly. Auto-crop, white background, correct dimensions for 8+ countries. Free & private.',
     url: 'https://sherutools.com/passport-photo',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   },
 };
 

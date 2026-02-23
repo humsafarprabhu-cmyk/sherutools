@@ -8,9 +8,16 @@ export const metadata: Metadata = {
     title: 'AI Diagram Generator — Create Flowcharts & Diagrams Instantly',
     description: 'Describe what you want, AI generates beautiful diagrams. Flowcharts, sequence diagrams, mindmaps & more.',
     url: 'https://sherutools.com/diagram-generator',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
     type: 'website',
   },
   alternates: { canonical: 'https://sherutools.com/diagram-generator' },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AI Diagram Generator — Create Flowcharts & Diagrams Instantly',
+    description: 'Generate professional diagrams from text descriptions using AI. Create flowcharts, sequence diagrams, class diagrams, ER diagrams, mindmaps, Gantt charts, and m',
+    images: ['/opengraph-image'],
+  },
 };
 
 const jsonLd = [

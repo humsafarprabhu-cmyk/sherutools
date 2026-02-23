@@ -4,11 +4,18 @@ export const metadata: Metadata = {
   title: 'Free Markdown Editor - Live Preview & Export | SheruTools',
   description: 'Write and preview Markdown in real-time. Formatting toolbar, syntax highlighting, export to HTML and MD files. Free online markdown editor.',
   keywords: ['markdown editor online', 'markdown preview', 'free markdown editor', 'markdown to html'],
+    twitter: {
+    card: 'summary_large_image',
+    title: 'Free Markdown Editor - Live Preview & Export | SheruTools',
+    description: 'Write and preview Markdown in real-time. Formatting toolbar, syntax highlighting, export to HTML and MD files. Free online markdown editor.',
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/markdown-editor' },
   openGraph: {
     title: 'Free Markdown Editor - Live Preview & Export | SheruTools',
     description: 'Write and preview Markdown in real-time. Formatting toolbar, syntax highlighting, export to HTML and MD files. Free online markdown editor.',
     url: 'https://sherutools.com/markdown-editor',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   }
 };
 

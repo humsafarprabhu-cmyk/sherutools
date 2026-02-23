@@ -4,11 +4,18 @@ export const metadata: Metadata = {
   title: 'Free Resume Builder — Create Professional Resumes Online',
   description: 'Build a professional resume in minutes. 3 beautiful templates, real-time preview, instant PDF download. Free online resume maker — no sign-up required.',
   keywords: ['free resume builder', 'online resume maker', 'resume generator free', 'professional resume', 'resume templates'],
+    twitter: {
+    card: 'summary_large_image',
+    title: 'Free Resume Builder — Create Professional Resumes Online',
+    description: 'Build a professional resume in minutes. 3 beautiful templates, real-time preview, instant PDF download. Free online resume maker — no sign-up required.',
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/resume-builder' },
   openGraph: {
     title: 'Free Resume Builder',
     description: 'Build a professional resume in minutes. 3 beautiful templates, real-time preview, instant PDF download.',
     url: 'https://sherutools.com/resume-builder',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   },
 };
 

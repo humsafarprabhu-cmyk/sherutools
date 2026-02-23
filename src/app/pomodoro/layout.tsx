@@ -4,7 +4,25 @@ export const metadata: Metadata = {
   title: 'Free Pomodoro Timer — Focus Timer Online',
   description: 'Stay focused with the Pomodoro technique. 25-minute work sessions, customizable timers, browser notifications, daily stats tracking.',
   keywords: ['pomodoro timer', 'focus timer', 'pomodoro online', 'study timer', 'productivity timer'],
+  openGraph: {
+    title: 'Free Pomodoro Timer — Focus Timer Online',
+    description: 'Stay focused with the Pomodoro technique. 25-minute work sessions, customizable timers, browser notifications.',
+    url: 'https://sherutools.com/pomodoro',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free Pomodoro Timer — Focus Timer Online',
+    description: 'Stay focused with the Pomodoro technique. 25-minute work sessions, customizable timers, browser notifications.',
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/pomodoro' },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free Pomodoro Timer — Focus Timer Online',
+    description: 'Stay focused with the Pomodoro technique. 25-minute work sessions, customizable timers, browser notifications, daily stats tracking.',
+    images: ['/opengraph-image'],
+  },
 };
 
 const jsonLd = [

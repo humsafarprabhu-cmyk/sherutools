@@ -4,6 +4,12 @@ export const metadata: Metadata = {
   title: 'AI Image Upscaler — Enhance & Enlarge Images Free',
   description: 'Upscale and enhance images to 2x or 4x resolution using AI-powered sharpening. Free, no upload — runs 100% in your browser. Download enhanced PNG/JPG.',
   keywords: ['image upscaler free', 'enlarge image without losing quality', 'ai image enhancer', 'upscale image online', 'increase image resolution', 'image enlarger'],
+    twitter: {
+    card: 'summary_large_image',
+    title: 'AI Image Upscaler — Enhance & Enlarge Images Free',
+    description: 'Upscale and enhance images to 2x or 4x resolution using AI-powered sharpening. Free, no upload — runs 100% in your browser. Download enhanced PNG/JPG.',
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/image-upscaler' },
   openGraph: {
     title: 'AI Image Upscaler — Enhance & Enlarge Images Free',

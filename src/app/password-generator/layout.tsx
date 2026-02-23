@@ -4,11 +4,18 @@ export const metadata: Metadata = {
   title: 'Free Password Generator - Strong Random Passwords | SheruTools',
   description: 'Generate strong, secure passwords instantly. Random, passphrase, and pronounceable modes. Uses Web Crypto API for true randomness. Free, no sign-up.',
   keywords: ['password generator', 'strong password generator', 'random password', 'secure password generator online free'],
+    twitter: {
+    card: 'summary_large_image',
+    title: 'Free Password Generator - Strong Random Passwords | SheruTools',
+    description: 'Generate strong, secure passwords instantly. Random, passphrase, and pronounceable modes. Uses Web Crypto API for true randomness. Free, no sign-up.',
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/password-generator' },
   openGraph: {
     title: 'Free Password Generator - Strong Random Passwords | SheruTools',
     description: 'Generate strong, secure passwords instantly. Random, passphrase, and pronounceable modes. Uses Web Crypto API for true randomness. Free, no sign-up.',
     url: 'https://sherutools.com/password-generator',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   }
 };
 

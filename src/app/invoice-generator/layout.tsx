@@ -3,11 +3,18 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Free Invoice Generator — Create & Download PDF Invoices',
   description: 'Create professional invoices for free. 3 beautiful templates, live preview, instant PDF download. No sign-up required.',
+    twitter: {
+    card: 'summary_large_image',
+    title: 'Free Invoice Generator — Create & Download PDF Invoices',
+    description: 'Create professional invoices for free. 3 beautiful templates, live preview, instant PDF download. No sign-up required.',
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/invoice-generator' },
   openGraph: {
     title: 'Free Invoice Generator',
     description: 'Create professional invoices for free with live preview and instant PDF download.',
     url: 'https://sherutools.com/invoice-generator',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   },
 };
 

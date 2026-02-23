@@ -5,12 +5,19 @@ export const metadata: Metadata = {
   description:
     'Paste any code and get instant AI-powered explanations. Line-by-line breakdown, key concepts, and potential issues. Supports 15+ languages.',
   keywords: ['ai code explainer', 'explain code', 'code explanation tool', 'understand code ai', 'code explainer free'],
+    twitter: {
+    card: 'summary_large_image',
+    title: 'Free AI Code Explainer - Understand Any Code | SheruTools',
+    description: 'Paste any code and get instant AI-powered explanations. Line-by-line breakdown, key concepts, and potential issues. Supports 15+ languages.',
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/ai-code-explainer' },
   openGraph: {
     title: 'Free AI Code Explainer - Understand Any Code | SheruTools',
     description:
       'Paste any code and get instant AI-powered explanations. Line-by-line breakdown, key concepts, and potential issues. Supports 15+ languages.',
     url: 'https://sherutools.com/ai-code-explainer',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   }
 };
 

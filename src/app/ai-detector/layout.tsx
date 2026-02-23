@@ -8,8 +8,15 @@ export const metadata: Metadata = {
   title,
   description,
   keywords: ['ai content detector', 'ai text detector', 'humanize ai text', 'ai detector free', 'ai content checker', 'chatgpt detector', 'ai writing detector'],
+    twitter: {
+    card: 'summary_large_image',
+    title: title,
+    description: description,
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/ai-detector' },
-  openGraph: { title, description, url: 'https://sherutools.com/ai-detector' },
+  openGraph: { title, description, url: 'https://sherutools.com/ai-detector',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }] },
 };
 
 const jsonLd = [

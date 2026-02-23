@@ -4,11 +4,18 @@ export const metadata: Metadata = {
   title: 'Free Regex Tester - Test Regular Expressions Online | SheruTools',
   description: 'Test and debug regular expressions in real-time. Match highlighting, capture groups, replace mode. Common patterns library and cheat sheet included.',
   keywords: ['regex tester', 'regex online', 'test regular expression', 'regex debugger', 'regex match'],
+    twitter: {
+    card: 'summary_large_image',
+    title: 'Free Regex Tester - Test Regular Expressions Online | SheruTools',
+    description: 'Test and debug regular expressions in real-time. Match highlighting, capture groups, replace mode. Common patterns library and cheat sheet included.',
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/regex-tester' },
   openGraph: {
     title: 'Free Regex Tester - Test Regular Expressions Online | SheruTools',
     description: 'Test and debug regular expressions in real-time. Match highlighting, capture groups, replace mode. Common patterns library and cheat sheet included.',
     url: 'https://sherutools.com/regex-tester',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   }
 };
 

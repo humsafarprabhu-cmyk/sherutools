@@ -4,11 +4,18 @@ export const metadata: Metadata = {
   title: 'Cron Expression Generator — Free Visual Cron Builder',
   description: 'Build cron expressions visually or parse existing ones. Real-time preview, next 10 execution times, presets, and cheat sheet. Free cron job generator tool.',
   keywords: ['cron expression generator', 'crontab guru', 'cron job generator', 'cron schedule builder', 'cron parser', 'crontab maker', 'cron syntax'],
+    twitter: {
+    card: 'summary_large_image',
+    title: 'Cron Expression Generator — Free Visual Cron Builder',
+    description: 'Build cron expressions visually or parse existing ones. Real-time preview, next 10 execution times, presets, and cheat sheet. Free cron job generator tool.',
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/cron-generator' },
   openGraph: {
     title: 'Cron Expression Generator — Free Visual Cron Builder',
     description: 'Build cron expressions visually or parse existing ones. Real-time preview, next 10 execution times, presets, and cheat sheet.',
     url: 'https://sherutools.com/cron-generator',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   },
 };
 

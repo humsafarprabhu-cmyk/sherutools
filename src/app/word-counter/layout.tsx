@@ -4,11 +4,18 @@ export const metadata: Metadata = {
   title: 'Free Word Counter - Character Counter Online | SheruTools',
   description: 'Count words, characters, sentences, and paragraphs instantly. Reading time, speaking time, readability scores, keyword density. Free online word counter.',
   keywords: ['word counter', 'character counter', 'word count online', 'character count', 'reading time calculator', 'readability score', 'keyword density'],
+    twitter: {
+    card: 'summary_large_image',
+    title: 'Free Word Counter - Character Counter Online | SheruTools',
+    description: 'Count words, characters, sentences, and paragraphs instantly. Reading time, speaking time, readability scores, keyword density. Free online word counter.',
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/word-counter' },
   openGraph: {
     title: 'Free Word Counter - Character Counter Online | SheruTools',
     description: 'Count words, characters, sentences, and paragraphs instantly. Reading time, speaking time, readability scores, keyword density. Free online word counter.',
     url: 'https://sherutools.com/word-counter',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   }
 };
 

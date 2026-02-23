@@ -4,11 +4,18 @@ export const metadata: Metadata = {
   title: 'Free JSON Formatter & Validator Online | SheruTools',
   description: 'Format, beautify, minify, and validate JSON online. Syntax highlighting, tree view, error detection. Free JSON formatter tool.',
   keywords: ['json formatter', 'json validator', 'json beautifier', 'format json online', 'json viewer'],
+    twitter: {
+    card: 'summary_large_image',
+    title: 'Free JSON Formatter & Validator Online | SheruTools',
+    description: 'Format, beautify, minify, and validate JSON online. Syntax highlighting, tree view, error detection. Free JSON formatter tool.',
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/json-formatter' },
   openGraph: {
     title: 'Free JSON Formatter & Validator Online | SheruTools',
     description: 'Format, beautify, minify, and validate JSON online. Syntax highlighting, tree view, error detection. Free JSON formatter tool.',
     url: 'https://sherutools.com/json-formatter',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   }
 };
 

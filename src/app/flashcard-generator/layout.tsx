@@ -7,8 +7,15 @@ export const metadata: Metadata = {
   title,
   description,
   keywords: ['ai flashcard generator', 'flashcard maker from notes', 'study flashcard generator', 'anki card generator', 'ai study cards', 'flashcard creator'],
+    twitter: {
+    card: 'summary_large_image',
+    title: title,
+    description: description,
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/flashcard-generator' },
-  openGraph: { title, description, url: 'https://sherutools.com/flashcard-generator' },
+  openGraph: { title, description, url: 'https://sherutools.com/flashcard-generator',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }] },
 };
 
 const jsonLd = [

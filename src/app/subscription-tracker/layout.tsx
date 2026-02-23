@@ -10,6 +10,13 @@ export const metadata: Metadata = {
     description: 'The average person wastes $200+/month on unused subscriptions. Track yours for free.',
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Subscription Tracker — See How Much You Waste Monthly | SheruTools',
+    description: 'Track all your subscriptions in one place. See your total monthly spend, get cancel reminders, and stop wasting money on forgotten subscriptions. Free, no sign-',
+    images: ['/opengraph-image'],
+  },
+
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

@@ -4,11 +4,18 @@ export const metadata: Metadata = {
   title: 'AI Favicon Generator — Create Beautiful Favicons Free',
   description: 'Generate stunning favicons from text, emoji, or initials. Download favicon pack with ICO, PNG, Apple Touch Icon, and Android Chrome icons. 100% free, runs in your browser.',
   keywords: ['favicon generator', 'favicon maker', 'favicon creator online', 'ico generator', 'favicon from text', 'emoji favicon', 'favicon pack generator'],
+    twitter: {
+    card: 'summary_large_image',
+    title: 'AI Favicon Generator — Create Beautiful Favicons Free',
+    description: 'Generate stunning favicons from text, emoji, or initials. Download favicon pack with ICO, PNG, Apple Touch Icon, and Android Chrome icons. 100% free, runs in yo',
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/favicon-generator' },
   openGraph: {
     title: 'AI Favicon Generator — Create Beautiful Favicons Free',
     description: 'Generate stunning favicons from text, emoji, or initials. Download complete favicon pack. 100% free, client-side.',
     url: 'https://sherutools.com/favicon-generator',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   },
 };
 

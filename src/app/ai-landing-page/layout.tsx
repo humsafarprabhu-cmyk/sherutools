@@ -11,12 +11,19 @@ export const metadata: Metadata = {
     'generate landing page',
     'one click landing page',
   ],
+    twitter: {
+    card: 'summary_large_image',
+    title: 'Free AI Landing Page Generator - One Line to Full Page | SheruTools',
+    description: 'Generate beautiful landing pages from a single description. AI creates responsive, modern pages with hero, features, pricing, and more. Free, instant, no coding',
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/ai-landing-page' },
   openGraph: {
     title: 'Free AI Landing Page Generator - One Line to Full Page | SheruTools',
     description:
       'Generate beautiful landing pages from a single description. AI creates responsive, modern pages with hero, features, pricing, and more. Free, instant, no coding.',
     url: 'https://sherutools.com/ai-landing-page',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   }
 };
 

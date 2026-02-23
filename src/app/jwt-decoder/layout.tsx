@@ -9,8 +9,15 @@ export const metadata: Metadata = {
   title,
   description,
   keywords: ['jwt decoder', 'jwt debugger', 'decode jwt token', 'json web token decoder', 'jwt inspector online', 'jwt parser'],
+    twitter: {
+    card: 'summary_large_image',
+    title: title,
+    description: description,
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/jwt-decoder' },
-  openGraph: { title, description, url: 'https://sherutools.com/jwt-decoder' },
+  openGraph: { title, description, url: 'https://sherutools.com/jwt-decoder',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }] },
 };
 
 export default function JwtDecoderLayout({

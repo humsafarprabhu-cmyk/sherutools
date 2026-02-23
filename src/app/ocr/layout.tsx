@@ -8,8 +8,15 @@ export const metadata: Metadata = {
   title,
   description,
   keywords: ['image to text converter', 'ocr online free', 'extract text from image', 'photo to text', 'ocr tool', 'image text extractor', 'optical character recognition', 'free ocr online'],
+    twitter: {
+    card: 'summary_large_image',
+    title: title,
+    description: description,
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/ocr' },
-  openGraph: { title, description, url: 'https://sherutools.com/ocr' },
+  openGraph: { title, description, url: 'https://sherutools.com/ocr',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }] },
 };
 
 const jsonLd = [

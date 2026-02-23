@@ -5,12 +5,19 @@ export const metadata: Metadata = {
   description:
     'Write professional emails instantly with AI. Choose purpose, tone, and key points. Generate perfect emails in seconds. Free, no sign-up required.',
   keywords: ['ai email writer', 'ai email generator', 'write email with ai', 'professional email writer free'],
+    twitter: {
+    card: 'summary_large_image',
+    title: 'Free AI Email Writer - Generate Professional Emails | SheruTools',
+    description: 'Write professional emails instantly with AI. Choose purpose, tone, and key points. Generate perfect emails in seconds. Free, no sign-up required.',
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/ai-email-writer' },
   openGraph: {
     title: 'Free AI Email Writer - Generate Professional Emails | SheruTools',
     description:
       'Write professional emails instantly with AI. Choose purpose, tone, and key points. Generate perfect emails in seconds. Free, no sign-up required.',
     url: 'https://sherutools.com/ai-email-writer',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   }
 };
 

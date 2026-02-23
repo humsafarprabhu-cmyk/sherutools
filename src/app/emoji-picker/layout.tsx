@@ -4,11 +4,18 @@ export const metadata: Metadata = {
   title: 'Emoji Picker & Search - Copy Emojis Instantly | SheruTools',
   description: 'Search, browse, and copy emojis instantly. All categories, skin tones, recently used. Copy as emoji, HTML entity, or Unicode.',
   keywords: ['emoji picker', 'emoji search', 'copy emoji', 'emoji keyboard online', 'emoji copy paste'],
+    twitter: {
+    card: 'summary_large_image',
+    title: 'Emoji Picker & Search - Copy Emojis Instantly | SheruTools',
+    description: 'Search, browse, and copy emojis instantly. All categories, skin tones, recently used. Copy as emoji, HTML entity, or Unicode.',
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/emoji-picker' },
   openGraph: {
     title: 'Emoji Picker & Search - Copy Emojis Instantly | SheruTools',
     description: 'Search, browse, and copy emojis instantly. All categories, skin tones, recently used. Copy as emoji, HTML entity, or Unicode.',
     url: 'https://sherutools.com/emoji-picker',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   }
 };
 

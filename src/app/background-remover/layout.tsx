@@ -4,6 +4,12 @@ export const metadata: Metadata = {
   title: 'AI Background Remover — Free, No Upload, 100% Private',
   description: 'Remove backgrounds from images instantly using AI. Free, no upload needed — runs 100% in your browser. Download transparent PNG. Replace with custom colors, gradients, or images.',
   keywords: ['remove background from image free', 'background remover online', 'remove bg', 'transparent background maker', 'background eraser', 'AI background remover'],
+    twitter: {
+    card: 'summary_large_image',
+    title: 'AI Background Remover — Free, No Upload, 100% Private',
+    description: 'Remove backgrounds from images instantly using AI. Free, no upload needed — runs 100% in your browser. Download transparent PNG. Replace with custom colors, gra',
+    images: ['/opengraph-image'],
+  },
   alternates: { canonical: 'https://sherutools.com/background-remover' },
   openGraph: {
     title: 'AI Background Remover — Free, No Upload, 100% Private',

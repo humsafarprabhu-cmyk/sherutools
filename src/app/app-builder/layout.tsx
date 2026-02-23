@@ -8,8 +8,15 @@ export const metadata: Metadata = {
     title: 'AI App Builder — Create Android Apps Without Coding | SheruTools',
     description: 'Describe your app idea and AI builds it. Preview screens in phone mockups, customize everything, download your Expo project or build APK.',
     url: 'https://sherutools.com/app-builder',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   },
   alternates: { canonical: 'https://sherutools.com/app-builder' },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AI App Builder — Create Android Apps Without Coding',
+    description: 'Describe your app idea and AI generates a complete React Native/Expo project. Preview screens, customize, and download. No coding required. Build Android apps f',
+    images: ['/opengraph-image'],
+  },
 };
 
 export default function AppBuilderLayout({ children }: { children: React.ReactNode }) {

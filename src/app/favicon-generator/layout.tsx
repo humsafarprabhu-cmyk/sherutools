@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     twitter: {
     card: 'summary_large_image',
     title: 'AI Favicon Generator — Create Beautiful Favicons Free',
-    description: 'Generate stunning favicons from text, emoji, or initials. Download favicon pack with ICO, PNG, Apple Touch Icon, and Android Chrome icons. 100% free, runs in yo',
+    description: 'Generate stunning favicons from text, emoji, or initials. Download favicon pack with ICO, PNG, Apple Touch Icon, and Android Chrome icons.',
     images: ['/opengraph-image'],
   },
   alternates: { canonical: 'https://sherutools.com/favicon-generator' },

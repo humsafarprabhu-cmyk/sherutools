@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'AI Diagram Generator — Create Flowcharts & Diagrams Instantly',
-    description: 'Generate professional diagrams from text descriptions using AI. Create flowcharts, sequence diagrams, class diagrams, ER diagrams, mindmaps, Gantt charts, and m',
+    description: 'Generate professional diagrams from text descriptions using AI. Create flowcharts, sequence diagrams, class diagrams, ER diagrams, mindmaps, Gantt charts, and.',
     images: ['/opengraph-image'],
   },
 };

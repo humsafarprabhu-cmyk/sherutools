@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free CSS Gradient Generator - Create Beautiful Gradients | SheruTools',
+  title: 'Free CSS Gradient Generator - Create Beautiful Gradients',
   description: 'Create beautiful CSS gradients visually. Linear, radial, conic gradients with unlimited color stops. Copy CSS, Tailwind, or export as PNG.',
   keywords: ['css gradient generator', 'gradient maker', 'css gradient', 'tailwind gradient', 'gradient tool'],
     twitter: {
     card: 'summary_large_image',
-    title: 'Free CSS Gradient Generator - Create Beautiful Gradients | SheruTools',
+    title: 'Free CSS Gradient Generator - Create Beautiful Gradients',
     description: 'Create beautiful CSS gradients visually. Linear, radial, conic gradients with unlimited color stops. Copy CSS, Tailwind, or export as PNG.',
     images: ['/opengraph-image'],
   },
   alternates: { canonical: 'https://sherutools.com/css-gradient-generator' },
   openGraph: {
-    title: 'Free CSS Gradient Generator - Create Beautiful Gradients | SheruTools',
+    title: 'Free CSS Gradient Generator - Create Beautiful Gradients',
     description: 'Create beautiful CSS gradients visually. Linear, radial, conic gradients with unlimited color stops. Copy CSS, Tailwind, or export as PNG.',
     url: 'https://sherutools.com/css-gradient-generator',
     images: [{ url: '/opengraph-image', width: 1200, height: 630 }],

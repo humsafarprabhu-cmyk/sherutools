@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free Lorem Ipsum Generator - Placeholder Text | SheruTools',
+  title: 'Free Lorem Ipsum Generator - Placeholder Text',
   description: 'Generate lorem ipsum placeholder text instantly. Multiple variants: classic, hipster, office, tech. Paragraphs, sentences, words, or lists.',
   keywords: ['lorem ipsum generator', 'placeholder text', 'dummy text generator', 'lorem ipsum'],
     twitter: {
     card: 'summary_large_image',
-    title: 'Free Lorem Ipsum Generator - Placeholder Text | SheruTools',
+    title: 'Free Lorem Ipsum Generator - Placeholder Text',
     description: 'Generate lorem ipsum placeholder text instantly. Multiple variants: classic, hipster, office, tech. Paragraphs, sentences, words, or lists.',
     images: ['/opengraph-image'],
   },
   alternates: { canonical: 'https://sherutools.com/lorem-ipsum' },
   openGraph: {
-    title: 'Free Lorem Ipsum Generator - Placeholder Text | SheruTools',
+    title: 'Free Lorem Ipsum Generator - Placeholder Text',
     description: 'Generate lorem ipsum placeholder text instantly. Multiple variants: classic, hipster, office, tech. Paragraphs, sentences, words, or lists.',
     url: 'https://sherutools.com/lorem-ipsum',
     images: [{ url: '/opengraph-image', width: 1200, height: 630 }],

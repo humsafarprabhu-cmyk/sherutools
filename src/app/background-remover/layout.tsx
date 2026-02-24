@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     twitter: {
     card: 'summary_large_image',
     title: 'AI Background Remover — Free, No Upload, 100% Private',
-    description: 'Remove backgrounds from images instantly using AI. Free, no upload needed — runs 100% in your browser. Download transparent PNG. Replace with custom colors, gra',
+    description: 'Remove backgrounds from images instantly using AI. Free, no upload needed — runs 100% in your browser. Download transparent PNG.',
     images: ['/opengraph-image'],
   },
   alternates: { canonical: 'https://sherutools.com/background-remover' },

@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free Text Compare Tool - Diff Checker Online | SheruTools',
+  title: 'Free Text Compare Tool - Diff Checker Online',
   description: 'Compare two texts side-by-side with real-time diff highlighting. Find differences instantly. Free online diff checker with line-by-line and word-by-word comparison.',
   keywords: ['text compare online', 'diff checker', 'compare two texts', 'text diff tool', 'online diff'],
     twitter: {
     card: 'summary_large_image',
-    title: 'Free Text Compare Tool - Diff Checker Online | SheruTools',
-    description: 'Compare two texts side-by-side with real-time diff highlighting. Find differences instantly. Free online diff checker with line-by-line and word-by-word compari',
+    title: 'Free Text Compare Tool - Diff Checker Online',
+    description: 'Compare two texts side-by-side with real-time diff highlighting. Find differences instantly.',
     images: ['/opengraph-image'],
   },
   alternates: { canonical: 'https://sherutools.com/text-compare' },
   openGraph: {
-    title: 'Free Text Compare Tool - Diff Checker Online | SheruTools',
+    title: 'Free Text Compare Tool - Diff Checker Online',
     description: 'Compare two texts side-by-side with real-time diff highlighting. Find differences instantly. Free online diff checker with line-by-line and word-by-word comparison.',
     url: 'https://sherutools.com/text-compare',
     images: [{ url: '/opengraph-image', width: 1200, height: 630 }],

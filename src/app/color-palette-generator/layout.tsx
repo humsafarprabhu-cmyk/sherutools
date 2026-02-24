@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free Color Palette Generator - Create Beautiful Color Schemes | SheruTools',
+  title: 'Free Color Palette Generator - Create Beautiful Color Schemes',
   description: 'Generate beautiful color palettes instantly. Random, analogous, complementary, triadic schemes. Export as CSS, Tailwind, PNG. Free online color palette maker.',
   keywords: ['color palette generator', 'color scheme generator free', 'random color palette', 'color picker', 'color harmony'],
     twitter: {
     card: 'summary_large_image',
-    title: 'Free Color Palette Generator - Create Beautiful Color Schemes | SheruTools',
+    title: 'Free Color Palette Generator - Create Beautiful Color Schemes',
     description: 'Generate beautiful color palettes instantly. Random, analogous, complementary, triadic schemes. Export as CSS, Tailwind, PNG. Free online color palette maker.',
     images: ['/opengraph-image'],
   },
   alternates: { canonical: 'https://sherutools.com/color-palette-generator' },
   openGraph: {
-    title: 'Free Color Palette Generator - Create Beautiful Color Schemes | SheruTools',
+    title: 'Free Color Palette Generator - Create Beautiful Color Schemes',
     description: 'Generate beautiful color palettes instantly. Random, analogous, complementary, triadic schemes. Export as CSS, Tailwind, PNG. Free online color palette maker.',
     url: 'https://sherutools.com/color-palette-generator',
     images: [{ url: '/opengraph-image', width: 1200, height: 630 }],

@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free Unit Converter - Convert Any Unit Online | SheruTools',
+  title: 'Free Unit Converter - Convert Any Unit Online',
   description: 'Convert between 100+ units instantly. Length, weight, temperature, volume, speed, data, and more. Free online unit converter.',
   keywords: ['unit converter', 'convert units online', 'length converter', 'temperature converter', 'unit conversion tool'],
     twitter: {
     card: 'summary_large_image',
-    title: 'Free Unit Converter - Convert Any Unit Online | SheruTools',
+    title: 'Free Unit Converter - Convert Any Unit Online',
     description: 'Convert between 100+ units instantly. Length, weight, temperature, volume, speed, data, and more. Free online unit converter.',
     images: ['/opengraph-image'],
   },
   alternates: { canonical: 'https://sherutools.com/unit-converter' },
   openGraph: {
-    title: 'Free Unit Converter - Convert Any Unit Online | SheruTools',
+    title: 'Free Unit Converter - Convert Any Unit Online',
     description: 'Convert between 100+ units instantly. Length, weight, temperature, volume, speed, data, and more. Free online unit converter.',
     url: 'https://sherutools.com/unit-converter',
     images: [{ url: '/opengraph-image', width: 1200, height: 630 }],

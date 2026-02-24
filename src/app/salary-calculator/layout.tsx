@@ -2,7 +2,7 @@ import SoftwareAppJsonLd from '@/components/SoftwareAppJsonLd';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Salary Calculator — Hourly, Monthly, Yearly Converter | SheruTools',
+  title: 'Salary Calculator — Hourly, Monthly, Yearly Converter',
   description: 'Convert your salary between hourly, daily, weekly, biweekly, monthly, and yearly. Calculate take-home pay with tax estimates, overtime, and deductions. Free salary converter tool.',
   keywords: ['salary calculator', 'hourly to yearly', 'yearly to hourly', 'salary converter', 'take home pay', 'pay calculator', 'wage calculator', 'income calculator'],
   openGraph: {
@@ -10,10 +10,11 @@ export const metadata: Metadata = {
     description: 'Free salary converter. Calculate hourly, daily, weekly, monthly, and yearly pay instantly.',
     type: 'website',
   },
+  alternates: { canonical: 'https://sherutools.com/salary-calculator' },
   twitter: {
     card: 'summary_large_image',
-    title: 'Salary Calculator — Hourly, Monthly, Yearly Converter | SheruTools',
-    description: 'Convert your salary between hourly, daily, weekly, biweekly, monthly, and yearly. Calculate take-home pay with tax estimates, overtime, and deductions. Free sal',
+    title: 'Salary Calculator — Hourly, Monthly, Yearly Converter',
+    description: 'Convert your salary between hourly, daily, weekly, biweekly, monthly, and yearly. Calculate take-home pay with tax estimates, overtime, and deductions.',
     images: ['/opengraph-image'],
   },
 

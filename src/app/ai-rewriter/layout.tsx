@@ -1,19 +1,19 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free AI Content Rewriter & Paraphraser | SheruTools',
+  title: 'Free AI Content Rewriter & Paraphraser',
   description:
     'Rewrite and paraphrase any text with AI. Simplify, formalize, expand, summarize, or make creative. Free online AI rewriter tool.',
   keywords: ['ai rewriter', 'paraphrase tool', 'content rewriter', 'ai paraphraser free', 'rewrite text online'],
     twitter: {
     card: 'summary_large_image',
-    title: 'Free AI Content Rewriter & Paraphraser | SheruTools',
+    title: 'Free AI Content Rewriter & Paraphraser',
     description: 'Rewrite and paraphrase any text with AI. Simplify, formalize, expand, summarize, or make creative. Free online AI rewriter tool.',
     images: ['/opengraph-image'],
   },
   alternates: { canonical: 'https://sherutools.com/ai-rewriter' },
   openGraph: {
-    title: 'Free AI Content Rewriter & Paraphraser | SheruTools',
+    title: 'Free AI Content Rewriter & Paraphraser',
     description:
       'Rewrite and paraphrase any text with AI. Simplify, formalize, expand, summarize, or make creative. Free online AI rewriter tool.',
     url: 'https://sherutools.com/ai-rewriter',

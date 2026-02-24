@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free AI Landing Page Generator - One Line to Full Page | SheruTools',
+  title: 'Free AI Landing Page Generator - One Line to Full Page',
   description:
     'Generate beautiful landing pages from a single description. AI creates responsive, modern pages with hero, features, pricing, and more. Free, instant, no coding.',
   keywords: [
@@ -13,13 +13,13 @@ export const metadata: Metadata = {
   ],
     twitter: {
     card: 'summary_large_image',
-    title: 'Free AI Landing Page Generator - One Line to Full Page | SheruTools',
-    description: 'Generate beautiful landing pages from a single description. AI creates responsive, modern pages with hero, features, pricing, and more. Free, instant, no coding',
+    title: 'Free AI Landing Page Generator - One Line to Full Page',
+    description: 'Generate beautiful landing pages from a single description. AI creates responsive, modern pages with hero, features, pricing, and more.',
     images: ['/opengraph-image'],
   },
   alternates: { canonical: 'https://sherutools.com/ai-landing-page' },
   openGraph: {
-    title: 'Free AI Landing Page Generator - One Line to Full Page | SheruTools',
+    title: 'Free AI Landing Page Generator - One Line to Full Page',
     description:
       'Generate beautiful landing pages from a single description. AI creates responsive, modern pages with hero, features, pricing, and more. Free, instant, no coding.',
     url: 'https://sherutools.com/ai-landing-page',

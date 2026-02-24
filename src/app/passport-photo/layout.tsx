@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     twitter: {
     card: 'summary_large_image',
     title: 'AI Passport Photo Maker — Free Online Passport Photo Generator',
-    description: 'Create passport photos online for free. Supports US, India, UK, EU, Canada, Australia, China & Japan standards. Auto-crop, white background, 300 DPI. 100% brows',
+    description: 'Create passport photos online for free. Supports US, India, UK, EU, Canada, Australia, China & Japan standards. Auto-crop, white background, 300 DPI.',
     images: ['/opengraph-image'],
   },
   alternates: { canonical: 'https://sherutools.com/passport-photo' },

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     twitter: {
     card: 'summary_large_image',
     title: 'Free Image File Converter — PNG, JPG, WebP, AVIF, HEIC, BMP, GIF, ICO',
-    description: 'Convert images between PNG, JPG, WebP, AVIF, HEIC, BMP, GIF, and ICO formats instantly. Free, no upload to server, 100% client-side. Batch conversion & quality ',
+    description: 'Convert images between PNG, JPG, WebP, AVIF, HEIC, BMP, GIF, and ICO formats instantly. Free, no upload to server, 100% client-side.',
     images: ['/opengraph-image'],
   },
   alternates: { canonical: 'https://sherutools.com/file-converter' },

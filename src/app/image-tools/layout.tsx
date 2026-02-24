@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free Image Compressor & Resizer - Compress Images Online | SheruTools',
+  title: 'Free Image Compressor & Resizer - Compress Images Online',
   description: 'Compress, resize, and convert images free online. Reduce file size up to 90% without quality loss. Social media presets included. No upload to server.',
   keywords: ['compress image online free', 'resize image online', 'image compressor', 'reduce image size', 'image resizer', 'convert png to jpg'],
     twitter: {
     card: 'summary_large_image',
-    title: 'Free Image Compressor & Resizer - Compress Images Online | SheruTools',
+    title: 'Free Image Compressor & Resizer - Compress Images Online',
     description: 'Compress, resize, and convert images free online. Reduce file size up to 90% without quality loss. Social media presets included. No upload to server.',
     images: ['/opengraph-image'],
   },
   alternates: { canonical: 'https://sherutools.com/image-tools' },
   openGraph: {
-    title: 'Free Image Compressor & Resizer - Compress Images Online | SheruTools',
+    title: 'Free Image Compressor & Resizer - Compress Images Online',
     description: 'Compress, resize, and convert images free online. Reduce file size up to 90% without quality loss. Social media presets included. No upload to server.',
     url: 'https://sherutools.com/image-tools',
   }

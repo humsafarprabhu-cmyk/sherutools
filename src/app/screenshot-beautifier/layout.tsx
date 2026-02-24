@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free Code Screenshot Beautifier - Beautiful Code Images | SheruTools',
+  title: 'Free Code Screenshot Beautifier - Beautiful Code Images',
   description: 'Create beautiful code screenshots with custom backgrounds, themes, and window chrome. Export as PNG. Perfect for Twitter, blog posts, documentation.',
   keywords: ['code screenshot', 'code to image', 'beautiful code screenshot', 'carbon alternative', 'code image generator', 'code snippet image'],
     twitter: {
     card: 'summary_large_image',
-    title: 'Free Code Screenshot Beautifier - Beautiful Code Images | SheruTools',
+    title: 'Free Code Screenshot Beautifier - Beautiful Code Images',
     description: 'Create beautiful code screenshots with custom backgrounds, themes, and window chrome. Export as PNG. Perfect for Twitter, blog posts, documentation.',
     images: ['/opengraph-image'],
   },
   alternates: { canonical: 'https://sherutools.com/screenshot-beautifier' },
   openGraph: {
-    title: 'Free Code Screenshot Beautifier - Beautiful Code Images | SheruTools',
+    title: 'Free Code Screenshot Beautifier - Beautiful Code Images',
     description: 'Create beautiful code screenshots with custom backgrounds, themes, and window chrome. Export as PNG. Perfect for Twitter, blog posts, documentation.',
     url: 'https://sherutools.com/screenshot-beautifier',
     images: [{ url: '/opengraph-image', width: 1200, height: 630 }],

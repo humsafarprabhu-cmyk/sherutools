@@ -1,17 +1,17 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Free QR Code Generator - Create Custom QR Codes Online | SheruTools',
+  title: 'Free QR Code Generator - Create Custom QR Codes Online',
   description: 'Generate QR codes for URLs, WiFi, vCards, email and more. Customize colors, add logos, download as PNG or SVG. Free online QR code maker.',
     twitter: {
     card: 'summary_large_image',
-    title: 'Free QR Code Generator - Create Custom QR Codes Online | SheruTools',
+    title: 'Free QR Code Generator - Create Custom QR Codes Online',
     description: 'Generate QR codes for URLs, WiFi, vCards, email and more. Customize colors, add logos, download as PNG or SVG. Free online QR code maker.',
     images: ['/opengraph-image'],
   },
   alternates: { canonical: 'https://sherutools.com/qr-code-generator' },
   openGraph: {
-    title: 'Free QR Code Generator - Create Custom QR Codes Online | SheruTools',
+    title: 'Free QR Code Generator - Create Custom QR Codes Online',
     description: 'Generate QR codes for URLs, WiFi, vCards, email and more. Customize colors, add logos, download as PNG or SVG. Free online QR code maker.',
     url: 'https://sherutools.com/qr-code-generator',
     images: [{ url: '/opengraph-image', width: 1200, height: 630 }],

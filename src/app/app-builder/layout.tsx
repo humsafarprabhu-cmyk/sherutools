@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description: 'Describe your app idea and AI generates a complete React Native/Expo project. Preview screens, customize, and download. No coding required. Build Android apps free.',
   keywords: ['app builder without coding', 'create android app free', 'ai app maker', 'no code app builder', 'react native app generator', 'expo app builder'],
   openGraph: {
-    title: 'AI App Builder — Create Android Apps Without Coding | SheruTools',
+    title: 'AI App Builder — Create Android Apps Without Coding',
     description: 'Describe your app idea and AI builds it. Preview screens in phone mockups, customize everything, download your Expo project or build APK.',
     url: 'https://sherutools.com/app-builder',
     images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'AI App Builder — Create Android Apps Without Coding',
-    description: 'Describe your app idea and AI generates a complete React Native/Expo project. Preview screens, customize, and download. No coding required. Build Android apps f',
+    description: 'Describe your app idea and AI generates a complete React Native/Expo project. Preview screens, customize, and download. No coding required.',
     images: ['/opengraph-image'],
   },
 };

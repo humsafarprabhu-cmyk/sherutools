@@ -2,7 +2,7 @@ import SoftwareAppJsonLd from '@/components/SoftwareAppJsonLd';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'AI Resume Scorer — Get Your Resume Rated Instantly | SheruTools',
+  title: 'AI Resume Scorer — Get Your Resume Rated Instantly',
   description: 'Upload your resume and get an instant AI-powered score with detailed feedback. Check ATS compatibility, formatting, keywords, and get actionable improvement tips. Free online tool.',
   keywords: ['resume scorer', 'resume checker', 'ATS checker', 'resume analyzer', 'resume feedback', 'AI resume review', 'resume tips', 'CV scorer'],
   openGraph: {
@@ -10,10 +10,11 @@ export const metadata: Metadata = {
     description: 'Get instant AI feedback on your resume. Score, ATS check, keyword analysis, and improvement tips.',
     type: 'website',
   },
+  alternates: { canonical: 'https://sherutools.com/resume-scorer' },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Resume Scorer — Get Your Resume Rated Instantly | SheruTools',
-    description: 'Upload your resume and get an instant AI-powered score with detailed feedback. Check ATS compatibility, formatting, keywords, and get actionable improvement tip',
+    title: 'AI Resume Scorer — Get Your Resume Rated Instantly',
+    description: 'Upload your resume and get an instant AI-powered score with detailed feedback. Check ATS compatibility, formatting, keywords, and get actionable improvement.',
     images: ['/opengraph-image'],
   },
 

@@ -30,9 +30,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SheruTools — Free Online Tools That Actually Work',
-    description: '33+ free online tools for creators, developers & businesses. No sign-up required. 100% private.',
-    images: ['/opengraph-image'],
   },
   robots: { index: true, follow: true },
   alternates: { canonical: 'https://sherutools.com' },
